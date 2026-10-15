@@ -2,6 +2,14 @@
 
 This record distinguishes prior work from later development. Release names describe local product versions and do not imply a public deployment or contest award.
 
+## 3.0 follow-up — Arbitrary-area selection and OSM file import · 16 October 2026
+
+- Added local coordinate/OpenStreetMap URL navigation to a 2 × 2 km starting selection.
+- Fixed rectangle selection jumping back to the old area after map panning.
+- Added bounded local OSM XML/Overpass JSON import and worker graph construction for user-selected regions, with explicit file provenance and retained OSM attribution.
+- Updated the default fallback to Private.coffee; removed immediate duplicate requests and added HTTP 429 cooldown handling with Retry-After.
+- Preserved the shared simulation algorithms, existing Harbor metrics and independent saved examples. Public live-service availability remains an external dependency.
+
 ## 3.0 follow-up — Request handling and publication audit · 15 October 2026
 
 - Bounded Harbor AI-analysis request bodies by streamed UTF-8 bytes and contained interrupted upload errors.

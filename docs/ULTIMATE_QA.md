@@ -1,6 +1,6 @@
 # Ultimate Resilience verification — 15 October 2026
 
-This is the current version-3 verification record. [Earlier checks and films](../QA_REPORT.md) describe earlier product versions. Software checks do not validate real-world traffic forecasts or emergency safety.
+This is the version-3 decision-workspace verification record. See the [16 October arbitrary-area follow-up](CUSTOM_AREA_QA.md) for the latest import/UI checks. [Earlier checks and films](../QA_REPORT.md) describe earlier product versions. Software checks do not validate real-world traffic forecasts or emergency safety.
 
 ## Follow-up publication and regression review — 15 October 2026
 

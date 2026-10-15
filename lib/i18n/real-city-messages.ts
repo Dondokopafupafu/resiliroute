@@ -1,4 +1,26 @@
 export const realCityJapanese: Readonly<Record<string, string>> = {
+  "Go to your own location": "好きな場所へ移動",
+  "Paste latitude, longitude or an OpenStreetMap map URL. A 2 × 2 km selection is created; adjust its corners on the map.":
+    "緯度, 経度、またはOpenStreetMapの地図URLを貼り付けてください。約2km四方を選択します。地図上で範囲を調整できます。",
+  "Show this location": "この場所を表示",
+  "Enter valid latitude, longitude or an OpenStreetMap URL containing #map=zoom/latitude/longitude.":
+    "有効な緯度, 経度、または #map=ズーム/緯度/経度 を含むOpenStreetMapのURLを入力してください。",
+  "Any mapped region, not just the examples. Zoom out, drag to your location, then zoom in and select two opposite corners.":
+    "サンプル以外の地域も選べます。地図を縮小して好きな場所へ移動し、拡大して範囲の対角2点を選んでください。",
+  "Use your own OSM data file": "任意の地域のOSMファイルを使う",
+  "If live import is unavailable, export a small area as OSM XML on OpenStreetMap, then import it here. The file is processed locally. No API key is needed.":
+    "直接取得できない場合は、OpenStreetMapで小範囲をOSM XMLとして書き出し、ここで読み込めます。ファイルは端末内で処理します。APIキーは不要です。",
+  "Open OpenStreetMap export": "OpenStreetMapの書き出し画面を開く",
+  "Import OSM file": "OSMファイルを読み込む",
+  "OSM XML or Overpass JSON · up to 10 MB. XML file bounds replace the selection. For JSON without bounds, select the matching area first. Incomplete files may omit facilities.":
+    "OSM XML・Overpass JSON対応（最大10MB）。XMLの範囲を優先します。範囲情報のないJSONは同じ地域を先に選択してください。不完全なファイルでは施設が欠ける場合があります。",
+  "Imported OSM file · provenance supplied by file":
+    "読み込んだOSMファイル · 出典はファイルの申告に基づく",
+  "Building network from your OSM file": "OSMファイルから交通網を構築中",
+  "This is a data-service issue, not a restriction to example cities. You can also use your own OSM data file above.":
+    "取得サービス側の問題で、サンプル都市だけに限定されているわけではありません。上の「任意の地域のOSMファイルを使う」からも読み込めます。",
+  "This file is not complete OSM XML or Overpass JSON. Export a small area with its road nodes and try again.":
+    "完全なOSM XML・Overpass JSONではありません。道路とその構成点を含む小範囲を書き出して再試行してください。",
   "Baseline route": "通常時の経路",
   "Scenario route": "閉鎖後の経路",
   Status: "状態",

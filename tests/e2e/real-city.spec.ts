@@ -5,6 +5,111 @@ import { buildRealCityNetwork } from "../../lib/osm/network-builder";
 const bbox = { south: 35, west: 139, north: 35.02, east: 139.02 };
 const snapshot = buildRealCityNetwork(fixture, bbox, "2026-10-10T00:00:00Z");
 
+test("custom coordinates and OSM map URLs select places beyond the examples without an API call", async ({
+  page,
+}) => {
+  let calls = 0;
+  await page.route("**/api/osm/network", (route) => {
+    calls++;
+    return route.fulfill({ json: { snapshot, cached: false } });
+  });
+  await page.goto("/real-city");
+  await page
+    .getByLabel("Go to your own location")
+    .fill("https://www.openstreetmap.org/#map=16/35.6812/139.7671");
+  await page.getByRole("button", { name: "Show this location", exact: true }).click();
+  await expect(page.locator(".area-stats")).toContainText("4.00 km²");
+  await page.getByText("Edit bounding coordinates", { exact: true }).click();
+  expect(Number(await page.getByLabel("south", { exact: true }).inputValue())).toBeCloseTo(
+    35.6722,
+    3,
+  );
+  expect(calls).toBe(0);
+  await page.getByLabel("Go to your own location").fill("invalid");
+  await page.getByRole("button", { name: "Show this location", exact: true }).click();
+  await expect(page.locator(".location-picker [role=alert]")).toBeVisible();
+  await expect(page.getByTestId("build-network")).toBeEnabled();
+  await page.getByRole("button", { name: "日本語", exact: true }).click();
+  await expect(page.getByLabel("好きな場所へ移動")).toBeVisible();
+  await expect(page.locator(".location-picker [role=alert]")).toContainText("有効な緯度");
+  await page.getByTestId("build-network").click();
+  await expect(page.getByTestId("network-summary")).toBeVisible();
+  expect(calls).toBe(1);
+});
+
+test("starting a rectangle after panning does not jump back to the previous area", async ({
+  page,
+}) => {
+  await page.goto("/real-city");
+  await page.getByLabel("Try an example area").selectOption("0");
+  const map = page.locator(".real-map");
+  await map.scrollIntoViewIfNeeded();
+  await expect(map.locator(".leaflet-overlay-pane path").first()).toBeVisible();
+  const initial = await map.locator(".leaflet-map-pane").getAttribute("style");
+  const r = (await map.boundingBox())!;
+  await page.mouse.move(r.x + r.width * 0.5, r.y + r.height * 0.5);
+  await page.mouse.down();
+  await page.mouse.move(r.x + r.width * 0.25, r.y + r.height * 0.65, { steps: 15 });
+  await page.mouse.up();
+  await page.waitForTimeout(700);
+  const before = await map.locator(".leaflet-map-pane").getAttribute("style");
+  expect(before).not.toBe(initial);
+  await page.getByRole("button", { name: "Select area on map", exact: true }).click();
+  expect(await map.locator(".leaflet-map-pane").getAttribute("style")).toBe(before);
+});
+
+test("local OSM XML builds and closes a road while the public API is unavailable", async ({
+  page,
+}) => {
+  let apiCalls = 0;
+  await page.route("**/api/osm/network", (route) => {
+    apiCalls++;
+    return route.abort();
+  });
+  const escape = (s: string) =>
+    s.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
+  const xml = `<osm version="0.6"><bounds minlat="35" minlon="139" maxlat="35.02" maxlon="139.02"/>${fixture.elements
+    .map((e) => {
+      const tags = Object.entries(e.tags ?? {})
+        .map(([k, v]) => `<tag k="${escape(k)}" v="${escape(v)}"/>`)
+        .join("");
+      return e.type === "node"
+        ? `<node id="${e.id}" lat="${e.lat}" lon="${e.lon}">${tags}</node>`
+        : `<way id="${e.id}">${e.nodes?.map((id) => `<nd ref="${id}"/>`).join("")}${tags}</way>`;
+    })
+    .join(
+      "",
+    )}<relation id="900001" user="test-contributor"><tag k="phone" v="test-contact"/>${Array.from(
+    { length: 275 },
+    (_, i) => `<tag k="name:test-language-${i}" v="Irrelevant relation name"/>`,
+  ).join("")}</relation></osm>`;
+  await page.goto("/real-city");
+  await page.getByText("Use your own OSM data file", { exact: true }).click();
+  await page
+    .getByLabel("Import OSM file", { exact: true })
+    .setInputFiles({ name: "map.osm", mimeType: "application/xml", buffer: Buffer.from(xml) });
+  await expect(page.getByTestId("network-summary")).toContainText("Imported OSM file");
+  await expect(page.getByText("Full stress test:", { exact: false })).toBeVisible();
+  const before = Number(await page.getByTestId("value-averageTravelTime").innerText());
+  await page.getByLabel("Inspect real road").selectOption("osm-way-102-0");
+  await page.getByRole("button", { name: "Simulate closure", exact: true }).click();
+  await expect(page.locator(".closed-edge")).toHaveCount(1);
+  await expect(page.getByRole("button", { name: "Reopen road", exact: true })).toBeEnabled();
+  expect(Number(await page.getByTestId("value-averageTravelTime").innerText())).toBeGreaterThan(
+    before,
+  );
+  await page.getByRole("button", { name: "Reset closures", exact: true }).click();
+  await expect(page.getByTestId("value-averageTravelTime")).toHaveText(before.toFixed(1));
+  await page.getByLabel("Import OSM file", { exact: true }).setInputFiles({
+    name: "invalid.osm",
+    mimeType: "application/xml",
+    buffer: Buffer.from('<!DOCTYPE osm [<!ENTITY unsafe "text">]><osm/>'),
+  });
+  await expect(page.locator(".real-error[role=alert]")).toContainText("not complete OSM XML");
+  await expect(page.getByTestId("network-summary")).toBeVisible();
+  expect(apiCalls).toBe(0);
+});
+
 test("clearing or invalidating a coordinate keeps the map and form usable", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));

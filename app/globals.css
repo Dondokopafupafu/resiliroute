@@ -3707,7 +3707,8 @@ input:focus-visible {
   margin: 16px 0 7px;
 }
 .real-side select,
-.bbox-inputs input {
+.bbox-inputs input,
+.location-picker input {
   width: 100%;
   min-width: 0;
   padding: 10px;
@@ -3716,6 +3717,43 @@ input:focus-visible {
   background: white;
   color: var(--ink);
   font-size: 12px;
+}
+.location-picker {
+  margin: 15px 0;
+  padding: 0 0 16px;
+  border-bottom: 1px solid var(--border);
+}
+.location-picker .table-note,
+.osm-file-import .table-note {
+  line-height: 1.6;
+  margin: 9px 0;
+}
+.osm-file-import {
+  margin: 18px 0;
+  padding: 12px;
+  border: 1px solid #cad9df;
+  border-radius: 8px;
+  font-size: 12px;
+}
+.osm-file-import summary {
+  cursor: pointer;
+  font-weight: 650;
+}
+.osm-file-button {
+  display: flex;
+  position: relative;
+  margin-top: 12px;
+}
+.osm-file-button input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.osm-file-button:focus-within {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
 }
 .real-side .button-primary {
   background: var(--teal);

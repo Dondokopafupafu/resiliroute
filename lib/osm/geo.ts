@@ -5,6 +5,7 @@ export class ImportError extends Error {
   constructor(
     public code: ImportErrorCode,
     message = code,
+    public retryAfterSeconds?: number,
   ) {
     super(message);
     this.name = "ImportError";

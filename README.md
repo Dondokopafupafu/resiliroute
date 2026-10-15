@@ -61,6 +61,8 @@ Evidence Explanations + Existing AI Brief + Reports
 
 Open **Real City Lab** in the header. Click **Select area on map**, then two opposite corners, or select an example area. **Build Mobility Network** retrieves OSM through `/api/osm/network`; it never sends a heavy Overpass query directly from the browser. Review the network summary and baseline. Click a road, choose **Simulate closure**, then compare rerouting, before/after KPIs, real facilities, critical-road tests and independent recovery gains. **Reset closures** keeps the imported network and restores its baseline. **Demo City** always opens the original simulator.
 
+**Choose your own location:** zoom out, drag to any mapped region, then zoom in. Alternatively, paste `latitude, longitude` or a full OpenStreetMap `#map=zoom/latitude/longitude` URL into **Go to your own location**. **Show this location** selects an approximately 2 × 2 km starting rectangle. Adjust it with **Select area on map**. This input is parsed locally, not sent to a geocoder; place-name search is not implemented. The two examples are shortcuts, not a geographic restriction. Beginning a new selection preserves the map's current position after panning.
+
 The recommended rectangle is **1–10 km²**, with a **25 km²** area limit. Dense areas may require a smaller rectangle: limits are 25,000 raw OSM nodes, 900 simplified road nodes, 1,400 road segments and 35 connected facilities. Coordinates are validated on both client and server before any query. Routes leaving the rectangle are excluded, so boundary selection can materially affect results.
 
 ### What is real, estimated and synthetic?
@@ -87,20 +89,26 @@ The adapter feeds the **same** Dijkstra, 24-iteration assignment, bounded BPR, a
 
 ### Overpass dependency and failure handling
 
-The server validates the query, bounds the response size, aborts timed-out/disconnected requests and tries at most three upstream requests (primary, one retry, fallback). A 20-minute process-local cache stores at most 16 rounded bounds; both query and cache key use the same rounded coordinates. A per-process budget of 16 uncached builds per five minutes and two concurrent imports limits accidental pressure. These controls are for a small prototype; distributed public hosting needs a shared cache/rate limiter. No arbitrary client query or client-supplied upstream URL is accepted. No bounds, user identifiers or raw upstream errors are logged by the application.
+The server validates the query, bounds the response size, aborts timed-out/disconnected requests and tries each configured service once (primary, then fallback after a temporary error). It stops on HTTP 429 instead of retrying around rate limits; subsequent uncached requests wait at least five minutes and respect a longer `Retry-After`. A 20-minute process-local cache stores at most 16 rounded bounds; both query and cache key use the same rounded coordinates. A per-process budget of 16 uncached builds per five minutes and two concurrent imports limits accidental pressure. These controls are for a small prototype; distributed public hosting needs a shared cache/rate limiter. No arbitrary client query or client-supplied upstream URL is accepted. No bounds, user identifiers or raw upstream errors are logged by the application.
 
 Optional server environment variables:
 
 ```dotenv
 OVERPASS_API_URL=https://overpass-api.de/api/interpreter
-OVERPASS_FALLBACK_URL=https://overpass.kumi.systems/api/interpreter
+OVERPASS_FALLBACK_URL=https://overpass.private.coffee/api/interpreter
 ```
 
 Overpass is a public service and can be busy. Errors remain visible; **Use Demo City Instead** returns to the independent Harbor City experience. No fake city is silently substituted.
 
+The default fallback follows the [OSM public-instance listing](https://wiki.openstreetmap.org/wiki/Overpass_API#Public_Overpass_API_instances): Private.coffee succeeds the former Kumi endpoint. Existing installations that explicitly set the old environment variable need to update it and restart. These public endpoints require no API key; availability is not guaranteed. The current local connectivity check returned upstream HTTP errors/rate limiting, so live arbitrary-area import is not claimed as verified by the offline tests.
+
 For local use, keep `pnpm dev` or `pnpm start` running while using the app. An already-rendered map can remain visible after the server stops, but new imports require the server. Connection failures show a ResiliRoute-server error, separately from an actual Overpass outage. If an import exceeds road-complexity limits or times out, **Shrink selected area** halves both width and height around the same center. Review the smaller rectangle and press **Build Mobility Network** again; shrinking alone makes no API request and preserves the last successful network.
 
 ### Reproducible snapshots and contest demos
+
+**Use your own OSM data file** provides another route for any supported small region when live Overpass requests are unavailable. Open [OpenStreetMap export](https://www.openstreetmap.org/export), select a small rectangle and download its OSM XML, then choose **Import OSM file**. `.osm`/`.xml` exports and raw Overpass JSON up to 10 MB are accepted. XML bounds take precedence; without file bounds, including ordinary Overpass JSON, select the matching region first. This is an explicit user file import, not a hidden replacement for failed live requests. Export services can also be unavailable.
+
+Files are parsed locally and converted in a cancellable Web Worker using the same graph builder, size limits, demand model and analysis engine. The imported network is labeled file-supplied provenance, not independently verified live data. Invalid XML/JSON, DTD/entity declarations, excessive sizes and invalid bounds are rejected without discarding the previous network. XML contributor accounts and edit metadata are not retained. A facility represented by a complete XML way uses its member bounding-box center; relations without an explicit center cannot be snapped, so facility coverage can differ from Overpass. Compressed PBF, history/change files and incomplete road geometries are not supported. Keep OSM attribution when exporting snapshots.
 
 **Export Network Snapshot** saves sanitized JSON with bounds, OSM timestamp/attribution, model version **1.0**, graph geometry, facilities and synthetic OD inputs. **Import Snapshot** validates references, sizes and numeric ranges before rerunning the model offline. Snapshots contain no API credentials. Imported provenance is file-supplied and not independently verified. A snapshot represents model inputs and resets to baseline; it does not preserve an active closure scenario.
 
@@ -267,7 +275,7 @@ No paid upstream request is necessary for the demo. Provider tests mock OpenAI r
 
 ## Testing & building
 
-Latest version 3.0 verification: **112 unit/data tests and 54 production browser tests passed**, along with lint, formatting, strict typecheck and build. The frozen installation was verified during the original upgrade; this follow-up changed no dependencies. See the [current QA record](docs/ULTIMATE_QA.md) for actual-network evidence and verification boundaries. `pnpm screenshots:decision` captures the actual recovery, uncertainty, report and Real City views without overriding results.
+Latest version 3.0 verification: **120 unit/data tests and 60 production browser tests passed**, along with lint, formatting, strict typecheck and build. The frozen installation was verified during the original upgrade; this follow-up changed no dependencies. See the [arbitrary-area follow-up](docs/CUSTOM_AREA_QA.md) and [decision-workspace QA record](docs/ULTIMATE_QA.md) for actual-network evidence and verification boundaries. `pnpm screenshots:decision` captures the actual recovery, uncertainty, report and Real City views without overriding results.
 
 ```bash
 pnpm lint

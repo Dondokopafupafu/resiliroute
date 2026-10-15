@@ -42,7 +42,9 @@ function check(directory: string, args = ["--staged", "--history"]) {
   return { status: result.status, output: result.stdout + result.stderr };
 }
 
-describe("Publication privacy safeguards", () => {
+// These checks launch several Git processes and scan complete fixture histories.
+// Windows process startup can exceed Vitest's 5-second default under suite load.
+describe("Publication privacy safeguards", { timeout: 15000 }, () => {
   it("accepts anonymous history and empty environment templates", () =>
     fixture((directory, git) => {
       writeFileSync(join(directory, ".env.example"), "OPENAI_API_KEY=\n");

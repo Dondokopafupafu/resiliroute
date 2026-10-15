@@ -92,4 +92,5 @@ export type ImportErrorCode =
   | "TIMEOUT"
   | "CANCELLED"
   | "RATE_LIMIT"
-  | "INVALID_SNAPSHOT";
+  | "INVALID_SNAPSHOT"
+  | "INVALID_OSM_FILE";

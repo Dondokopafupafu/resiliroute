@@ -21,6 +21,7 @@ interface Props {
   current: SimulationResult | null;
   selecting: boolean;
   fitKey: number;
+  selectionKey: number;
   onBounds: (b: BoundingBox) => void;
   onSelect: (id: string) => void;
   selectedId: string | null;
@@ -39,13 +40,14 @@ function Selection({
   bbox,
   selecting,
   fitKey,
+  selectionKey,
   onBounds,
-}: Pick<Props, "bbox" | "selecting" | "fitKey" | "onBounds">) {
+}: Pick<Props, "bbox" | "selecting" | "fitKey" | "selectionKey" | "onBounds">) {
   const map = useMap();
   const [first, setFirst] = useState<[number, number] | null>(null);
   const [preview, setPreview] = useState<[number, number] | null>(null);
-  const [selectionKey, setSelectionKey] = useState<number | null>(null);
-  const activeFirst = selectionKey === fitKey ? first : null;
+  const [firstKey, setFirstKey] = useState<number | null>(null);
+  const activeFirst = firstKey === selectionKey ? first : null;
   useMapEvents({
     click(event) {
       if (!selecting) return;
@@ -53,7 +55,7 @@ function Selection({
       if (!activeFirst) {
         setFirst(p);
         setPreview(p);
-        setSelectionKey(fitKey);
+        setFirstKey(selectionKey);
       } else {
         onBounds({
           south: Math.min(activeFirst[0], p[0]),
@@ -133,6 +135,7 @@ export default function LabMap(props: Props) {
           bbox={props.bbox}
           selecting={props.selecting}
           fitKey={props.fitKey}
+          selectionKey={props.selectionKey}
           onBounds={props.onBounds}
         />
         {props.snapshot?.network.edges

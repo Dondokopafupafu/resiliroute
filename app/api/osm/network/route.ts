@@ -19,6 +19,7 @@ const statuses = {
   CANCELLED: 499,
   RATE_LIMIT: 429,
   INVALID_SNAPSHOT: 400,
+  INVALID_OSM_FILE: 400,
 };
 export async function POST(request: NextRequest) {
   const protocol =
@@ -50,7 +51,13 @@ export async function POST(request: NextRequest) {
         status: statuses[code],
         headers: {
           "Cache-Control": "no-store",
-          ...(code === "RATE_LIMIT" ? { "Retry-After": "300" } : {}),
+          ...(code === "RATE_LIMIT"
+            ? {
+                "Retry-After": String(
+                  error instanceof ImportError ? (error.retryAfterSeconds ?? 300) : 300,
+                ),
+              }
+            : {}),
         },
       },
     );

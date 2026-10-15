@@ -9,6 +9,7 @@ export function createNetworkService(fetcher: typeof fetch = fetch) {
   let active = 0,
     calls = 0,
     windowStarted = Date.now();
+  let upstreamCooldownUntil = 0;
   return async (input: unknown, signal?: AbortSignal) => {
     const bbox = validateBoundingBox(input);
     // Rounded coordinates are used for both query and key; cache never returns
@@ -20,6 +21,12 @@ export function createNetworkService(fetcher: typeof fetch = fetch) {
     const key = `${realCityConfig.queryVersion}:${Object.values(normalized).join(",")}`;
     const cached = cache.get(key);
     if (cached && cached.expires > Date.now()) return { snapshot: cached.snapshot, cached: true };
+    if (upstreamCooldownUntil > Date.now())
+      throw new ImportError(
+        "RATE_LIMIT",
+        undefined,
+        Math.ceil((upstreamCooldownUntil - Date.now()) / 1000),
+      );
     if (Date.now() - windowStarted > 300000) {
       windowStarted = Date.now();
       calls = 0;
@@ -34,6 +41,10 @@ export function createNetworkService(fetcher: typeof fetch = fetch) {
       if (cache.size >= 16) cache.delete(cache.keys().next().value!);
       cache.set(key, { expires: Date.now() + realCityConfig.cacheMs, snapshot });
       return { snapshot, cached: false };
+    } catch (error) {
+      if (error instanceof ImportError && error.code === "RATE_LIMIT")
+        upstreamCooldownUntil = Date.now() + (error.retryAfterSeconds ?? 300) * 1000;
+      throw error;
     } finally {
       active--;
     }

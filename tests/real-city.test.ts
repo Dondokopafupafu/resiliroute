@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import fixture from "./fixtures/osm-small.json";
 import { areaDimensions, geometryDistance, haversine, validateBoundingBox } from "@/lib/osm/geo";
 import { buildOverpassQuery } from "@/lib/osm/query-builder";
@@ -152,6 +152,10 @@ describe("real-city import and shared simulation", () => {
     ).toThrow("TOO_COMPLEX"));
 });
 describe("Overpass failure safety", () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.useRealTimers();
+  });
   it("validates oversized requests before any upstream call", async () => {
     let calls = 0;
     const service = createNetworkService(async () => {
@@ -205,11 +209,47 @@ describe("Overpass failure safety", () => {
       fetchOverpass(bbox, {
         fetcher,
         timeoutMs: 10,
-        endpoints: ["https://example.com", "https://example.com"],
+        endpoints: ["https://example.com", "https://example.org"],
       }),
     ).rejects.toThrow("TIMEOUT");
     expect(attempts).toBe(2);
     await expect(fetchOverpass(bbox, { signal: AbortSignal.abort() })).rejects.toThrow("CANCELLED");
+  });
+  it("uses the current documented fallback once after a temporary failure", async () => {
+    vi.stubEnv("OVERPASS_API_URL", "");
+    vi.stubEnv("OVERPASS_FALLBACK_URL", "");
+    const urls: string[] = [];
+    await fetchOverpass(bbox, {
+      fetcher: async (url) => {
+        urls.push(String(url));
+        return urls.length === 1 ? new Response(null, { status: 503 }) : Response.json(fixture);
+      },
+    });
+    expect(urls).toEqual([
+      "https://overpass-api.de/api/interpreter",
+      "https://overpass.private.coffee/api/interpreter",
+    ]);
+  });
+  it("does not retry or fail over around a rate limit and honors Retry-After", async () => {
+    let calls = 0;
+    vi.useFakeTimers({ toFake: ["Date"] });
+    const service = createNetworkService(async () => {
+      calls++;
+      return new Response(null, { status: 429, headers: { "Retry-After": "900" } });
+    });
+    await expect(service(bbox)).rejects.toMatchObject({
+      code: "RATE_LIMIT",
+      retryAfterSeconds: 900,
+    });
+    vi.setSystemTime(Date.now() + 600000);
+    await expect(service(bbox)).rejects.toMatchObject({
+      code: "RATE_LIMIT",
+      retryAfterSeconds: 300,
+    });
+    expect(calls).toBe(1);
+    vi.setSystemTime(Date.now() + 301000);
+    await expect(service(bbox)).rejects.toMatchObject({ code: "RATE_LIMIT" });
+    expect(calls).toBe(2);
   });
   it("rejects HTTP errors and invalid JSON", async () => {
     for (const response of [new Response("error", { status: 503 }), new Response("broken json")])

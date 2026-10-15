@@ -27,6 +27,9 @@ import { generateLocalAnalysis, isAIAnalysis } from "@/lib/ai/analysis";
 import { areaDimensions, ImportError, validateBoundingBox } from "@/lib/osm/geo";
 import { validateSnapshot } from "@/lib/real-city/snapshot";
 import { requestRealCityNetwork } from "@/lib/real-city/network-request";
+import { buildFromOSMFile } from "@/lib/real-city/import-file-client";
+import { osmExportUrl } from "@/lib/real-city/location-input";
+import { LocationPicker } from "./location-picker";
 import { exampleAreas, realCityConfig } from "@/lib/real-city/model-config";
 import { buildGraph, shortestPath } from "@/lib/graph/shortest-path";
 import { realCityContext } from "@/lib/real-city/context";
@@ -61,6 +64,8 @@ const errors: Record<ImportErrorCode, string> = {
   CANCELLED: "Network build cancelled.",
   RATE_LIMIT: "The data service is busy. Wait a few minutes or use a saved snapshot.",
   INVALID_SNAPSHOT: "This snapshot is invalid or uses an unsupported model version.",
+  INVALID_OSM_FILE:
+    "This file is not complete OSM XML or Overpass JSON. Export a small area with its road nodes and try again.",
 };
 const disclaimer =
   "Road geometry and facilities come from OpenStreetMap. Traffic capacity and demand are modeled estimates. ResiliRoute is an educational planning prototype, not real-time traffic or emergency navigation.";
@@ -70,10 +75,11 @@ export default function RealCityLab() {
   const [bbox, setBbox] = useState<BoundingBox | null>(null);
   const [selecting, setSelecting] = useState(false);
   const [fitKey, setFitKey] = useState(0);
+  const [selectionKey, setSelectionKey] = useState(0);
   const [snapshot, setSnapshot] = useState<RealCityNetwork | null>(null);
   const [source, setSource] = useState("Live OpenStreetMap import");
   const [fetching, setFetching] = useState(false);
-  const [fetchKind, setFetchKind] = useState<"live" | "snapshot">("live");
+  const [fetchKind, setFetchKind] = useState<"live" | "snapshot" | "file">("live");
   const [error, setError] = useState<ImportErrorCode | null>(null);
   const [closedIds, setClosedIds] = useState<string[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -391,10 +397,34 @@ export default function RealCityLab() {
       if (request.current === controller && !controller.signal.aborted) setFetching(false);
     }
   };
+  const importOSM = async (file?: File) => {
+    if (!file) return;
+    request.current?.abort();
+    const controller = new AbortController();
+    request.current = controller;
+    setFetching(true);
+    setFetchKind("file");
+    setError(null);
+    setSelecting(false);
+    try {
+      const data = await buildFromOSMFile(file, bboxError ? null : bbox, controller.signal);
+      if (controller.signal.aborted || request.current !== controller) return;
+      installSnapshot(data, "Imported OSM file · provenance supplied by file");
+    } catch (e) {
+      if (!controller.signal.aborted)
+        setError(
+          e instanceof ImportError && e.code !== "INVALID_RESPONSE" ? e.code : "INVALID_OSM_FILE",
+        );
+    } finally {
+      if (request.current === controller && !controller.signal.aborted) setFetching(false);
+    }
+  };
   const progressName = fetching
     ? fetchKind === "live"
       ? "Fetching roads & building the intersection graph"
-      : "Reading saved network snapshot"
+      : fetchKind === "file"
+        ? "Building network from your OSM file"
+        : "Reading saved network snapshot"
     : progress?.step === "baseline"
       ? "Running baseline simulation"
       : progress?.step === "assignment"
@@ -512,6 +542,7 @@ export default function RealCityLab() {
               analysisLayer={mapView === "before" ? "traffic" : mapLayer}
               critical={result?.ranking ?? []}
               selecting={selecting}
+              selectionKey={selectionKey}
               fitKey={fitKey}
               onBounds={(b) => {
                 setBbox(b);
@@ -561,14 +592,25 @@ export default function RealCityLab() {
                 <span className="eyebrow">{t("START WITH AN AREA")}</span>
                 <h2>{t("Analyze a real urban network")}</h2>
                 <p>
-                  {t("Draw a rectangle on the map to build a mobility network from OpenStreetMap.")}
+                  {t(
+                    "Any mapped region, not just the examples. Zoom out, drag to your location, then zoom in and select two opposite corners.",
+                  )}
                 </p>
+                <LocationPicker
+                  disabled={fetching}
+                  onChoose={(b) => {
+                    setBbox(b);
+                    setFitKey((k) => k + 1);
+                    setSelecting(false);
+                    setError(null);
+                  }}
+                />
                 <button
                   className="button button-primary"
                   disabled={fetching}
                   onClick={() => {
                     setSelecting((p) => !p);
-                    setFitKey((k) => k + 1);
+                    setSelectionKey((k) => k + 1);
                   }}
                 >
                   {t(selecting ? "Cancel selection" : "Select area on map")}
@@ -685,9 +727,55 @@ export default function RealCityLab() {
                   </div>
                 )}
               </details>
+              <details className="osm-file-import">
+                <summary>{t("Use your own OSM data file")}</summary>
+                <p className="table-note">
+                  {t(
+                    "If live import is unavailable, export a small area as OSM XML on OpenStreetMap, then import it here. The file is processed locally. No API key is needed.",
+                  )}
+                </p>
+                <a
+                  className="text-button"
+                  href={
+                    bbox && !bboxError ? osmExportUrl(bbox) : "https://www.openstreetmap.org/export"
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t("Open OpenStreetMap export")}
+                </a>
+                <label className="button button-secondary osm-file-button">
+                  <Upload size={14} />
+                  {t("Import OSM file")}
+                  <input
+                    type="file"
+                    accept=".osm,.xml,.json,application/xml,text/xml,application/json"
+                    aria-label={t("Import OSM file")}
+                    disabled={fetching}
+                    onChange={(e) => {
+                      void importOSM(e.target.files?.[0]);
+                      e.target.value = "";
+                    }}
+                  />
+                </label>
+                <p className="table-note">
+                  {t(
+                    "OSM XML or Overpass JSON · up to 10 MB. XML file bounds replace the selection. For JSON without bounds, select the matching area first. Incomplete files may omit facilities.",
+                  )}
+                </p>
+              </details>
               {error && (
                 <div className="real-error" role="alert">
                   <p>{t(errors[error])}</p>
+                  {["UPSTREAM_UNAVAILABLE", "RATE_LIMIT", "TIMEOUT", "SERVER_UNREACHABLE"].includes(
+                    error,
+                  ) && (
+                    <p>
+                      {t(
+                        "This is a data-service issue, not a restriction to example cities. You can also use your own OSM data file above.",
+                      )}
+                    </p>
+                  )}
                   {bbox && (error === "TOO_COMPLEX" || error === "TIMEOUT") && (
                     <>
                       <button
