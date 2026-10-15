@@ -1,0 +1,582 @@
+{
+  "application": "ResiliRoute",
+  "dataset": "Harbor City synthetic demonstration network",
+  "generatedAt": "2026-10-06T04:34:21.032Z",
+  "language": "en",
+  "scenario": "Normal conditions",
+  "assumptions": "Synthetic static person-trip demand. Simplified 24-iteration BPR assignment. Not emergency guidance.",
+  "baseline": {
+    "averageTravelTime": 14.228435570321462,
+    "accessibility": 94.42658092175776,
+    "networkEfficiency": 43.76062633742906,
+    "congestion": 11.949249593041467,
+    "disconnectedDemand": 0,
+    "disconnectedODPairs": 0,
+    "connectedDemandRetention": 100,
+    "resilienceScore": 100,
+    "totalDemand": 15615
+  },
+  "current": {
+    "averageTravelTime": 14.228435570321462,
+    "accessibility": 94.42658092175776,
+    "networkEfficiency": 43.76062633742906,
+    "congestion": 11.949249593041467,
+    "disconnectedDemand": 0,
+    "disconnectedODPairs": 0,
+    "connectedDemandRetention": 100,
+    "resilienceScore": 100,
+    "totalDemand": 15615
+  },
+  "closedLinks": [],
+  "districts": [
+    {
+      "district": "North",
+      "population": 5200,
+      "averageTravelTime": 14.912876238769691,
+      "accessibility": 66.66666666666666,
+      "disconnectedDemand": 0,
+      "isolationRisk": 0,
+      "baseline": {
+        "district": "North",
+        "population": 5200,
+        "averageTravelTime": 14.912876238769691,
+        "accessibility": 66.66666666666666,
+        "disconnectedDemand": 0,
+        "isolationRisk": 0
+      }
+    },
+    {
+      "district": "West",
+      "population": 6800,
+      "averageTravelTime": 16.14916510120249,
+      "accessibility": 100,
+      "disconnectedDemand": 0,
+      "isolationRisk": 0,
+      "baseline": {
+        "district": "West",
+        "population": 6800,
+        "averageTravelTime": 16.14916510120249,
+        "accessibility": 100,
+        "disconnectedDemand": 0,
+        "isolationRisk": 0
+      }
+    },
+    {
+      "district": "Central",
+      "population": 4600,
+      "averageTravelTime": 7.8380600966708265,
+      "accessibility": 100,
+      "disconnectedDemand": 0,
+      "isolationRisk": 0,
+      "baseline": {
+        "district": "Central",
+        "population": 4600,
+        "averageTravelTime": 7.8380600966708265,
+        "accessibility": 100,
+        "disconnectedDemand": 0,
+        "isolationRisk": 0
+      }
+    },
+    {
+      "district": "East",
+      "population": 8400,
+      "averageTravelTime": 14.76316393073384,
+      "accessibility": 100,
+      "disconnectedDemand": 0,
+      "isolationRisk": 0,
+      "baseline": {
+        "district": "East",
+        "population": 8400,
+        "averageTravelTime": 14.76316393073384,
+        "accessibility": 100,
+        "disconnectedDemand": 0,
+        "isolationRisk": 0
+      }
+    },
+    {
+      "district": "Harbor",
+      "population": 6100,
+      "averageTravelTime": 14.506935264096699,
+      "accessibility": 100,
+      "disconnectedDemand": 0,
+      "isolationRisk": 0,
+      "baseline": {
+        "district": "Harbor",
+        "population": 6100,
+        "averageTravelTime": 14.506935264096699,
+        "accessibility": 100,
+        "disconnectedDemand": 0,
+        "isolationRisk": 0
+      }
+    }
+  ],
+  "essentialServices": [
+    {
+      "nodeId": "north-station",
+      "name": "North Station",
+      "type": "station",
+      "threshold": 12,
+      "reachablePopulation": 31.511254019292608
+    },
+    {
+      "nodeId": "west-station",
+      "name": "West Station",
+      "type": "station",
+      "threshold": 12,
+      "reachablePopulation": 36.655948553054664
+    },
+    {
+      "nodeId": "general-hospital",
+      "name": "General Hospital",
+      "type": "hospital",
+      "threshold": 20,
+      "reachablePopulation": 53.37620578778135
+    },
+    {
+      "nodeId": "riverside-shelter",
+      "name": "Riverside Shelter",
+      "type": "shelter",
+      "threshold": 15,
+      "reachablePopulation": 36.655948553054664
+    },
+    {
+      "nodeId": "central-station",
+      "name": "Central Station",
+      "type": "station",
+      "threshold": 12,
+      "reachablePopulation": 31.511254019292608
+    },
+    {
+      "nodeId": "central-shelter",
+      "name": "Central Shelter",
+      "type": "shelter",
+      "threshold": 15,
+      "reachablePopulation": 41.80064308681672
+    },
+    {
+      "nodeId": "east-station",
+      "name": "East Station",
+      "type": "station",
+      "threshold": 12,
+      "reachablePopulation": 27.009646302250808
+    },
+    {
+      "nodeId": "emergency-hospital",
+      "name": "Emergency Hospital",
+      "type": "hospital",
+      "threshold": 20,
+      "reachablePopulation": 61.41479099678456
+    },
+    {
+      "nodeId": "harbor-station",
+      "name": "Harbor Station",
+      "type": "station",
+      "threshold": 12,
+      "reachablePopulation": 34.40514469453376
+    },
+    {
+      "nodeId": "harbor-shelter",
+      "name": "Harbor Shelter",
+      "type": "shelter",
+      "threshold": 15,
+      "reachablePopulation": 19.614147909967848
+    }
+  ],
+  "criticalLinks": [
+    {
+      "edgeId": "north-avenue",
+      "name": "North Avenue",
+      "score": 16.14667151884551,
+      "travelTimeIncrease": 3.110611276588301,
+      "accessibilityLoss": 18.435155412647376,
+      "efficiencyLoss": 3.6361804136525393,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "harbor-bridge",
+      "name": "Harbor Bridge",
+      "score": 15.253184790157807,
+      "travelTimeIncrease": 4.048019059315948,
+      "accessibilityLoss": 9.0032154340836,
+      "efficiencyLoss": 4.285251015720128,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "west-lane",
+      "name": "West Garden Lane",
+      "score": 14.127119462442097,
+      "travelTimeIncrease": 2.1869720683979033,
+      "accessibilityLoss": 20.15005359056805,
+      "efficiencyLoss": 2.7977976991151223,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "east-riverside",
+      "name": "East Riverside Road",
+      "score": 11.126669151433187,
+      "travelTimeIncrease": 2.619390813120109,
+      "accessibilityLoss": 9.0032154340836,
+      "efficiencyLoss": 2.945549861076671,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "harbor-link",
+      "name": "Harbor Residential Link",
+      "score": 10.894426426270003,
+      "travelTimeIncrease": 1.6600956076015994,
+      "accessibilityLoss": 15.541264737406209,
+      "efficiencyLoss": 2.2981319362778834,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "harbor-rail",
+      "name": "Harbor Rail",
+      "score": 9.088529793407973,
+      "travelTimeIncrease": 1.9231659183754353,
+      "accessibilityLoss": 9.0032154340836,
+      "efficiencyLoss": 2.233298388952697,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "east-rail",
+      "name": "East Rail Connector",
+      "score": 7.343927215475277,
+      "travelTimeIncrease": 1.303380794845701,
+      "accessibilityLoss": 9.0032154340836,
+      "efficiencyLoss": 1.7518960952283607,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "emergency-way",
+      "name": "Emergency Way",
+      "score": 6.027243588813187,
+      "travelTimeIncrease": 0.885579590046893,
+      "accessibilityLoss": 9.0032154340836,
+      "efficiencyLoss": 1.1196645196544708,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "east-avenue",
+      "name": "East Avenue",
+      "score": 5.036933026983728,
+      "travelTimeIncrease": 0.49160631774966745,
+      "accessibilityLoss": 9.0032154340836,
+      "efficiencyLoss": 1.0732993758505671,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "market-link",
+      "name": "Market Link",
+      "score": 4.255398603235134,
+      "travelTimeIncrease": 0.2956537306747098,
+      "accessibilityLoss": 9.0032154340836,
+      "efficiencyLoss": 0.4179447531265694,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "riverside-crossing",
+      "name": "Riverside Crossing",
+      "score": 4.207671010409761,
+      "travelTimeIncrease": 0.28771032481395054,
+      "accessibilityLoss": 9.0032154340836,
+      "efficiencyLoss": 0.35626873666528525,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "market-street",
+      "name": "Market Street",
+      "score": 3.9877552245055465,
+      "travelTimeIncrease": 1.2944676934481443,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 1.7581755888603752,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "central-avenue",
+      "name": "Central Avenue",
+      "score": 3.708438926135315,
+      "travelTimeIncrease": 0.5423096528083491,
+      "accessibilityLoss": 5.57341907824221,
+      "efficiencyLoss": 0.6752205163368856,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "riverside-lane",
+      "name": "Riverside Lane",
+      "score": 2.7014755959137333,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 7.288317256162912,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "harbor-shelter-road",
+      "name": "Harbor Shelter Road",
+      "score": 2.5396655356212485,
+      "travelTimeIncrease": 0.03521910830802888,
+      "accessibilityLoss": 6.538049303322609,
+      "efficiencyLoss": 0.06487258999401035,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "north-gardens",
+      "name": "Garden Road",
+      "score": 2.2043785872034554,
+      "travelTimeIncrease": 0.04691359339903656,
+      "accessibilityLoss": 5.57341907824221,
+      "efficiencyLoss": 0.05063827098253171,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "hospital-road",
+      "name": "Hospital Road",
+      "score": 2.0658342792281426,
+      "travelTimeIncrease": -0.1083589409342487,
+      "accessibilityLoss": 5.57341907824221,
+      "efficiencyLoss": -0.1759554749865586,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "midtown-lane",
+      "name": "Midtown Lane",
+      "score": 2.0144299514015427,
+      "travelTimeIncrease": 0.5784266018050896,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 1.2943952275946344,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "quayside-road",
+      "name": "Quayside Road",
+      "score": 1.825321639242259,
+      "travelTimeIncrease": 0.6438406156268481,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.5285452884587372,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "coastal-road",
+      "name": "Coastal Road",
+      "score": 1.6978314657375835,
+      "travelTimeIncrease": 0.5300762417504377,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.8619018870325732,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "north-rail",
+      "name": "North Rail",
+      "score": 1.2750010795588698,
+      "travelTimeIncrease": 0.40095939540220016,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.6316758026483313,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "market-bus",
+      "name": "Market Bus Corridor",
+      "score": 1.1909787288455973,
+      "travelTimeIncrease": 0.34025852116172395,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.774539969601733,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "shelter-walk",
+      "name": "Shelter Walk",
+      "score": 0.918281690635815,
+      "travelTimeIncrease": 0.2956537306747098,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.4179447531265694,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "west-rail",
+      "name": "West Rail Connector",
+      "score": 0.8487219931966111,
+      "travelTimeIncrease": 0.2692720239654456,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.407739080756528,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "port-bypass",
+      "name": "Port Bypass",
+      "score": 0.7358482873383654,
+      "travelTimeIncrease": 0.24988528856644443,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.2651122686282008,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "civic-road",
+      "name": "Civic Road",
+      "score": 0.48693488023142767,
+      "travelTimeIncrease": 0.15817418525379878,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.21409466094793572,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "university-way",
+      "name": "University Way",
+      "score": 0.1550988865471239,
+      "travelTimeIncrease": 0.05036827031119273,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.06826624855013108,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "industrial-lane",
+      "name": "Industrial Lane",
+      "score": 0.1162830157574595,
+      "travelTimeIncrease": 0.03521910830802888,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.06487258999401035,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "campus-road",
+      "name": "Campus Road",
+      "score": 0.10237267739662251,
+      "travelTimeIncrease": 0.03181990262765311,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.05273173239514506,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "midtown-road",
+      "name": "Midtown Road",
+      "score": 0.06882882075329709,
+      "travelTimeIncrease": 0.020488208921271678,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.04032681066147603,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "north-local",
+      "name": "North Local Road",
+      "score": 0.022046825566660353,
+      "travelTimeIncrease": 0.007646076858058848,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.007085994546116581,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "airport-express",
+      "name": "Airport Express",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "airport-road",
+      "name": "Airport Road",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "community-road",
+      "name": "Community Road",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "east-bypass",
+      "name": "East Bypass",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "heritage-road",
+      "name": "Heritage Road",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "north-boulevard",
+      "name": "North Boulevard",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "old-town-road",
+      "name": "Old Town Road",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "school-lane",
+      "name": "School Lane",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "shelter-road",
+      "name": "Shelter Road",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "southern-crossing",
+      "name": "Southern Crossing",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "station-boulevard",
+      "name": "Station Boulevard",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    }
+  ],
+  "recovery": [],
+  "ai": {
+    "analysis": {
+      "summary": "A connected city still has weak links. Test a disruption to see how local failures can cascade across Harbor City.",
+      "mainImpact": "The reference network serves 15,615 modeled person-trips per hour. Accessibility is 94.4%; the resilience score is 100 by definition of baseline retention.",
+      "whyItMatters": "The next-link stress test measures which single failure creates the greatest additional loss. It can reveal risks that an ordinary route finder cannot show.",
+      "mostAffectedArea": "No district is affected by a disruption in the reference state. District comparisons reveal unequal impacts once a link closes.",
+      "criticalInfrastructure": "North Avenue is the highest-ranked available link in the current stress test. Removing it adds 3.1 minutes to the citywide modeled average and loses 18.4 accessibility points.",
+      "recommendedActions": [
+        "Explore a contingency for North Avenue, the highest-ranked single-link failure in the current model.",
+        "Test flood and rail scenarios to compare different patterns of network failure.",
+        "Replace synthetic inputs with validated local demand and capacity data before using this for planning decisions."
+      ],
+      "limitations": "Synthetic data and a simplified, fixed-iteration traffic model. These are possible planning strategies, not verified emergency instructions. Follow official local guidance during an actual emergency."
+    },
+    "source": "local"
+  }
+}

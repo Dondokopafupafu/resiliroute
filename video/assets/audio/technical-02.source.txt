@@ -1,0 +1,1 @@
+en-US-GuyNeural|-5%|All computations use transparent, documented rules. This educational prototype supports understanding, not emergency navigation.

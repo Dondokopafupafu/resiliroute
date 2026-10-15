@@ -1,0 +1,8 @@
+build/
+assets/recordings/
+assets/audio/
+assets/frames/
+assets/stills/
+*.mp4
+*.zip
+deliverables/CONTACT_SHEET.png

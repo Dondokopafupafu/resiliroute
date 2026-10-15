@@ -1,0 +1,195 @@
+1
+00:00:00,000 --> 00:00:06,268
+A city can depend on one bridge, one road, or one rail connection.
+
+2
+00:00:06,268 --> 00:00:17,446
+When that link fails, the question reaches beyond a line on the map. The effects can
+travel further. One local failure can have system-wide consequences.
+
+3
+00:00:17,446 --> 00:00:25,000
+How does the entire network change, and who loses access? That is the question behind
+ResiliRoute.
+
+4
+00:00:25,000 --> 00:00:33,786
+A single closure can push trips onto other corridors. A road that was lightly used can
+become a bottleneck.
+
+5
+00:00:33,786 --> 00:00:42,786
+Some journeys become longer. Others become impossible within the modeled network. Access
+to hospitals and essential services can become uneven.
+
+6
+00:00:42,786 --> 00:00:49,643
+A normal map shows the missing road, but makes these cascading consequences difficult to
+see.
+
+7
+00:00:49,643 --> 00:00:55,000
+That makes communicating infrastructure vulnerability a challenge, especially for
+essential-service access.
+
+8
+00:00:55,000 --> 00:01:00,829
+I built ResiliRoute, an urban mobility resilience simulator, to explore those
+consequences.
+
+9
+00:01:00,829 --> 00:01:08,143
+It calculates changes in travel time, access, congestion, efficiency, and resilience
+when transport links become unavailable.
+
+10
+00:01:08,143 --> 00:01:11,171
+Harbor City provides a controlled demonstration.
+
+11
+00:01:11,171 --> 00:01:20,000
+Real City Lab extends the same simulation engine to real infrastructure, using
+OpenStreetMap. Routes and demand are recalculated, together.
+
+12
+00:01:20,000 --> 00:01:27,357
+Here, I select a small area of Okayama in Japan. Both riverbanks are included.
+
+13
+00:01:27,357 --> 00:01:36,000
+Users can draw two corners on the map, adjust the bounds, or start from an example area.
+
+14
+00:01:36,000 --> 00:01:43,786
+Build Mobility Network retrieves roads and facilities through the server. Geometry is
+preserved along each road.
+
+15
+00:01:43,786 --> 00:01:52,000
+This area produces six hundred eighty-seven intersections, nine hundred eighty-three
+road segments, and eighteen modeled residential origins.
+
+16
+00:01:52,000 --> 00:01:59,786
+Now I select this real river crossing and simulate its closure. Closed links carry zero
+modeled flow.
+
+17
+00:01:59,786 --> 00:02:08,000
+Average modeled travel time rises from two point eight to three point four minutes.
+Resilience falls to ninety-one.
+
+18
+00:02:08,000 --> 00:02:16,429
+The same hospital journey now takes seven point two minutes instead of four point four.
+
+19
+00:02:16,429 --> 00:02:24,000
+Traffic has moved to alternative corridors, creating consequences well beyond the closed
+bridge.
+
+20
+00:02:24,000 --> 00:02:31,929
+One alternative road carries about three thousand modeled trips per hour, up from
+roughly six hundred.
+
+21
+00:02:31,929 --> 00:02:36,000
+Overall averages can hide this concentrated pressure.
+
+22
+00:02:36,000 --> 00:02:44,214
+The stress test removes candidate roads individually and recalculates their additional
+impact. Scores measure consequences, not failure probabilities.
+
+23
+00:02:44,214 --> 00:02:52,000
+For this larger network, thirty-five candidates are screened, rather than claiming an
+exhaustive ranking of every road.
+
+24
+00:02:52,000 --> 00:02:57,732
+After a second closure, essential-service access falls to ninety-five point nine
+percent.
+
+25
+00:02:57,732 --> 00:03:04,982
+Recovery analysis compares reopening each road independently. These gains are
+comparisons, not a combined repair plan.
+
+26
+00:03:04,982 --> 00:03:12,000
+The leading restoration recovers seventeen point four resilience points, and four point
+one access points.
+
+27
+00:03:12,000 --> 00:03:21,321
+Roads become graph edges; intersections become nodes. Dijkstra routing finds paths, and
+modeled travel demand is assigned over twenty-four iterations.
+
+28
+00:03:21,321 --> 00:03:27,821
+A bounded volume-capacity function adjusts travel costs. Closed roads are excluded from
+every route.
+
+29
+00:03:27,821 --> 00:03:35,000
+Automated tests cover routing, imports, closures, recovery, and bilingual interactions.
+All metric definitions are documented.
+
+30
+00:03:35,000 --> 00:03:41,900
+The analyst converts numerical evidence into a planning brief. This recording uses local
+analysis.
+
+31
+00:03:41,900 --> 00:03:47,643
+An optional server-side language model explains the same results, with automatic
+fallback.
+
+32
+00:03:47,643 --> 00:03:53,814
+Geometry and facilities come from OpenStreetMap. Capacity, demand, and some speeds are
+modeled.
+
+33
+00:03:53,814 --> 00:04:02,000
+Assumptions are visible: this is educational what-if analysis, with no disaster
+prediction. Outside-area routes are excluded too.
+
+34
+00:04:02,000 --> 00:04:07,750
+Potential users include planners, local governments, researchers, educators, and
+preparedness organizations.
+
+35
+00:04:07,750 --> 00:04:14,869
+Real City Lab makes the project reusable: each small area becomes a new, reproducible
+analysis.
+
+36
+00:04:14,869 --> 00:04:20,274
+My next step is educational workshops and feedback from planning professionals.
+
+37
+00:04:20,274 --> 00:04:27,393
+A future model could offer free education, professional analysis, and support for custom
+organizational data.
+
+38
+00:04:27,393 --> 00:04:37,000
+These are proposed directions, before customer validation. Before expanding, I would
+validate model usefulness, data quality, and repeated workshop use.
+
+39
+00:04:37,000 --> 00:04:44,768
+Cities cannot prevent every disruption. They can understand which connections matter and
+where access is vulnerable.
+
+40
+00:04:44,768 --> 00:04:49,232
+ResiliRoute makes those consequences visible before a disruption happens.
+
+41
+00:04:49,232 --> 00:04:54,000
+Select a city. Break a link. Understand the impact.

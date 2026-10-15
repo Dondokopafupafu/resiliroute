@@ -1,0 +1,96 @@
+﻿[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: EN,Segoe UI,33,&H00FFFFFF,&H00FFFFFF,&H90000000,&H00000000,0,0,0,0,100,100,0,0,1,0.6,0,8,65,65,0,1
+Style: JA,Yu Gothic,29,&H00D7E4EC,&H00D7E4EC,&H90000000,&H00000000,0,0,0,0,100,100,0,0,1,0.6,0,8,65,65,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:06.27,EN,,0,0,0,,{\pos(960,906)}A city can depend on one bridge, one road, or one rail connection.
+Dialogue: 0,0:00:00.00,0:00:06.27,JA,,0,0,0,,{\pos(960,986)}都市の移動は、一本の橋や道路、鉄道の接続に支えられていることがあります。
+Dialogue: 0,0:00:06.27,0:00:17.45,EN,,0,0,0,,{\pos(960,906)}When that link fails, the question reaches beyond a line on the map. The effects can travel\Nfurther. One local failure can have system-wide consequences.
+Dialogue: 0,0:00:06.27,0:00:17.45,JA,,0,0,0,,{\pos(960,986)}接続が失われると、問題は地図上の一本の線を越えます。\N一か所の寸断が、離れた場所を含む交通網全体へ広がります。
+Dialogue: 0,0:00:17.45,0:00:25.00,EN,,0,0,0,,{\pos(960,906)}How does the entire network change, and who loses access? That is the question behind\NResiliRoute.
+Dialogue: 0,0:00:17.45,0:00:25.00,JA,,0,0,0,,{\pos(960,986)}交通網全体がどう変わり、誰が移動しにくくなるのか。それがResiliRouteの問いです。
+Dialogue: 0,0:00:25.00,0:00:33.79,EN,,0,0,0,,{\pos(960,906)}A single closure can push trips onto other corridors. A road that was lightly used can become\Na bottleneck.
+Dialogue: 0,0:00:25.00,0:00:33.79,JA,,0,0,0,,{\pos(960,986)}一本の道路が閉じると交通が別の道路へ移り、空いていた道路がボトルネックになることがあります。
+Dialogue: 0,0:00:33.79,0:00:42.79,EN,,0,0,0,,{\pos(960,906)}Some journeys become longer. Others become impossible within the modeled network. Access to\Nhospitals and essential services can become uneven.
+Dialogue: 0,0:00:33.79,0:00:42.79,JA,,0,0,0,,{\pos(960,986)}移動時間が延びたり、モデル内では到達できなくなったりします。\N病院などへのアクセスにも差が生まれます。
+Dialogue: 0,0:00:42.79,0:00:49.64,EN,,0,0,0,,{\pos(960,906)}A normal map shows the missing road, but makes these cascading consequences difficult to see.
+Dialogue: 0,0:00:42.79,0:00:49.64,JA,,0,0,0,,{\pos(960,986)}普通の地図で閉鎖箇所は分かっても、連鎖する影響は見えにくいものです。
+Dialogue: 0,0:00:49.64,0:00:55.00,EN,,0,0,0,,{\pos(960,906)}That makes communicating infrastructure vulnerability a challenge, especially for essential-\Nservice access.
+Dialogue: 0,0:00:49.64,0:00:55.00,JA,,0,0,0,,{\pos(960,986)}交通網の弱点、特に重要施設へのアクセス低下を伝えるのは容易ではありません。
+Dialogue: 0,0:00:55.00,0:01:00.83,EN,,0,0,0,,{\pos(960,906)}I built ResiliRoute, an urban mobility resilience simulator, to explore those consequences.
+Dialogue: 0,0:00:55.00,0:01:00.83,JA,,0,0,0,,{\pos(960,986)}こうした影響を調べるために、都市交通レジリエンスシ\NミュレーターResiliRouteを開発しました。
+Dialogue: 0,0:01:00.83,0:01:08.14,EN,,0,0,0,,{\pos(960,906)}It calculates changes in travel time, access, congestion, efficiency, and resilience when\Ntransport links become unavailable.
+Dialogue: 0,0:01:00.83,0:01:08.14,JA,,0,0,0,,{\pos(960,986)}交通リンクが使えなくなったとき、移動時間、アクセス、混雑、効率、レジリエンスの変化を計算します。
+Dialogue: 0,0:01:08.14,0:01:11.17,EN,,0,0,0,,{\pos(960,906)}Harbor City provides a controlled demonstration.
+Dialogue: 0,0:01:08.14,0:01:11.17,JA,,0,0,0,,{\pos(960,986)}Harbor Cityは、再現性のある架空都市デモです。
+Dialogue: 0,0:01:11.17,0:01:20.00,EN,,0,0,0,,{\pos(960,906)}Real City Lab extends the same simulation engine to real infrastructure, using OpenStreetMap.\NRoutes and demand are recalculated, together.
+Dialogue: 0,0:01:11.17,0:01:20.00,JA,,0,0,0,,{\pos(960,986)}実都市ラボでは同じエンジンでOSMの実在道路を使い、経路と需要を再計算します。
+Dialogue: 0,0:01:20.00,0:01:27.36,EN,,0,0,0,,{\pos(960,906)}Here, I select a small area of Okayama in Japan. Both riverbanks are included.
+Dialogue: 0,0:01:20.00,0:01:27.36,JA,,0,0,0,,{\pos(960,986)}ここでは岡山の小さな範囲を選び、川の両岸を含めます。
+Dialogue: 0,0:01:27.36,0:01:36.00,EN,,0,0,0,,{\pos(960,906)}Users can draw two corners on the map, adjust the bounds, or start from an example area.
+Dialogue: 0,0:01:27.36,0:01:36.00,JA,,0,0,0,,{\pos(960,986)}地図上の二つの角を指定したり、範囲を調整したり、サンプル範囲から始めたりできます。
+Dialogue: 0,0:01:36.00,0:01:43.79,EN,,0,0,0,,{\pos(960,906)}Build Mobility Network retrieves roads and facilities through the server. Geometry is\Npreserved along each road.
+Dialogue: 0,0:01:36.00,0:01:43.79,JA,,0,0,0,,{\pos(960,986)}ネットワーク構築ボタンでサーバー経由で道路と施設を取得し、各道路の形状を保ちます。
+Dialogue: 0,0:01:43.79,0:01:52.00,EN,,0,0,0,,{\pos(960,906)}This area produces six hundred eighty-seven intersections, nine hundred eighty-three road\Nsegments, and eighteen modeled residential origins.
+Dialogue: 0,0:01:43.79,0:01:52.00,JA,,0,0,0,,{\pos(960,986)}この範囲から687の交差点、983の道路区間、18のモデル需要地点を作成します。
+Dialogue: 0,0:01:52.00,0:01:59.79,EN,,0,0,0,,{\pos(960,906)}Now I select this real river crossing and simulate its closure. Closed links carry zero\Nmodeled flow.
+Dialogue: 0,0:01:52.00,0:01:59.79,JA,,0,0,0,,{\pos(960,986)}実在する川の橋を選んで閉鎖をシミュレーションします。閉鎖区間のモデル交通量はゼロになります。
+Dialogue: 0,0:01:59.79,0:02:08.00,EN,,0,0,0,,{\pos(960,906)}Average modeled travel time rises from two point eight to three point four minutes. Resilience\Nfalls to ninety-one.
+Dialogue: 0,0:01:59.79,0:02:08.00,JA,,0,0,0,,{\pos(960,986)}平均モデル移動時間は2.8分から3.4分へ増え、レジリエンスは91に下がります。
+Dialogue: 0,0:02:08.00,0:02:16.43,EN,,0,0,0,,{\pos(960,906)}The same hospital journey now takes seven point two minutes instead of four point four.
+Dialogue: 0,0:02:08.00,0:02:16.43,JA,,0,0,0,,{\pos(960,986)}同じ病院への経路は、4.4分から7.2分へ延びます。
+Dialogue: 0,0:02:16.43,0:02:24.00,EN,,0,0,0,,{\pos(960,906)}Traffic has moved to alternative corridors, creating consequences well beyond the closed\Nbridge.
+Dialogue: 0,0:02:16.43,0:02:24.00,JA,,0,0,0,,{\pos(960,986)}交通が代替経路へ移り、閉鎖した橋以外にも影響が広がっています。
+Dialogue: 0,0:02:24.00,0:02:31.93,EN,,0,0,0,,{\pos(960,906)}One alternative road carries about three thousand modeled trips per hour, up from roughly six\Nhundred.
+Dialogue: 0,0:02:24.00,0:02:31.93,JA,,0,0,0,,{\pos(960,986)}ある代替道路の毎時モデル需要は、約600から約3,000へ増えています。
+Dialogue: 0,0:02:31.93,0:02:36.00,EN,,0,0,0,,{\pos(960,906)}Overall averages can hide this concentrated pressure.
+Dialogue: 0,0:02:31.93,0:02:36.00,JA,,0,0,0,,{\pos(960,986)}都市全体の平均値だけでは、この局所的な負荷を見落とします。
+Dialogue: 0,0:02:36.00,0:02:44.21,EN,,0,0,0,,{\pos(960,906)}The stress test removes candidate roads individually and recalculates their additional impact.\NScores measure consequences, not failure probabilities.
+Dialogue: 0,0:02:36.00,0:02:44.21,JA,,0,0,0,,{\pos(960,986)}候補道路を一本ずつ取り除いて追加の影響を計算します。\Nスコアは影響の大きさであり、被害の発生確率ではありません。
+Dialogue: 0,0:02:44.21,0:02:52.00,EN,,0,0,0,,{\pos(960,906)}For this larger network, thirty-five candidates are screened, rather than claiming an\Nexhaustive ranking of every road.
+Dialogue: 0,0:02:44.21,0:02:52.00,JA,,0,0,0,,{\pos(960,986)}この規模では35本の候補を絞って解析します。すべての道路を網羅した順位ではありません。
+Dialogue: 0,0:02:52.00,0:02:57.73,EN,,0,0,0,,{\pos(960,906)}After a second closure, essential-service access falls to ninety-five point nine percent.
+Dialogue: 0,0:02:52.00,0:02:57.73,JA,,0,0,0,,{\pos(960,986)}二本目を閉鎖すると、重要施設へのアクセスは95.9%に下がります。
+Dialogue: 0,0:02:57.73,0:03:04.98,EN,,0,0,0,,{\pos(960,906)}Recovery analysis compares reopening each road independently. These gains are comparisons, not\Na combined repair plan.
+Dialogue: 0,0:02:57.73,0:03:04.98,JA,,0,0,0,,{\pos(960,986)}各道路を一本ずつ再開した効果を比較します。独立した比較であり、\N複数道路をまとめた復旧計画ではありません。
+Dialogue: 0,0:03:04.98,0:03:12.00,EN,,0,0,0,,{\pos(960,906)}The leading restoration recovers seventeen point four resilience points, and four point one\Naccess points.
+Dialogue: 0,0:03:04.98,0:03:12.00,JA,,0,0,0,,{\pos(960,986)}最も効果の大きい復旧で、レジリエンスは17.4ポイント、アクセスは4.1ポイント回復します。
+Dialogue: 0,0:03:12.00,0:03:21.32,EN,,0,0,0,,{\pos(960,906)}Roads become graph edges; intersections become nodes. Dijkstra routing finds paths, and\Nmodeled travel demand is assigned over twenty-four iterations.
+Dialogue: 0,0:03:12.00,0:03:21.32,JA,,0,0,0,,{\pos(960,986)}道路をグラフの辺、交差点をノードに変換し、Dijkstraで経路を探索。\Nモデル需要を24回の反復で配分します。
+Dialogue: 0,0:03:21.32,0:03:27.82,EN,,0,0,0,,{\pos(960,906)}A bounded volume-capacity function adjusts travel costs. Closed roads are excluded from every\Nroute.
+Dialogue: 0,0:03:21.32,0:03:27.82,JA,,0,0,0,,{\pos(960,986)}上限を設けた交通量・容量の関係で移動コストを更新します。すべての経路から閉鎖道路を除外します。
+Dialogue: 0,0:03:27.82,0:03:35.00,EN,,0,0,0,,{\pos(960,906)}Automated tests cover routing, imports, closures, recovery, and bilingual interactions. All\Nmetric definitions are documented.
+Dialogue: 0,0:03:27.82,0:03:35.00,JA,,0,0,0,,{\pos(960,986)}自動テストで経路、取り込み、閉鎖、復旧、日英操作を確認しています。各指標の定義も公開しています。
+Dialogue: 0,0:03:35.00,0:03:41.90,EN,,0,0,0,,{\pos(960,906)}The analyst converts numerical evidence into a planning brief. This recording uses local\Nanalysis.
+Dialogue: 0,0:03:35.00,0:03:41.90,JA,,0,0,0,,{\pos(960,986)}分析機能が数値の根拠を短い計画レポートへまとめます。この録画ではローカル分析を使っています。
+Dialogue: 0,0:03:41.90,0:03:47.64,EN,,0,0,0,,{\pos(960,906)}An optional server-side language model explains the same results, with automatic fallback.
+Dialogue: 0,0:03:41.90,0:03:47.64,JA,,0,0,0,,{\pos(960,986)}任意のサーバー側LLMでも同じ結果を説明でき、失敗すると自動でローカル分析に戻ります。
+Dialogue: 0,0:03:47.64,0:03:53.81,EN,,0,0,0,,{\pos(960,906)}Geometry and facilities come from OpenStreetMap. Capacity, demand, and some speeds are\Nmodeled.
+Dialogue: 0,0:03:47.64,0:03:53.81,JA,,0,0,0,,{\pos(960,986)}道路形状と施設はOpenStreetMapのデータです。\N容量、需要、一部の速度はモデル上の推定です。
+Dialogue: 0,0:03:53.81,0:04:02.00,EN,,0,0,0,,{\pos(960,906)}Assumptions are visible: this is educational what-if analysis, with no disaster prediction.\NOutside-area routes are excluded too.
+Dialogue: 0,0:03:53.81,0:04:02.00,JA,,0,0,0,,{\pos(960,986)}前提を明示した教育用の仮定分析です。災害予測は行わず、選択範囲の外を通る経路も対象外です。
+Dialogue: 0,0:04:02.00,0:04:07.75,EN,,0,0,0,,{\pos(960,906)}Potential users include planners, local governments, researchers, educators, and preparedness\Norganizations.
+Dialogue: 0,0:04:02.00,0:04:07.75,JA,,0,0,0,,{\pos(960,986)}想定する利用者は、都市計画担当者、自治体、研究者、教育機関、防災団体です。
+Dialogue: 0,0:04:07.75,0:04:14.87,EN,,0,0,0,,{\pos(960,906)}Real City Lab makes the project reusable: each small area becomes a new, reproducible\Nanalysis.
+Dialogue: 0,0:04:07.75,0:04:14.87,JA,,0,0,0,,{\pos(960,986)}Real City Labによって、さまざまな小地域で再現できる分析基盤へ進化しました。
+Dialogue: 0,0:04:14.87,0:04:20.27,EN,,0,0,0,,{\pos(960,906)}My next step is educational workshops and feedback from planning professionals.
+Dialogue: 0,0:04:14.87,0:04:20.27,JA,,0,0,0,,{\pos(960,986)}次は教育ワークショップと都市計画の専門家からの意見収集を考えています。
+Dialogue: 0,0:04:20.27,0:04:27.39,EN,,0,0,0,,{\pos(960,906)}A future model could offer free education, professional analysis, and support for custom\Norganizational data.
+Dialogue: 0,0:04:20.27,0:04:27.39,JA,,0,0,0,,{\pos(960,986)}将来は無料の教育版、専門的な分析、組織ごとの独自データ支援という展開が考えられます。
+Dialogue: 0,0:04:27.39,0:04:37.00,EN,,0,0,0,,{\pos(960,906)}These are proposed directions, before customer validation. Before expanding, I would validate\Nmodel usefulness, data quality, and repeated workshop use.
+Dialogue: 0,0:04:27.39,0:04:37.00,JA,,0,0,0,,{\pos(960,986)}これは利用者検証前の構想です。拡大する前に、モデルの有用性、\Nデータ品質、継続的なワークショップ利用を確かめます。
+Dialogue: 0,0:04:37.00,0:04:44.77,EN,,0,0,0,,{\pos(960,906)}Cities cannot prevent every disruption. They can understand which connections matter and where\Naccess is vulnerable.
+Dialogue: 0,0:04:37.00,0:04:44.77,JA,,0,0,0,,{\pos(960,986)}都市はすべての寸断を防げません。しかし、重要な接続やアクセスの弱点を理解できます。
+Dialogue: 0,0:04:44.77,0:04:49.23,EN,,0,0,0,,{\pos(960,906)}ResiliRoute makes those consequences visible before a disruption happens.
+Dialogue: 0,0:04:44.77,0:04:49.23,JA,,0,0,0,,{\pos(960,986)}ResiliRouteは、寸断が起きる前にその影響を見える形にします。
+Dialogue: 0,0:04:49.23,0:04:54.00,EN,,0,0,0,,{\pos(960,906)}Select a city. Break a link. Understand the impact.
+Dialogue: 0,0:04:49.23,0:04:54.00,JA,,0,0,0,,{\pos(960,986)}街を選び、接続を閉じて、影響を理解する。

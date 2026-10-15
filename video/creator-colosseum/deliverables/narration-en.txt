@@ -1,0 +1,27 @@
+A city can depend on one bridge, one road, or one rail connection. When that link fails, the question reaches beyond a line on the map. The effects can travel further. One local failure can have system-wide consequences. How does the entire network change, and who loses access? That is the question behind ResiliRoute.
+
+A single closure can push trips onto other corridors. A road that was lightly used can become a bottleneck. Some journeys become longer. Others become impossible within the modeled network. Access to hospitals and essential services can become uneven. A normal map shows the missing road, but makes these cascading consequences difficult to see. That makes communicating infrastructure vulnerability a challenge, especially for essential-service access.
+
+I built ResiliRoute, an urban mobility resilience simulator, to explore those consequences. It calculates changes in travel time, access, congestion, efficiency, and resilience when transport links become unavailable. Harbor City provides a controlled demonstration. Real City Lab extends the same simulation engine to real infrastructure, using OpenStreetMap. Routes and demand are recalculated, together.
+
+Here, I select a small area of Okayama in Japan. Both riverbanks are included. Users can draw two corners on the map, adjust the bounds, or start from an example area.
+
+Build Mobility Network retrieves roads and facilities through the server. Geometry is preserved along each road. This area produces six hundred eighty-seven intersections, nine hundred eighty-three road segments, and eighteen modeled residential origins.
+
+Now I select this real river crossing and simulate its closure. Closed links carry zero modeled flow. Average modeled travel time rises from two point eight to three point four minutes. Resilience falls to ninety-one.
+
+The same hospital journey now takes seven point two minutes instead of four point four. Traffic has moved to alternative corridors, creating consequences well beyond the closed bridge.
+
+One alternative road carries about three thousand modeled trips per hour, up from roughly six hundred. Overall averages can hide this concentrated pressure.
+
+The stress test removes candidate roads individually and recalculates their additional impact. Scores measure consequences, not failure probabilities. For this larger network, thirty-five candidates are screened, rather than claiming an exhaustive ranking of every road.
+
+After a second closure, essential-service access falls to ninety-five point nine percent. Recovery analysis compares reopening each road independently. These gains are comparisons, not a combined repair plan. The leading restoration recovers seventeen point four resilience points, and four point one access points.
+
+Roads become graph edges; intersections become nodes. Dijkstra routing finds paths, and modeled travel demand is assigned over twenty-four iterations. A bounded volume-capacity function adjusts travel costs. Closed roads are excluded from every route. Automated tests cover routing, imports, closures, recovery, and bilingual interactions. All metric definitions are documented.
+
+The analyst converts numerical evidence into a planning brief. This recording uses local analysis. An optional server-side language model explains the same results, with automatic fallback. Geometry and facilities come from OpenStreetMap. Capacity, demand, and some speeds are modeled. Assumptions are visible: this is educational what-if analysis, with no disaster prediction. Outside-area routes are excluded too.
+
+Potential users include planners, local governments, researchers, educators, and preparedness organizations. Real City Lab makes the project reusable: each small area becomes a new, reproducible analysis. My next step is educational workshops and feedback from planning professionals. A future model could offer free education, professional analysis, and support for custom organizational data. These are proposed directions, before customer validation. Before expanding, I would validate model usefulness, data quality, and repeated workshop use.
+
+Cities cannot prevent every disruption. They can understand which connections matter and where access is vulnerable. ResiliRoute makes those consequences visible before a disruption happens. Select a city. Break a link. Understand the impact.

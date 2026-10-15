@@ -1,0 +1,62 @@
+{
+  "main": {
+    "x": 244,
+    "y": 66,
+    "width": 1432,
+    "height": 3634.03125
+  },
+  ".metric-grid": {
+    "x": 279,
+    "y": 299.9375,
+    "width": 1362,
+    "height": 120.078125
+  },
+  "#network-workspace": {
+    "x": 279,
+    "y": 440.015625,
+    "width": 1362,
+    "height": 610
+  },
+  ".map-wrapper": {
+    "x": 280,
+    "y": 497.515625,
+    "width": 992,
+    "height": 575
+  },
+  ".scenario-panel": {
+    "x": 1291,
+    "y": 440.015625,
+    "width": 350,
+    "height": 610
+  },
+  "#impact-dashboard": {
+    "x": 279,
+    "y": 1172.515625,
+    "width": 1362,
+    "height": 565.53125
+  },
+  ".charts-grid": {
+    "x": 279,
+    "y": 1272.859375,
+    "width": 1362,
+    "height": 319.59375
+  },
+  ".analysis-grid": {
+    "x": 279,
+    "y": 1875.390625,
+    "width": 1362,
+    "height": 500.59375
+  },
+  ".services-panel": {
+    "x": 279,
+    "y": 2405.984375,
+    "width": 1362,
+    "height": 440.484375
+  },
+  "#ai-brief": {
+    "x": 279,
+    "y": 2882.46875,
+    "width": 1362,
+    "height": 750.0625
+  }
+}

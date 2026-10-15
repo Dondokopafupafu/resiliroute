@@ -1,0 +1,80 @@
+﻿[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: EN,Segoe UI,33,&H00FFFFFF,&H00FFFFFF,&H90000000,&H00000000,0,0,0,0,100,100,0,0,1,0.6,0,8,65,65,0,1
+Style: JA,Yu Gothic,29,&H00D7E4EC,&H00D7E4EC,&H90000000,&H00000000,0,0,0,0,100,100,0,0,1,0.6,0,8,65,65,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:09.52,EN,,0,0,0,,{\pos(960,906)}One failed road, bridge, or rail link can change how an entire city moves, even far from the\Ndamaged link.
+Dialogue: 0,0:00:00.00,0:00:09.52,JA,,0,0,0,,{\pos(960,986)}道路や橋、鉄道の一本が止まるだけで、離れた場所を含め、都市全体の移動が変わることがあります。
+Dialogue: 0,0:00:09.52,0:00:14.00,EN,,0,0,0,,{\pos(960,906)}The impact does not stop at the disruption.
+Dialogue: 0,0:00:09.52,0:00:14.00,JA,,0,0,0,,{\pos(960,986)}影響は、寸断された場所だけにはとどまりません。
+Dialogue: 0,0:00:14.00,0:00:22.08,EN,,0,0,0,,{\pos(960,906)}Traffic shifts to other corridors. Congestion grows, journeys take longer, and essential\Nservices become harder to reach.
+Dialogue: 0,0:00:14.00,0:00:22.08,JA,,0,0,0,,{\pos(960,986)}交通が別の道路に集中し、混雑と移動時間が増え、重要施設に行きにくくなります。
+Dialogue: 0,0:00:22.08,0:00:31.00,EN,,0,0,0,,{\pos(960,906)}A local failure can create a much wider problem for communities. Those effects are often\Nhidden by citywide averages.
+Dialogue: 0,0:00:22.08,0:00:31.00,JA,,0,0,0,,{\pos(960,986)}一か所の寸断が地域全体の問題になります。その影響は、\N都市全体の平均値だけでは見えないこともあります。
+Dialogue: 0,0:00:31.00,0:00:39.81,EN,,0,0,0,,{\pos(960,906)}I built ResiliRoute to make these cascading effects visible, and help people explore\Ntransportation resilience before a disruption happens.
+Dialogue: 0,0:00:31.00,0:00:39.81,JA,,0,0,0,,{\pos(960,986)}こうした連鎖を見える形にし、災害前に交通網の強さと弱さを考えるために、\NResiliRouteを開発しました。
+Dialogue: 0,0:00:39.81,0:00:44.00,EN,,0,0,0,,{\pos(960,906)}It is a tool for understanding network vulnerability.
+Dialogue: 0,0:00:39.81,0:00:44.00,JA,,0,0,0,,{\pos(960,986)}交通ネットワークの弱点を理解するためのツールです。
+Dialogue: 0,0:00:44.00,0:00:51.00,EN,,0,0,0,,{\pos(960,906)}Here is Harbor City: a synthetic demonstration network with twenty-four nodes and forty-two\Ntransport links.
+Dialogue: 0,0:00:44.00,0:00:51.00,JA,,0,0,0,,{\pos(960,986)}これは架空のHarbor Cityです。24個のノードと42本の交通リンクで構成されています。
+Dialogue: 0,0:00:51.00,0:00:56.92,EN,,0,0,0,,{\pos(960,906)}Residential areas generate travel demand. Stations, hospitals, shelters, and commercial\Ndistricts provide destinations.
+Dialogue: 0,0:00:51.00,0:00:56.92,JA,,0,0,0,,{\pos(960,986)}住宅地域から交通需要が生まれ、駅、病院、避難所、商業地区などが目的地になります。
+Dialogue: 0,0:00:56.92,0:01:03.26,EN,,0,0,0,,{\pos(960,906)}Under normal conditions, the model calculates an average journey of fourteen point two\Nminutes.
+Dialogue: 0,0:00:56.92,0:01:03.26,JA,,0,0,0,,{\pos(960,986)}通常時のモデルでは、平均移動時間は14.2分と計算されます。
+Dialogue: 0,0:01:03.26,0:01:09.00,EN,,0,0,0,,{\pos(960,906)}Each journey contributes demand to the links it uses, creating network-wide volumes.
+Dialogue: 0,0:01:03.26,0:01:09.00,JA,,0,0,0,,{\pos(960,986)}各移動の需要を通過リンクに加え、ネットワーク全体の交通量を計算します。
+Dialogue: 0,0:01:09.00,0:01:16.54,EN,,0,0,0,,{\pos(960,906)}Now I run the earthquake demo. Harbor Bridge, a rail connector, and a coastal road become\Nunavailable.
+Dialogue: 0,0:01:09.00,0:01:16.54,JA,,0,0,0,,{\pos(960,986)}地震デモを実行します。Harbor Bridge、\N鉄道の接続区間、海岸沿いの道路が使えなくなります。
+Dialogue: 0,0:01:16.54,0:01:23.53,EN,,0,0,0,,{\pos(960,906)}Routes are recalculated, and travel demand is reassigned to the remaining links. The results\Nchange immediately.
+Dialogue: 0,0:01:16.54,0:01:23.53,JA,,0,0,0,,{\pos(960,986)}残ったリンクで経路を再計算し、交通需要を再配分します。結果もすぐに変わります。
+Dialogue: 0,0:01:23.53,0:01:32.61,EN,,0,0,0,,{\pos(960,906)}Average travel time rises to twenty point nine minutes. Essential access falls from ninety-\Nfour point four to seventy-eight point nine percent.
+Dialogue: 0,0:01:23.53,0:01:32.61,JA,,0,0,0,,{\pos(960,986)}平均移動時間は20.9分に増加。重要施設へのアクセスは94.4%から78.9%へ低下します。
+Dialogue: 0,0:01:32.61,0:01:36.24,EN,,0,0,0,,{\pos(960,906)}The map also shows which links are closed.
+Dialogue: 0,0:01:32.61,0:01:36.24,JA,,0,0,0,,{\pos(960,986)}地図上でも、閉鎖されたリンクを確認できます。
+Dialogue: 0,0:01:36.24,0:01:40.00,EN,,0,0,0,,{\pos(960,906)}These are calculated outputs, not preset disaster scores.
+Dialogue: 0,0:01:36.24,0:01:40.00,JA,,0,0,0,,{\pos(960,986)}これは固定された災害スコアではなく、実際の計算結果です。
+Dialogue: 0,0:01:40.00,0:01:50.15,EN,,0,0,0,,{\pos(960,906)}The affected traffic does not simply disappear. On Port Bypass, demand increases from about\Nfour hundred to over three thousand trips per hour.
+Dialogue: 0,0:01:40.00,0:01:50.15,JA,,0,0,0,,{\pos(960,986)}影響を受けた交通は消えません。Port Bypassでは、\N毎時約400の需要が3,000以上へ増えます。
+Dialogue: 0,0:01:50.15,0:01:57.62,EN,,0,0,0,,{\pos(960,906)}This alternative corridor becomes overloaded. Comparing routes shows how the same hospital\Njourney becomes a longer detour.
+Dialogue: 0,0:01:50.15,0:01:57.62,JA,,0,0,0,,{\pos(960,986)}代替道路が容量を超えます。経路を比較すると、同じ病院への移動にも長い迂回が必要になります。
+Dialogue: 0,0:01:57.62,0:02:04.00,EN,,0,0,0,,{\pos(960,906)}Orange corridors highlight demand at or above capacity, revealing bottlenecks beyond the\Noriginal closure.
+Dialogue: 0,0:01:57.62,0:02:04.00,JA,,0,0,0,,{\pos(960,986)}オレンジの線は需要が容量以上の区間です。元の寸断地点以外のボトルネックも見えます。
+Dialogue: 0,0:02:04.00,0:02:11.63,EN,,0,0,0,,{\pos(960,906)}The dashboard compares travel time, congestion, accessibility, network efficiency, and\Nresilience before and after the disruption.
+Dialogue: 0,0:02:04.00,0:02:11.63,JA,,0,0,0,,{\pos(960,986)}ダッシュボードで、移動時間、混雑、アクセス、ネットワーク効率、レジリエンスの変化を比較できます。
+Dialogue: 0,0:02:11.63,0:02:20.21,EN,,0,0,0,,{\pos(960,906)}Resilience falls from a baseline of one hundred to sixty-nine. Every indicator has a published\Ndefinition in the methodology.
+Dialogue: 0,0:02:11.63,0:02:20.21,JA,,0,0,0,,{\pos(960,986)}通常時を100とするレジリエンスは69へ低下します。\N各指標の定義はMethodologyで確認できます。
+Dialogue: 0,0:02:20.21,0:02:27.00,EN,,0,0,0,,{\pos(960,906)}Accessibility measures population-weighted access to hospitals, shelters, and stations within\Ntheir specified travel-time thresholds.
+Dialogue: 0,0:02:20.21,0:02:27.00,JA,,0,0,0,,{\pos(960,986)}アクセシビリティは、病院・避難所・駅へ所定の時間内に行ける割合を、人口で重み付けした指標です。
+Dialogue: 0,0:02:27.00,0:02:36.31,EN,,0,0,0,,{\pos(960,906)}The stress test removes each available link individually, reruns the simulation, and ranks its\Nadditional impact on the current scenario.
+Dialogue: 0,0:02:27.00,0:02:36.31,JA,,0,0,0,,{\pos(960,986)}使用可能なリンクを一本ずつ取り除いて再計算し、現在の状況に加わる影響を順位付けします。
+Dialogue: 0,0:02:36.31,0:02:44.89,EN,,0,0,0,,{\pos(960,906)}Harbor Rail is now the most critical remaining link. Separately, restoring Harbor Bridge\Noffers the largest modeled recovery benefit.
+Dialogue: 0,0:02:36.31,0:02:44.89,JA,,0,0,0,,{\pos(960,986)}残ったリンクで最も重要なのはHarbor Railです。一方、\N一本だけ復旧するならHarbor Bridgeの効果が最大です。
+Dialogue: 0,0:02:44.89,0:02:50.00,EN,,0,0,0,,{\pos(960,906)}The ranking measures modeled consequences, not the probability of failure.
+Dialogue: 0,0:02:44.89,0:02:50.00,JA,,0,0,0,,{\pos(960,986)}順位が表すのは、モデル上の影響であり、寸断が起きる確率ではありません。
+Dialogue: 0,0:02:50.00,0:02:59.97,EN,,0,0,0,,{\pos(960,906)}The East district is hit hardest. Its average travel time almost doubles, while essential\Naccess drops from one hundred to sixty-seven percent.
+Dialogue: 0,0:02:50.00,0:02:59.97,JA,,0,0,0,,{\pos(960,986)}最も影響を受けるのはEast地区です。平均移動時間がほぼ倍増し、\N重要施設へのアクセスは100%から67%へ下がります。
+Dialogue: 0,0:02:59.97,0:03:05.91,EN,,0,0,0,,{\pos(960,906)}The hospital analysis reveals which communities lose access within the model's travel-time\Nthreshold.
+Dialogue: 0,0:02:59.97,0:03:05.91,JA,,0,0,0,,{\pos(960,986)}病院の分析では、モデルの時間基準内に到達できなくなる地域への影響が見えます。
+Dialogue: 0,0:03:05.91,0:03:10.00,EN,,0,0,0,,{\pos(960,906)}Mobility resilience is also an issue of equity.
+Dialogue: 0,0:03:05.91,0:03:10.00,JA,,0,0,0,,{\pos(960,986)}交通網のレジリエンスは、地域間の公平性にも関わる問題です。
+Dialogue: 0,0:03:10.00,0:03:19.31,EN,,0,0,0,,{\pos(960,906)}The resilience analyst turns structured simulation evidence into a concise brief: what\Nchanged, why it matters, and possible planning actions.
+Dialogue: 0,0:03:10.00,0:03:19.31,JA,,0,0,0,,{\pos(960,986)}分析機能が、構造化した計算結果を、変化の内容、\N重要性、考えられる対応策の短いレポートにまとめます。
+Dialogue: 0,0:03:19.31,0:03:27.89,EN,,0,0,0,,{\pos(960,906)}This demo uses the deterministic local analyst. An optional server-side language model uses\Nthe same evidence, with automatic fallback.
+Dialogue: 0,0:03:19.31,0:03:27.89,JA,,0,0,0,,{\pos(960,986)}このデモは決定論的なローカル分析です。同じ根拠を使うサー\Nバー側のLLMにも接続でき、失敗時は自動で切り替わります。
+Dialogue: 0,0:03:27.89,0:03:33.00,EN,,0,0,0,,{\pos(960,906)}The language model explains results; it does not calculate them.
+Dialogue: 0,0:03:27.89,0:03:33.00,JA,,0,0,0,,{\pos(960,986)}LLMの役割は結果の説明です。数値の計算はシミュレーターが行います。
+Dialogue: 0,0:03:33.00,0:03:38.58,EN,,0,0,0,,{\pos(960,906)}Graph routing, demand assignment, congestion modeling, and accessibility analysis drive the\Nresults.
+Dialogue: 0,0:03:33.00,0:03:38.58,JA,,0,0,0,,{\pos(960,986)}グラフ探索、需要配分、混雑モデル、アクセス分析が結果を生みます。
+Dialogue: 0,0:03:38.58,0:03:45.00,EN,,0,0,0,,{\pos(960,906)}All computations use transparent, documented rules. This educational prototype supports\Nunderstanding, not emergency navigation.
+Dialogue: 0,0:03:38.58,0:03:45.00,JA,,0,0,0,,{\pos(960,986)}計算には公開した明確なルールを使います。防災教育\Nと理解のための試作で、緊急時の案内ではありません。
+Dialogue: 0,0:03:45.00,0:03:50.00,EN,,0,0,0,,{\pos(960,906)}ResiliRoute. Helping communities understand disruption before it happens.
+Dialogue: 0,0:03:45.00,0:03:50.00,JA,,0,0,0,,{\pos(960,986)}ResiliRoute。災害が起こる前に、地域が交通網への影響を理解するために。

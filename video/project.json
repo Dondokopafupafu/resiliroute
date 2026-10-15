@@ -1,0 +1,260 @@
+{
+  "title": "ResiliRoute — Urban Mobility Resilience Simulator",
+  "duration": 230,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "voice": "en-US-GuyNeural",
+  "speakingRate": 143,
+  "scenes": [
+    {
+      "id": "hook",
+      "start": 0,
+      "end": 14,
+      "title": "One failure. Citywide consequences.",
+      "kind": "hook",
+      "recording": "hook",
+      "cues": [
+        {
+          "en": "One failed road, bridge, or rail link can change how an entire city moves, even far from the damaged link.",
+          "ja": "道路や橋、鉄道の一本が止まるだけで、離れた場所を含め、都市全体の移動が変わることがあります。"
+        },
+        {
+          "en": "The impact does not stop at the disruption.",
+          "ja": "影響は、寸断された場所だけにはとどまりません。"
+        }
+      ]
+    },
+    {
+      "id": "problem",
+      "start": 14,
+      "end": 31,
+      "title": "Transportation failures cascade.",
+      "kind": "problem",
+      "cues": [
+        {
+          "en": "Traffic shifts to other corridors. Congestion grows, journeys take longer, and essential services become harder to reach.",
+          "ja": "交通が別の道路に集中し、混雑と移動時間が増え、重要施設に行きにくくなります。"
+        },
+        {
+          "en": "A local failure can create a much wider problem for communities. Those effects are often hidden by citywide averages.",
+          "ja": "一か所の寸断が地域全体の問題になります。その影響は、都市全体の平均値だけでは見えないこともあります。"
+        }
+      ]
+    },
+    {
+      "id": "intro",
+      "start": 31,
+      "end": 44,
+      "title": "ResiliRoute",
+      "kind": "intro",
+      "recording": "normal",
+      "cues": [
+        {
+          "en": "I built ResiliRoute to make these cascading effects visible, and help people explore transportation resilience before a disruption happens.",
+          "ja": "こうした連鎖を見える形にし、災害前に交通網の強さと弱さを考えるために、ResiliRouteを開発しました。"
+        },
+        {
+          "en": "It is a tool for understanding network vulnerability.",
+          "ja": "交通ネットワークの弱点を理解するためのツールです。"
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "start": 44,
+      "end": 69,
+      "title": "01 / Model the city",
+      "kind": "app",
+      "recording": "normal",
+      "cues": [
+        {
+          "en": "Here is Harbor City: a synthetic demonstration network with twenty-four nodes and forty-two transport links.",
+          "ja": "これは架空のHarbor Cityです。24個のノードと42本の交通リンクで構成されています。"
+        },
+        {
+          "en": "Residential areas generate travel demand. Stations, hospitals, shelters, and commercial districts provide destinations.",
+          "ja": "住宅地域から交通需要が生まれ、駅、病院、避難所、商業地区などが目的地になります。"
+        },
+        {
+          "en": "Under normal conditions, the model calculates an average journey of fourteen point two minutes.",
+          "ja": "通常時のモデルでは、平均移動時間は14.2分と計算されます。"
+        },
+        {
+          "en": "Each journey contributes demand to the links it uses, creating network-wide volumes.",
+          "ja": "各移動の需要を通過リンクに加え、ネットワーク全体の交通量を計算します。"
+        }
+      ]
+    },
+    {
+      "id": "earthquake",
+      "start": 69,
+      "end": 100,
+      "title": "02 / Disrupt the network",
+      "kind": "app",
+      "recording": "earthquake",
+      "cues": [
+        {
+          "en": "Now I run the earthquake demo. Harbor Bridge, a rail connector, and a coastal road become unavailable.",
+          "ja": "地震デモを実行します。Harbor Bridge、鉄道の接続区間、海岸沿いの道路が使えなくなります。"
+        },
+        {
+          "en": "Routes are recalculated, and travel demand is reassigned to the remaining links. The results change immediately.",
+          "ja": "残ったリンクで経路を再計算し、交通需要を再配分します。結果もすぐに変わります。"
+        },
+        {
+          "en": "Average travel time rises to twenty point nine minutes. Essential access falls from ninety-four point four to seventy-eight point nine percent.",
+          "ja": "平均移動時間は20.9分に増加。重要施設へのアクセスは94.4%から78.9%へ低下します。"
+        },
+        {
+          "en": "The map also shows which links are closed.",
+          "ja": "地図上でも、閉鎖されたリンクを確認できます。"
+        },
+        {
+          "en": "These are calculated outputs, not preset disaster scores.",
+          "ja": "これは固定された災害スコアではなく、実際の計算結果です。"
+        }
+      ]
+    },
+    {
+      "id": "cascade",
+      "start": 100,
+      "end": 124,
+      "title": "03 / Follow the cascading impact",
+      "kind": "app",
+      "recording": "cascade",
+      "cues": [
+        {
+          "en": "The affected traffic does not simply disappear. On Port Bypass, demand increases from about four hundred to over three thousand trips per hour.",
+          "ja": "影響を受けた交通は消えません。Port Bypassでは、毎時約400の需要が3,000以上へ増えます。"
+        },
+        {
+          "en": "This alternative corridor becomes overloaded. Comparing routes shows how the same hospital journey becomes a longer detour.",
+          "ja": "代替道路が容量を超えます。経路を比較すると、同じ病院への移動にも長い迂回が必要になります。"
+        },
+        {
+          "en": "Orange corridors highlight demand at or above capacity, revealing bottlenecks beyond the original closure.",
+          "ja": "オレンジの線は需要が容量以上の区間です。元の寸断地点以外のボトルネックも見えます。"
+        }
+      ]
+    },
+    {
+      "id": "analytics",
+      "start": 124,
+      "end": 147,
+      "title": "04 / Measure the system impact",
+      "kind": "app",
+      "recording": "analytics",
+      "cues": [
+        {
+          "en": "The dashboard compares travel time, congestion, accessibility, network efficiency, and resilience before and after the disruption.",
+          "ja": "ダッシュボードで、移動時間、混雑、アクセス、ネットワーク効率、レジリエンスの変化を比較できます。"
+        },
+        {
+          "en": "Resilience falls from a baseline of one hundred to sixty-nine. Every indicator has a published definition in the methodology.",
+          "ja": "通常時を100とするレジリエンスは69へ低下します。各指標の定義はMethodologyで確認できます。"
+        },
+        {
+          "en": "Accessibility measures population-weighted access to hospitals, shelters, and stations within their specified travel-time thresholds.",
+          "ja": "アクセシビリティは、病院・避難所・駅へ所定の時間内に行ける割合を、人口で重み付けした指標です。"
+        }
+      ]
+    },
+    {
+      "id": "critical",
+      "start": 147,
+      "end": 170,
+      "title": "05 / Stress-test. Prioritize. Recover.",
+      "kind": "app",
+      "recording": "critical",
+      "cues": [
+        {
+          "en": "The stress test removes each available link individually, reruns the simulation, and ranks its additional impact on the current scenario.",
+          "ja": "使用可能なリンクを一本ずつ取り除いて再計算し、現在の状況に加わる影響を順位付けします。"
+        },
+        {
+          "en": "Harbor Rail is now the most critical remaining link. Separately, restoring Harbor Bridge offers the largest modeled recovery benefit.",
+          "ja": "残ったリンクで最も重要なのはHarbor Railです。一方、一本だけ復旧するならHarbor Bridgeの効果が最大です。"
+        },
+        {
+          "en": "The ranking measures modeled consequences, not the probability of failure.",
+          "ja": "順位が表すのは、モデル上の影響であり、寸断が起きる確率ではありません。"
+        }
+      ]
+    },
+    {
+      "id": "equity",
+      "start": 170,
+      "end": 190,
+      "title": "06 / Look beyond the citywide average",
+      "kind": "app",
+      "recording": "equity",
+      "cues": [
+        {
+          "en": "The East district is hit hardest. Its average travel time almost doubles, while essential access drops from one hundred to sixty-seven percent.",
+          "ja": "最も影響を受けるのはEast地区です。平均移動時間がほぼ倍増し、重要施設へのアクセスは100%から67%へ下がります。"
+        },
+        {
+          "en": "The hospital analysis reveals which communities lose access within the model's travel-time threshold.",
+          "ja": "病院の分析では、モデルの時間基準内に到達できなくなる地域への影響が見えます。"
+        },
+        {
+          "en": "Mobility resilience is also an issue of equity.",
+          "ja": "交通網のレジリエンスは、地域間の公平性にも関わる問題です。"
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "start": 190,
+      "end": 213,
+      "title": "07 / Turn evidence into a planning brief",
+      "kind": "app",
+      "recording": "ai",
+      "cues": [
+        {
+          "en": "The resilience analyst turns structured simulation evidence into a concise brief: what changed, why it matters, and possible planning actions.",
+          "ja": "分析機能が、構造化した計算結果を、変化の内容、重要性、考えられる対応策の短いレポートにまとめます。"
+        },
+        {
+          "en": "This demo uses the deterministic local analyst. An optional server-side language model uses the same evidence, with automatic fallback.",
+          "ja": "このデモは決定論的なローカル分析です。同じ根拠を使うサーバー側のLLMにも接続でき、失敗時は自動で切り替わります。"
+        },
+        {
+          "en": "The language model explains results; it does not calculate them.",
+          "ja": "LLMの役割は結果の説明です。数値の計算はシミュレーターが行います。"
+        }
+      ]
+    },
+    {
+      "id": "technical",
+      "start": 213,
+      "end": 225,
+      "title": "From network to understanding",
+      "kind": "technical",
+      "cues": [
+        {
+          "en": "Graph routing, demand assignment, congestion modeling, and accessibility analysis drive the results.",
+          "ja": "グラフ探索、需要配分、混雑モデル、アクセス分析が結果を生みます。"
+        },
+        {
+          "en": "All computations use transparent, documented rules. This educational prototype supports understanding, not emergency navigation.",
+          "ja": "計算には公開した明確なルールを使います。防災教育と理解のための試作で、緊急時の案内ではありません。"
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "start": 225,
+      "end": 230,
+      "title": "Understand disruption before it happens.",
+      "kind": "end",
+      "cues": [
+        {
+          "en": "ResiliRoute. Helping communities understand disruption before it happens.",
+          "ja": "ResiliRoute。災害が起こる前に、地域が交通網への影響を理解するために。"
+        }
+      ]
+    }
+  ]
+}

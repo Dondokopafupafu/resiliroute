@@ -1,0 +1,58 @@
+{
+  "hook": {
+    "path": "assets/recordings/hook.webm",
+    "trim": 3.322,
+    "duration": 14,
+    "x": 270,
+    "width": 1380
+  },
+  "normal": {
+    "path": "assets/recordings/normal.webm",
+    "trim": 3.338,
+    "duration": 25,
+    "x": 270,
+    "width": 1380
+  },
+  "earthquake": {
+    "path": "assets/recordings/earthquake.webm",
+    "trim": 1.871,
+    "duration": 31,
+    "x": 270,
+    "width": 1380
+  },
+  "cascade": {
+    "path": "assets/recordings/cascade.webm",
+    "trim": 3.578,
+    "duration": 24,
+    "x": 270,
+    "width": 1380
+  },
+  "analytics": {
+    "path": "assets/recordings/analytics.webm",
+    "trim": 3.705,
+    "duration": 23,
+    "x": 270,
+    "width": 1380
+  },
+  "critical": {
+    "path": "assets/recordings/critical.webm",
+    "trim": 3.811,
+    "duration": 23,
+    "x": 270,
+    "width": 1380
+  },
+  "equity": {
+    "path": "assets/recordings/equity.webm",
+    "trim": 3.483,
+    "duration": 20,
+    "x": 270,
+    "width": 1380
+  },
+  "ai": {
+    "path": "assets/recordings/ai.webm",
+    "trim": 4.184,
+    "duration": 23,
+    "x": 270,
+    "width": 1380
+  }
+}

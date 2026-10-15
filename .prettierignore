@@ -1,0 +1,16 @@
+node_modules
+.next
+playwright-report
+test-results
+pnpm-lock.yaml
+*.tsbuildinfo
+AGENTS.md
+CLAUDE.md
+video/tools/
+video/build/
+video/assets/
+video/creator-colosseum/assets/
+video/creator-colosseum/build/
+.codex/
+private/
+JUDGING.md

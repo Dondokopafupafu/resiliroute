@@ -1,0 +1,23 @@
+One failed road, bridge, or rail link can change how an entire city moves, even far from the damaged link. The impact does not stop at the disruption.
+
+Traffic shifts to other corridors. Congestion grows, journeys take longer, and essential services become harder to reach. A local failure can create a much wider problem for communities. Those effects are often hidden by citywide averages.
+
+I built ResiliRoute to make these cascading effects visible, and help people explore transportation resilience before a disruption happens. It is a tool for understanding network vulnerability.
+
+Here is Harbor City: a synthetic demonstration network with twenty-four nodes and forty-two transport links. Residential areas generate travel demand. Stations, hospitals, shelters, and commercial districts provide destinations. Under normal conditions, the model calculates an average journey of fourteen point two minutes. Each journey contributes demand to the links it uses, creating network-wide volumes.
+
+Now I run the earthquake demo. Harbor Bridge, a rail connector, and a coastal road become unavailable. Routes are recalculated, and travel demand is reassigned to the remaining links. The results change immediately. Average travel time rises to twenty point nine minutes. Essential access falls from ninety-four point four to seventy-eight point nine percent. The map also shows which links are closed. These are calculated outputs, not preset disaster scores.
+
+The affected traffic does not simply disappear. On Port Bypass, demand increases from about four hundred to over three thousand trips per hour. This alternative corridor becomes overloaded. Comparing routes shows how the same hospital journey becomes a longer detour. Orange corridors highlight demand at or above capacity, revealing bottlenecks beyond the original closure.
+
+The dashboard compares travel time, congestion, accessibility, network efficiency, and resilience before and after the disruption. Resilience falls from a baseline of one hundred to sixty-nine. Every indicator has a published definition in the methodology. Accessibility measures population-weighted access to hospitals, shelters, and stations within their specified travel-time thresholds.
+
+The stress test removes each available link individually, reruns the simulation, and ranks its additional impact on the current scenario. Harbor Rail is now the most critical remaining link. Separately, restoring Harbor Bridge offers the largest modeled recovery benefit. The ranking measures modeled consequences, not the probability of failure.
+
+The East district is hit hardest. Its average travel time almost doubles, while essential access drops from one hundred to sixty-seven percent. The hospital analysis reveals which communities lose access within the model's travel-time threshold. Mobility resilience is also an issue of equity.
+
+The resilience analyst turns structured simulation evidence into a concise brief: what changed, why it matters, and possible planning actions. This demo uses the deterministic local analyst. An optional server-side language model uses the same evidence, with automatic fallback. The language model explains results; it does not calculate them.
+
+Graph routing, demand assignment, congestion modeling, and accessibility analysis drive the results. All computations use transparent, documented rules. This educational prototype supports understanding, not emergency navigation.
+
+ResiliRoute. Helping communities understand disruption before it happens.

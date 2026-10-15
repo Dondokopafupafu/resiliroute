@@ -1,0 +1,18 @@
+{
+  "source": "Stable pre-upgrade checkpoint 5d73f6f; unchanged Harbor City model",
+  "baseline": {
+    "averageTravelTime": 14.228435570321462,
+    "accessibility": 94.42658092175776,
+    "networkEfficiency": 43.76062633742906,
+    "congestion": 11.949249593041467,
+    "resilienceScore": 100,
+    "totalDemand": 15615
+  },
+  "earthquake": {
+    "averageTravelTime": 20.85750547641092,
+    "accessibility": 78.88531618435155,
+    "networkEfficiency": 37.52813726830161,
+    "congestion": 29.30370251345693,
+    "resilienceScore": 69.44709865456728
+  }
+}

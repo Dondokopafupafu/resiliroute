@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "cached": false,
+  "createdAt": "2026-10-11T03:44:16.251Z",
+  "stats": {
+    "rawNodes": 2562,
+    "intersections": 687,
+    "roadLinks": 983,
+    "origins": 18,
+    "components": 2,
+    "excludedFacilities": 0,
+    "clippedWays": 90
+  }
+}

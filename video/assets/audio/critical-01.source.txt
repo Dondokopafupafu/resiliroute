@@ -1,0 +1,1 @@
+en-US-GuyNeural|-5%|The stress test removes each available link individually, reruns the simulation, and ranks its additional impact on the current scenario.

@@ -1,0 +1,104 @@
+{
+  "osm3s": { "timestamp_osm_base": "2026-10-10T00:00:00Z" },
+  "elements": [
+    { "type": "node", "id": 1, "lat": 35.002, "lon": 139.002 },
+    { "type": "node", "id": 2, "lat": 35.003, "lon": 139.005 },
+    { "type": "node", "id": 3, "lat": 35.004, "lon": 139.008 },
+    { "type": "node", "id": 4, "lat": 35.004, "lon": 139.012 },
+    { "type": "node", "id": 5, "lat": 35.004, "lon": 139.018 },
+    { "type": "node", "id": 6, "lat": 35.015, "lon": 139.008 },
+    { "type": "node", "id": 7, "lat": 35.015, "lon": 139.012 },
+    { "type": "node", "id": 8, "lat": 35.015, "lon": 139.018 },
+    { "type": "node", "id": 9, "lat": 35.015, "lon": 139.002 },
+    { "type": "node", "id": 10, "lat": 35.017, "lon": 139.01 },
+    {
+      "type": "node",
+      "id": 11,
+      "lat": 35.006,
+      "lon": 139.018,
+      "tags": { "amenity": "hospital", "name": "Fixture Hospital" }
+    },
+    {
+      "type": "node",
+      "id": 12,
+      "lat": 35.016,
+      "lon": 139.018,
+      "tags": { "railway": "station", "name": "Fixture Station" }
+    },
+    {
+      "type": "node",
+      "id": 13,
+      "lat": 35.016,
+      "lon": 139.008,
+      "tags": { "emergency": "shelter", "name": "Fixture Shelter" }
+    },
+    {
+      "type": "node",
+      "id": 14,
+      "lat": 35.019,
+      "lon": 139.019,
+      "tags": { "amenity": "school", "name": "Too distant school" }
+    },
+    {
+      "type": "way",
+      "id": 101,
+      "nodes": [1, 2, 3],
+      "tags": { "highway": "residential", "name": "West Approach", "maxspeed": "25" }
+    },
+    {
+      "type": "way",
+      "id": 102,
+      "nodes": [3, 4],
+      "tags": {
+        "highway": "primary",
+        "name": "Fixture Bridge",
+        "bridge": "yes",
+        "lanes": "2",
+        "maxspeed": "40"
+      }
+    },
+    {
+      "type": "way",
+      "id": 103,
+      "nodes": [4, 5],
+      "tags": { "highway": "residential", "name": "East Approach" }
+    },
+    {
+      "type": "way",
+      "id": 104,
+      "nodes": [3, 6],
+      "tags": { "highway": "secondary", "name": "West Detour" }
+    },
+    {
+      "type": "way",
+      "id": 105,
+      "nodes": [6, 10, 7],
+      "tags": { "highway": "tertiary", "bridge": "yes", "name": "North Crossing" }
+    },
+    {
+      "type": "way",
+      "id": 106,
+      "nodes": [7, 4],
+      "tags": { "highway": "secondary", "name": "East Detour" }
+    },
+    {
+      "type": "way",
+      "id": 107,
+      "nodes": [7, 8],
+      "tags": { "highway": "residential", "oneway": "yes", "name": "North Street" }
+    },
+    {
+      "type": "way",
+      "id": 108,
+      "nodes": [5, 8],
+      "tags": { "highway": "residential", "name": "Station Road" }
+    },
+    {
+      "type": "way",
+      "id": 109,
+      "nodes": [1, 9, 6],
+      "tags": { "highway": "residential", "name": "West Neighborhood" }
+    },
+    { "type": "way", "id": 110, "nodes": [9, 6], "tags": { "highway": "footway" } }
+  ]
+}

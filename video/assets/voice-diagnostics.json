@@ -1,0 +1,233 @@
+[
+  {
+    "cue": "hook-01",
+    "rawDuration": 6.088583333333333,
+    "finalDuration": 8.391608391608392,
+    "tempoFactor": 0.7255561805555555,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "hook-02",
+    "rawDuration": 2.403583333333333,
+    "finalDuration": 3.3566433566433567,
+    "tempoFactor": 0.7160675347222222,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "problem-01",
+    "rawDuration": 7.975,
+    "finalDuration": 7.1328671328671325,
+    "tempoFactor": 1.1180637254901962,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "problem-02",
+    "rawDuration": 7.494958333333333,
+    "finalDuration": 7.972027972027972,
+    "tempoFactor": 0.9401570540935672,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "intro-01",
+    "rawDuration": 7.2925,
+    "finalDuration": 7.972027972027972,
+    "tempoFactor": 0.9147609649122808,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "intro-02",
+    "rawDuration": 3.175125,
+    "finalDuration": 3.3566433566433567,
+    "tempoFactor": 0.9459226562499999,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "normal-01",
+    "rawDuration": 5.828625,
+    "finalDuration": 6.293706293706293,
+    "tempoFactor": 0.92610375,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "normal-02",
+    "rawDuration": 8.171125,
+    "finalDuration": 5.454545454545454,
+    "tempoFactor": 1.4980395833333335,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "normal-03",
+    "rawDuration": 5.049041666666667,
+    "finalDuration": 5.874125874125874,
+    "tempoFactor": 0.859539236111111,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "normal-04",
+    "rawDuration": 4.747083333333333,
+    "finalDuration": 5.034965034965035,
+    "tempoFactor": 0.9428234953703704,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "earthquake-01",
+    "rawDuration": 6.74225,
+    "finalDuration": 7.1328671328671325,
+    "tempoFactor": 0.9452370098039217,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "earthquake-02",
+    "rawDuration": 7.279208333333333,
+    "finalDuration": 6.713286713286713,
+    "tempoFactor": 1.0842987413194445,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "earthquake-03",
+    "rawDuration": 8.441666666666666,
+    "finalDuration": 8.811188811188812,
+    "tempoFactor": 0.9580621693121693,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "earthquake-04",
+    "rawDuration": 2.184375,
+    "finalDuration": 3.3566433566433567,
+    "tempoFactor": 0.65076171875,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "earthquake-05",
+    "rawDuration": 3.4765,
+    "finalDuration": 3.3566433566433567,
+    "tempoFactor": 1.0357072916666668,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "cascade-01",
+    "rawDuration": 8.833291666666666,
+    "finalDuration": 9.65034965034965,
+    "tempoFactor": 0.9153338466183575,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "cascade-02",
+    "rawDuration": 7.628333333333333,
+    "finalDuration": 7.1328671328671325,
+    "tempoFactor": 1.0694624183006536,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "cascade-03",
+    "rawDuration": 5.796708333333333,
+    "finalDuration": 5.874125874125874,
+    "tempoFactor": 0.9868205853174603,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "analytics-01",
+    "rawDuration": 7.211833333333334,
+    "finalDuration": 6.713286713286713,
+    "tempoFactor": 1.0742626736111112,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "analytics-02",
+    "rawDuration": 7.761958333333333,
+    "finalDuration": 7.972027972027972,
+    "tempoFactor": 0.9736491593567251,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "analytics-03",
+    "rawDuration": 7.198,
+    "finalDuration": 5.874125874125874,
+    "tempoFactor": 1.2253738095238096,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "critical-01",
+    "rawDuration": 7.441625,
+    "finalDuration": 8.391608391608392,
+    "tempoFactor": 0.8867936458333333,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "critical-02",
+    "rawDuration": 8.337125,
+    "finalDuration": 7.972027972027972,
+    "tempoFactor": 1.04579725877193,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "critical-03",
+    "rawDuration": 4.0808333333333335,
+    "finalDuration": 4.195804195804196,
+    "tempoFactor": 0.9725986111111111,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "equity-01",
+    "rawDuration": 8.656458333333333,
+    "finalDuration": 9.23076923076923,
+    "tempoFactor": 0.9377829861111112,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "equity-02",
+    "rawDuration": 5.281083333333333,
+    "finalDuration": 5.454545454545454,
+    "tempoFactor": 0.9681986111111112,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "equity-03",
+    "rawDuration": 2.74075,
+    "finalDuration": 3.3566433566433567,
+    "tempoFactor": 0.8165151041666666,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "ai-01",
+    "rawDuration": 7.848083333333333,
+    "finalDuration": 8.391608391608392,
+    "tempoFactor": 0.9352299305555556,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "ai-02",
+    "rawDuration": 8.740583333333333,
+    "finalDuration": 7.972027972027972,
+    "tempoFactor": 1.0964065058479533,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "ai-03",
+    "rawDuration": 3.572208333333333,
+    "finalDuration": 4.195804195804196,
+    "tempoFactor": 0.8513763194444444,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "technical-01",
+    "rawDuration": 5.614625,
+    "finalDuration": 5.034965034965035,
+    "tempoFactor": 1.1151269097222223,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "technical-02",
+    "rawDuration": 9.015916666666667,
+    "finalDuration": 5.874125874125874,
+    "tempoFactor": 1.5348524801587302,
+    "wordsPerMinute": 143
+  },
+  {
+    "cue": "end-01",
+    "rawDuration": 5.249833333333333,
+    "finalDuration": 3.3566433566433567,
+    "tempoFactor": 1.5640128472222221,
+    "wordsPerMinute": 143
+  }
+]

@@ -1,0 +1,121 @@
+{
+  "hook": {
+    "path": "assets/recordings/hook.webm",
+    "trim": 8.6501985,
+    "duration": 25.188903300000003,
+    "x": 244,
+    "width": 1432
+  },
+  "problem-map": {
+    "path": "assets/recordings/problem-map.webm",
+    "trim": 18.5581293,
+    "duration": 18.158664799999993,
+    "x": 244,
+    "width": 1432
+  },
+  "harbor": {
+    "path": "assets/recordings/harbor.webm",
+    "trim": 2.672198300000004,
+    "duration": 12.145212499999994,
+    "x": 244,
+    "width": 1432
+  },
+  "welcome": {
+    "path": "assets/recordings/welcome.webm",
+    "trim": 1.041898000000001,
+    "duration": 13.129958299999998,
+    "x": 244,
+    "width": 1432
+  },
+  "select": {
+    "path": "assets/recordings/select.webm",
+    "trim": 2.377277000000002,
+    "duration": 16.127485700000005,
+    "x": 244,
+    "width": 1432
+  },
+  "build": {
+    "path": "assets/recordings/build.webm",
+    "trim": 2.385982499999998,
+    "duration": 26.12780690000001,
+    "x": 244,
+    "width": 1432
+  },
+  "closure": {
+    "path": "assets/recordings/closure.webm",
+    "trim": 8.596396600000007,
+    "duration": 21.13138990000001,
+    "x": 244,
+    "width": 1432
+  },
+  "reroute": {
+    "path": "assets/recordings/reroute.webm",
+    "trim": 15.6211021,
+    "duration": 16.1424653,
+    "x": 244,
+    "width": 1432
+  },
+  "flow": {
+    "path": "assets/recordings/flow.webm",
+    "trim": 14.486463900000002,
+    "duration": 12.067064600000013,
+    "x": 244,
+    "width": 1432
+  },
+  "critical": {
+    "path": "assets/recordings/critical.webm",
+    "trim": 15.459723999999987,
+    "duration": 16.129173300000023,
+    "x": 244,
+    "width": 1432
+  },
+  "recovery": {
+    "path": "assets/recordings/recovery.webm",
+    "trim": 14.969962899999985,
+    "duration": 25.137854500000017,
+    "x": 244,
+    "width": 1432
+  },
+  "methodology": {
+    "path": "assets/recordings/methodology.webm",
+    "trim": 8.0526228,
+    "duration": 13.147163100000002,
+    "x": 244,
+    "width": 1432
+  },
+  "ai": {
+    "path": "assets/recordings/ai.webm",
+    "trim": 21.6439693,
+    "duration": 36.64434110000002,
+    "x": 244,
+    "width": 1432
+  },
+  "assumptions": {
+    "path": "assets/recordings/assumptions.webm",
+    "trim": 8.583975500000001,
+    "duration": 12.0757549,
+    "x": 244,
+    "width": 1432
+  },
+  "snapshot": {
+    "path": "assets/recordings/snapshot.webm",
+    "trim": 9.197088600000017,
+    "duration": 11.152568499999994,
+    "x": 244,
+    "width": 1432
+  },
+  "bilingual": {
+    "path": "assets/recordings/bilingual.webm",
+    "trim": 16.484513600000007,
+    "duration": 12.132005200000014,
+    "x": 244,
+    "width": 1432
+  },
+  "closing": {
+    "path": "assets/recordings/closing.webm",
+    "trim": 15.123363299999967,
+    "duration": 12.13246060000005,
+    "x": 244,
+    "width": 1432
+  }
+}

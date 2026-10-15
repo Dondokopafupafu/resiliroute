@@ -1,0 +1,289 @@
+[
+  {
+    "cue": "hook-01",
+    "rawDuration": 3.918,
+    "finalDuration": 5.571428571428571,
+    "tempoFactor": 0.7032307692307693,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "hook-02",
+    "rawDuration": 10.308583333333333,
+    "finalDuration": 10.714285714285714,
+    "tempoFactor": 0.9621344444444445,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "hook-03",
+    "rawDuration": 6.5960833333333335,
+    "finalDuration": 6.857142857142857,
+    "tempoFactor": 0.9619288194444445,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "problem-01",
+    "rawDuration": 6.776375,
+    "finalDuration": 8.142857142857142,
+    "tempoFactor": 0.8321864035087719,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "problem-02",
+    "rawDuration": 10.192041666666666,
+    "finalDuration": 8.571428571428571,
+    "tempoFactor": 1.1890715277777777,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "problem-03",
+    "rawDuration": 5.130625,
+    "finalDuration": 6.428571428571429,
+    "tempoFactor": 0.7980972222222222,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "problem-04",
+    "rawDuration": 5.9595416666666665,
+    "finalDuration": 4.714285714285714,
+    "tempoFactor": 1.264145202020202,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "solution-01",
+    "rawDuration": 5.570916666666666,
+    "finalDuration": 5.142857142857143,
+    "tempoFactor": 1.0832337962962961,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "solution-02",
+    "rawDuration": 7.482958333333333,
+    "finalDuration": 6.857142857142857,
+    "tempoFactor": 1.0912647569444445,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "solution-03",
+    "rawDuration": 2.6142083333333335,
+    "finalDuration": 2.5714285714285716,
+    "tempoFactor": 1.0166365740740742,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "solution-04",
+    "rawDuration": 9.119708333333334,
+    "finalDuration": 8.142857142857142,
+    "tempoFactor": 1.1199641812865497,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "select-01",
+    "rawDuration": 5.980916666666666,
+    "finalDuration": 6.0,
+    "tempoFactor": 0.9968194444444444,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "select-02",
+    "rawDuration": 5.087791666666667,
+    "finalDuration": 7.285714285714286,
+    "tempoFactor": 0.6983243464052288,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "build-01",
+    "rawDuration": 7.000666666666667,
+    "finalDuration": 6.857142857142857,
+    "tempoFactor": 1.0209305555555557,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "build-02",
+    "rawDuration": 7.411375,
+    "finalDuration": 7.285714285714286,
+    "tempoFactor": 1.0172475490196078,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "closure-01",
+    "rawDuration": 6.627666666666666,
+    "finalDuration": 7.285714285714286,
+    "tempoFactor": 0.9096797385620915,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "closure-02",
+    "rawDuration": 6.978041666666667,
+    "finalDuration": 7.714285714285714,
+    "tempoFactor": 0.9045609567901235,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "reroute-01",
+    "rawDuration": 4.17225,
+    "finalDuration": 6.428571428571429,
+    "tempoFactor": 0.6490166666666667,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "reroute-02",
+    "rawDuration": 5.413541666666666,
+    "finalDuration": 5.571428571428571,
+    "tempoFactor": 0.9716613247863247,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "analytics-01",
+    "rawDuration": 5.2335,
+    "finalDuration": 6.857142857142857,
+    "tempoFactor": 0.7632187500000001,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "analytics-02",
+    "rawDuration": 2.9735833333333335,
+    "finalDuration": 3.0,
+    "tempoFactor": 0.9911944444444445,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "critical-01",
+    "rawDuration": 9.520375,
+    "finalDuration": 7.714285714285714,
+    "tempoFactor": 1.2341226851851852,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "critical-02",
+    "rawDuration": 6.162333333333334,
+    "finalDuration": 7.285714285714286,
+    "tempoFactor": 0.8458104575163399,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "recovery-01",
+    "rawDuration": 4.862833333333334,
+    "finalDuration": 5.142857142857143,
+    "tempoFactor": 0.9455509259259259,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "recovery-02",
+    "rawDuration": 7.9478333333333335,
+    "finalDuration": 6.857142857142857,
+    "tempoFactor": 1.159059027777778,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "recovery-03",
+    "rawDuration": 5.60775,
+    "finalDuration": 6.428571428571429,
+    "tempoFactor": 0.8723166666666666,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "how-01",
+    "rawDuration": 9.199916666666667,
+    "finalDuration": 8.571428571428571,
+    "tempoFactor": 1.073323611111111,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "how-02",
+    "rawDuration": 6.822041666666666,
+    "finalDuration": 6.0,
+    "tempoFactor": 1.1370069444444444,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "how-03",
+    "rawDuration": 8.66225,
+    "finalDuration": 6.428571428571429,
+    "tempoFactor": 1.347461111111111,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "ai-01",
+    "rawDuration": 6.703375,
+    "finalDuration": 6.0,
+    "tempoFactor": 1.1172291666666667,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "ai-02",
+    "rawDuration": 4.992875,
+    "finalDuration": 5.142857142857143,
+    "tempoFactor": 0.9708368055555554,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "ai-03",
+    "rawDuration": 6.68725,
+    "finalDuration": 5.571428571428571,
+    "tempoFactor": 1.200275641025641,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "ai-04",
+    "rawDuration": 8.645083333333334,
+    "finalDuration": 7.285714285714286,
+    "tempoFactor": 1.1865800653594771,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "business-01",
+    "rawDuration": 6.355166666666666,
+    "finalDuration": 4.714285714285714,
+    "tempoFactor": 1.3480656565656566,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "business-02",
+    "rawDuration": 5.810083333333333,
+    "finalDuration": 6.428571428571429,
+    "tempoFactor": 0.9037907407407406,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "business-03",
+    "rawDuration": 4.018375,
+    "finalDuration": 4.714285714285714,
+    "tempoFactor": 0.8523825757575757,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "business-04",
+    "rawDuration": 6.145958333333334,
+    "finalDuration": 6.428571428571429,
+    "tempoFactor": 0.956037962962963,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "business-05",
+    "rawDuration": 9.87075,
+    "finalDuration": 8.571428571428571,
+    "tempoFactor": 1.1515875,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "closing-01",
+    "rawDuration": 6.9615,
+    "finalDuration": 6.857142857142857,
+    "tempoFactor": 1.01521875,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "closing-02",
+    "rawDuration": 3.952125,
+    "finalDuration": 3.857142857142857,
+    "tempoFactor": 1.0246250000000001,
+    "wordsPerMinute": 140
+  },
+  {
+    "cue": "closing-03",
+    "rawDuration": 5.256666666666667,
+    "finalDuration": 3.857142857142857,
+    "tempoFactor": 1.3628395061728396,
+    "wordsPerMinute": 140
+  }
+]

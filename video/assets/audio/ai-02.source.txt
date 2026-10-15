@@ -1,0 +1,1 @@
+en-US-GuyNeural|-5%|This demo uses the deterministic local analyst. An optional server-side language model uses the same evidence, with automatic fallback.

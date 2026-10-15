@@ -1,0 +1,13 @@
+{
+  "duration": 230,
+  "width": 1920,
+  "height": 1080,
+  "currentTime": 196.180643,
+  "readyState": 4,
+  "error": null,
+  "totalVideoFrames": 194,
+  "droppedVideoFrames": 0,
+  "playbackSegment": "3:10–3:16",
+  "browser": "Chromium",
+  "testedAt": "2026-10-06T05:04:27.086Z"
+}

@@ -1,0 +1,1263 @@
+{
+  "capturedAt": "2026-10-11T03:34:55.285Z",
+  "model": "1.0",
+  "stats": {
+    "rawNodes": 2562,
+    "intersections": 687,
+    "roadLinks": 983,
+    "origins": 18,
+    "components": 2,
+    "excludedFacilities": 0,
+    "clippedWays": 90
+  },
+  "baseline": {
+    "averageTravelTime": 2.83002154491727,
+    "accessibility": 100,
+    "networkEfficiency": 78.99472936337433,
+    "congestion": 55.429949009207256,
+    "disconnectedDemand": 0,
+    "disconnectedODPairs": 0,
+    "connectedDemandRetention": 100,
+    "resilienceScore": 100,
+    "totalDemand": 17549.999999999993
+  },
+  "current": {
+    "averageTravelTime": 3.378406160901321,
+    "accessibility": 100,
+    "networkEfficiency": 76.7874880952233,
+    "congestion": 34.90844789900023,
+    "disconnectedDemand": 0,
+    "disconnectedODPairs": 0,
+    "connectedDemandRetention": 100,
+    "resilienceScore": 91.16511014739783,
+    "totalDemand": 17549.999999999993
+  },
+  "closed": {
+    "id": "osm-way-83697074-0",
+    "name": "相生橋",
+    "source": "osm-node-974601709",
+    "target": "osm-node-655196461",
+    "mode": "road",
+    "distance": 0.20606256494423839,
+    "freeFlowTime": 0.3090938474163576,
+    "capacity": 1800,
+    "currentVolume": 0,
+    "available": true,
+    "riskLevel": "low",
+    "infrastructureType": "bridge",
+    "bidirectional": true,
+    "geometry": [
+      [
+        34.6622589,
+        133.9367257
+      ],
+      [
+        34.6618511,
+        133.9389235
+      ]
+    ],
+    "osm": {
+      "wayId": 83697074,
+      "highway": "tertiary",
+      "speedKmh": 40,
+      "speedSource": "OSM",
+      "lanes": 2,
+      "lanesSource": "OSM",
+      "bridge": true,
+      "tunnel": false,
+      "oneway": false
+    }
+  },
+  "secondary": {
+    "id": "osm-way-436640413-1",
+    "name": "Unnamed residential road · 436640413",
+    "source": "osm-node-4345185507",
+    "target": "osm-node-4345185510",
+    "mode": "road",
+    "distance": 0.05555325473254117,
+    "freeFlowTime": 0.13332781135809882,
+    "capacity": 900,
+    "currentVolume": 0,
+    "available": true,
+    "riskLevel": "low",
+    "infrastructureType": "street",
+    "bidirectional": true,
+    "geometry": [
+      [
+        34.6723387,
+        133.9377589
+      ],
+      [
+        34.6723663,
+        133.9377924
+      ],
+      [
+        34.6725133,
+        133.9378031
+      ],
+      [
+        34.6725133,
+        133.9381841
+      ]
+    ],
+    "osm": {
+      "wayId": 436640413,
+      "highway": "residential",
+      "speedKmh": 25,
+      "speedSource": "estimated",
+      "lanes": 2,
+      "lanesSource": "estimated",
+      "bridge": false,
+      "tunnel": false,
+      "oneway": false
+    }
+  },
+  "multiple": {
+    "averageTravelTime": 5.635632113749311,
+    "accessibility": 95.87564859350847,
+    "networkEfficiency": 74.10403264555787,
+    "congestion": 30.00719870544788,
+    "disconnectedDemand": 723.8236718392604,
+    "disconnectedODPairs": 3,
+    "connectedDemandRetention": 95.87564859350847,
+    "resilienceScore": 73.75590764386814,
+    "totalDemand": 17549.999999999993
+  },
+  "ranking": [
+    {
+      "edgeId": "osm-way-436640413-1",
+      "name": "Unnamed residential road · 436640413",
+      "score": 25.939557087532577,
+      "travelTimeIncrease": 2.2572259528479894,
+      "accessibilityLoss": 4.124351406491527,
+      "efficiencyLoss": 2.6834554496654306,
+      "disconnectedDemandIncrease": 723.8236718392604
+    },
+    {
+      "edgeId": "osm-way-181956461-0",
+      "name": "Unnamed unclassified road · 181956461",
+      "score": 18.62531741060451,
+      "travelTimeIncrease": 1.7034570389956598,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 2.6452056269608306,
+      "disconnectedDemandIncrease": 506.6329418451014
+    },
+    {
+      "edgeId": "osm-way-470499873-1",
+      "name": "Unnamed residential road · 470499873",
+      "score": 11.378430623055122,
+      "travelTimeIncrease": 0.9898630764833078,
+      "accessibilityLoss": 1.7629571143454683,
+      "efficiencyLoss": 1.2677721083610294,
+      "disconnectedDemandIncrease": 309.39897356762907
+    },
+    {
+      "edgeId": "osm-way-468812698-0",
+      "name": "Unnamed residential road · 468812698",
+      "score": 10.753196794846307,
+      "travelTimeIncrease": 0.9341617994839377,
+      "accessibilityLoss": 1.6223783656978554,
+      "efficiencyLoss": 1.3256971065531076,
+      "disconnectedDemandIncrease": 284.7274031799707
+    },
+    {
+      "edgeId": "osm-way-361493340-0",
+      "name": "Unnamed residential road · 361493340",
+      "score": 10.53487194445819,
+      "travelTimeIncrease": 0.9145557188028488,
+      "accessibilityLoss": 1.570489154377924,
+      "efficiencyLoss": 1.3569596741399579,
+      "disconnectedDemandIncrease": 275.62084659332504
+    },
+    {
+      "edgeId": "osm-way-83697156-0",
+      "name": "原尾島番町線",
+      "score": 7.450290737801238,
+      "travelTimeIncrease": 0.6630329776178026,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 2.2319265430355273,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1274409530-0",
+      "name": "Unnamed residential road · 1274409530",
+      "score": 2.2534109517124175,
+      "travelTimeIncrease": 0.19425919219436372,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.9249140121710298,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-82513827-0",
+      "name": "後楽園線",
+      "score": 0.889594840377746,
+      "travelTimeIncrease": 0.07837104167903375,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.298233103183577,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-83696963-0",
+      "name": "蓬莱橋",
+      "score": 0.889594840377746,
+      "travelTimeIncrease": 0.07837104167903375,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.298233103183577,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1274409468-0",
+      "name": "西大寺鉄道線路跡",
+      "score": 0.4582441534822548,
+      "travelTimeIncrease": 0.04067341307738648,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.1415618010288,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1274409478-0",
+      "name": "Unnamed unclassified road · 1274409478",
+      "score": 0.1578369072055832,
+      "travelTimeIncrease": 0.013490863807924303,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.06938789069278073,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1274409476-0",
+      "name": "Unnamed residential road · 1274409476",
+      "score": 0.12986390878076173,
+      "travelTimeIncrease": 0.011479261139065056,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.042001763003071346,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-740573498-0",
+      "name": "Unnamed residential road · 740573498",
+      "score": 0.047726370031292986,
+      "travelTimeIncrease": 0.004258577058142254,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.013851981099122668,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1274409470-0",
+      "name": "Unnamed residential road · 1274409470",
+      "score": 0.042378291352707764,
+      "travelTimeIncrease": 0.0038169810131507553,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.01088344870271385,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1314338111-0",
+      "name": "Unnamed residential road · 1314338111",
+      "score": 0.0366266338823539,
+      "travelTimeIncrease": 0.0031084845260100913,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.016981549243354266,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1274409539-0",
+      "name": "Unnamed residential road · 1274409539",
+      "score": 0.02320700066420979,
+      "travelTimeIncrease": 0.0019302734997563853,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.012322593700744733,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1274409536-0",
+      "name": "Unnamed unclassified road · 1274409536",
+      "score": 0.02320700066420979,
+      "travelTimeIncrease": 0.0019302734997563853,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0.012322593700744733,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1314338108-0",
+      "name": "Unnamed residential road · 1314338108",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1314338109-0",
+      "name": "Unnamed residential road · 1314338109",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1314338110-0",
+      "name": "Unnamed residential road · 1314338110",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1314338112-0",
+      "name": "Unnamed residential road · 1314338112",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1324628714-0",
+      "name": "Unnamed residential road · 1324628714",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1324628715-0",
+      "name": "Unnamed residential road · 1324628715",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1324628717-0",
+      "name": "Unnamed residential road · 1324628717",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1324892812-0",
+      "name": "Unnamed residential road · 1324892812",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1434335905-0",
+      "name": "Unnamed residential road · 1434335905",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1513865486-0",
+      "name": "Unnamed residential road · 1513865486",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1274409538-0",
+      "name": "Unnamed unclassified road · 1274409538",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1280525543-0",
+      "name": "Unnamed unclassified road · 1280525543",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1317078902-1",
+      "name": "Unnamed unclassified road · 1317078902",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1324579051-1",
+      "name": "Unnamed unclassified road · 1324579051",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-176600217-0",
+      "name": "Unnamed unclassified road · 176600217",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-173138401-4",
+      "name": "オランダ東通り",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1316254927-1",
+      "name": "国道250号",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    },
+    {
+      "edgeId": "osm-way-1316254928-0",
+      "name": "国道250号",
+      "score": 0,
+      "travelTimeIncrease": 0,
+      "accessibilityLoss": 0,
+      "efficiencyLoss": 0,
+      "disconnectedDemandIncrease": 0
+    }
+  ],
+  "screened": {
+    "ids": [
+      "osm-way-83697156-0",
+      "osm-way-82513827-0",
+      "osm-way-83696963-0",
+      "osm-way-1274409530-0",
+      "osm-way-1274409468-0",
+      "osm-way-1274409476-0",
+      "osm-way-1274409478-0",
+      "osm-way-740573498-0",
+      "osm-way-1314338111-0",
+      "osm-way-1274409470-0",
+      "osm-way-1274409539-0",
+      "osm-way-1274409536-0",
+      "osm-way-1274409538-0",
+      "osm-way-1314338108-0",
+      "osm-way-1314338109-0",
+      "osm-way-1314338110-0",
+      "osm-way-1314338112-0",
+      "osm-way-176600217-0",
+      "osm-way-436640413-1",
+      "osm-way-181956461-0",
+      "osm-way-470499873-1",
+      "osm-way-468812698-0",
+      "osm-way-361493340-0",
+      "osm-way-1280525543-0",
+      "osm-way-1316254927-1",
+      "osm-way-1316254928-0",
+      "osm-way-1317078902-1",
+      "osm-way-1324579051-1",
+      "osm-way-1324628714-0",
+      "osm-way-1324628715-0",
+      "osm-way-1324628717-0",
+      "osm-way-1324892812-0",
+      "osm-way-1434335905-0",
+      "osm-way-1513865486-0",
+      "osm-way-173138401-4"
+    ],
+    "screened": true,
+    "total": 982
+  },
+  "recovery": [
+    {
+      "edgeId": "osm-way-83697074-0",
+      "name": "相生橋",
+      "resilienceGain": 8.834889852602174,
+      "accessibilityGain": 0,
+      "travelTimeSaved": 0.5483846159840513,
+      "metrics": {
+        "averageTravelTime": 2.83002154491727,
+        "accessibility": 100,
+        "networkEfficiency": 78.99472936337433,
+        "congestion": 55.429949009207256,
+        "disconnectedDemand": 0,
+        "disconnectedODPairs": 0,
+        "connectedDemandRetention": 100,
+        "resilienceScore": 100,
+        "totalDemand": 17549.999999999993
+      }
+    }
+  ],
+  "multiRecovery": [
+    {
+      "edgeId": "osm-way-436640413-1",
+      "name": "Unnamed residential road · 436640413",
+      "resilienceGain": 17.409202503529684,
+      "accessibilityGain": 4.124351406491527,
+      "travelTimeSaved": 2.2572259528479894,
+      "metrics": {
+        "averageTravelTime": 3.378406160901321,
+        "accessibility": 100,
+        "networkEfficiency": 76.7874880952233,
+        "congestion": 34.90844789900023,
+        "disconnectedDemand": 0,
+        "disconnectedODPairs": 0,
+        "connectedDemandRetention": 100,
+        "resilienceScore": 91.16511014739783,
+        "totalDemand": 17549.999999999993
+      }
+    },
+    {
+      "edgeId": "osm-way-83697074-0",
+      "name": "相生橋",
+      "resilienceGain": 2.6533258325316353,
+      "accessibilityGain": 0,
+      "travelTimeSaved": 0.5511382525526463,
+      "metrics": {
+        "averageTravelTime": 5.084493861196664,
+        "accessibility": 95.87564859350847,
+        "networkEfficiency": 76.30936357480529,
+        "congestion": 49.21695800563284,
+        "disconnectedDemand": 723.8236718392604,
+        "disconnectedODPairs": 3,
+        "connectedDemandRetention": 95.87564859350847,
+        "resilienceScore": 76.40923347639978,
+        "totalDemand": 17549.999999999993
+      }
+    }
+  ],
+  "flows": [
+    {
+      "id": "osm-way-1084036089-1",
+      "name": "岡山吉井線",
+      "before": {
+        "id": "osm-way-1084036089-1",
+        "available": true,
+        "volume": 594.5940051977583,
+        "utilization": 0.1981980017325861,
+        "travelTime": 0.14037349177222258
+      },
+      "after": {
+        "id": "osm-way-1084036089-1",
+        "available": true,
+        "volume": 3010.0467077032545,
+        "utilization": 1.0033489025677516,
+        "travelTime": 0.1616755713749269
+      },
+      "increase": 2415.4527025054963
+    },
+    {
+      "id": "osm-way-1084036089-2",
+      "name": "岡山吉井線",
+      "before": {
+        "id": "osm-way-1084036089-2",
+        "available": true,
+        "volume": 594.5940051977583,
+        "utilization": 0.1981980017325861,
+        "travelTime": 0.1342352890467895
+      },
+      "after": {
+        "id": "osm-way-1084036089-2",
+        "available": true,
+        "volume": 3010.0467077032545,
+        "utilization": 1.0033489025677516,
+        "travelTime": 0.15460587879750037
+      },
+      "increase": 2415.4527025054963
+    },
+    {
+      "id": "osm-way-238279791-1",
+      "name": "後楽園線",
+      "before": {
+        "id": "osm-way-238279791-1",
+        "available": true,
+        "volume": 594.5940051977583,
+        "utilization": 0.24774750216573263,
+        "travelTime": 0.05253639509450216
+      },
+      "after": {
+        "id": "osm-way-238279791-1",
+        "available": true,
+        "volume": 3009.927080766777,
+        "utilization": 1.2541362836528238,
+        "travelTime": 0.07199103675407097
+      },
+      "increase": 2415.333075569019
+    },
+    {
+      "id": "osm-way-238279791-2",
+      "name": "後楽園線",
+      "before": {
+        "id": "osm-way-238279791-2",
+        "available": true,
+        "volume": 594.5940051977583,
+        "utilization": 0.24774750216573263,
+        "travelTime": 0.023750626885167315
+      },
+      "after": {
+        "id": "osm-way-238279791-2",
+        "available": true,
+        "volume": 2995.5992263562257,
+        "utilization": 1.248166344315094,
+        "travelTime": 0.03237914511704353
+      },
+      "increase": 2401.0052211584675
+    },
+    {
+      "id": "osm-way-238279791-3",
+      "name": "後楽園線",
+      "before": {
+        "id": "osm-way-238279791-3",
+        "available": true,
+        "volume": 594.5940051977583,
+        "utilization": 0.24774750216573263,
+        "travelTime": 0.20298965899258356
+      },
+      "after": {
+        "id": "osm-way-238279791-3",
+        "available": true,
+        "volume": 2995.5992263562257,
+        "utilization": 1.248166344315094,
+        "travelTime": 0.276735079775295
+      },
+      "increase": 2401.0052211584675
+    },
+    {
+      "id": "osm-way-238279791-4",
+      "name": "後楽園線",
+      "before": {
+        "id": "osm-way-238279791-4",
+        "available": true,
+        "volume": 594.5940051977583,
+        "utilization": 0.24774750216573263,
+        "travelTime": 0.035664249250879666
+      },
+      "after": {
+        "id": "osm-way-238279791-4",
+        "available": true,
+        "volume": 2995.5992263562257,
+        "utilization": 1.248166344315094,
+        "travelTime": 0.04862094409414612
+      },
+      "increase": 2401.0052211584675
+    },
+    {
+      "id": "osm-way-238279791-5",
+      "name": "後楽園線",
+      "before": {
+        "id": "osm-way-238279791-5",
+        "available": true,
+        "volume": 594.5940051977583,
+        "utilization": 0.24774750216573263,
+        "travelTime": 0.02991609056527387
+      },
+      "after": {
+        "id": "osm-way-238279791-5",
+        "available": true,
+        "volume": 2995.5992263562257,
+        "utilization": 1.248166344315094,
+        "travelTime": 0.040784499812616025
+      },
+      "increase": 2401.0052211584675
+    },
+    {
+      "id": "osm-way-238279791-6",
+      "name": "後楽園線",
+      "before": {
+        "id": "osm-way-238279791-6",
+        "available": true,
+        "volume": 594.5940051977583,
+        "utilization": 0.24774750216573263,
+        "travelTime": 0.01232443305854594
+      },
+      "after": {
+        "id": "osm-way-238279791-6",
+        "available": true,
+        "volume": 2995.5992263562257,
+        "utilization": 1.248166344315094,
+        "travelTime": 0.016801855732791807
+      },
+      "increase": 2401.0052211584675
+    }
+  ],
+  "routes": [
+    {
+      "od": {
+        "id": "od-osm-node-5606183102-osm-facility-way-508848345",
+        "origin": "osm-node-5606183102",
+        "destination": "osm-facility-way-508848345",
+        "demand": 406.4815844109665,
+        "purpose": "services"
+      },
+      "destinationName": "川崎医科大学 総合医療センター",
+      "before": {
+        "reachable": true,
+        "nodeIds": [
+          "osm-node-5606183102",
+          "osm-node-4646156065",
+          "osm-node-1870835609",
+          "osm-node-655196461",
+          "osm-node-974601709",
+          "osm-node-2494653636",
+          "osm-node-357197255",
+          "osm-node-357197877",
+          "osm-node-357197878",
+          "osm-node-9802847775",
+          "osm-node-655196473",
+          "osm-node-655196474",
+          "osm-node-1924466981",
+          "osm-node-1924466954",
+          "osm-node-1924466972",
+          "osm-node-2554228900",
+          "osm-node-1924466977",
+          "osm-node-1924466974",
+          "osm-node-1924466957",
+          "osm-node-1924466983",
+          "osm-node-1924466987",
+          "osm-facility-way-508848345"
+        ],
+        "edgeIds": [
+          "osm-way-470417611-0",
+          "osm-way-176598958-1",
+          "osm-way-31894752-5",
+          "osm-way-83697074-0",
+          "osm-way-83696958-1",
+          "osm-way-83696958-0",
+          "osm-way-856045491-0",
+          "osm-way-1316560626-0",
+          "osm-way-1316560626-1",
+          "osm-way-241890660-0",
+          "osm-way-1316560628-0",
+          "osm-way-182104765-0",
+          "osm-way-182105152-0",
+          "osm-way-182104548-0",
+          "osm-way-182104665-0",
+          "osm-way-182104665-1",
+          "osm-way-182104994-0",
+          "osm-way-182104871-0",
+          "osm-way-182104852-0",
+          "osm-way-182104967-0",
+          "connector-osm-facility-way-508848345"
+        ],
+        "travelTime": 4.422137727822233,
+        "distance": 1.3300787510277046
+      },
+      "after": {
+        "reachable": true,
+        "nodeIds": [
+          "osm-node-5606183102",
+          "osm-node-4646156065",
+          "osm-node-1870835609",
+          "osm-node-1870835930",
+          "osm-node-1870836043",
+          "osm-node-1870836148",
+          "osm-node-1870836292",
+          "osm-node-1870836402",
+          "osm-node-1870836461",
+          "osm-node-1870836907",
+          "osm-node-1870837143",
+          "osm-node-1870837419",
+          "osm-node-1870837571",
+          "osm-node-1870838008",
+          "osm-node-1870838163",
+          "osm-node-974602282",
+          "osm-node-6933535270",
+          "osm-node-974602668",
+          "osm-node-974603076",
+          "osm-node-960327515",
+          "osm-node-960327505",
+          "osm-node-1924467872",
+          "osm-node-1924467866",
+          "osm-node-1924467800",
+          "osm-node-1924467783",
+          "osm-node-1924724481",
+          "osm-node-1924724477",
+          "osm-node-974602021",
+          "osm-node-2460381929",
+          "osm-node-974601621",
+          "osm-node-3099875779",
+          "osm-node-974603307",
+          "osm-node-3099875760",
+          "osm-node-3099875753",
+          "osm-node-1924467485",
+          "osm-node-2554228909",
+          "osm-node-2554228906",
+          "osm-node-9933928654",
+          "osm-node-2554228905",
+          "osm-node-2554228904",
+          "osm-node-2554228902",
+          "osm-node-2554228901",
+          "osm-node-1924466972",
+          "osm-node-2554228900",
+          "osm-node-1924466977",
+          "osm-node-1924466974",
+          "osm-node-1924466957",
+          "osm-node-1924466983",
+          "osm-node-1924466987",
+          "osm-facility-way-508848345"
+        ],
+        "edgeIds": [
+          "osm-way-470417611-0",
+          "osm-way-176598958-1",
+          "osm-way-241890656-0",
+          "osm-way-176600115-0",
+          "osm-way-176600115-1",
+          "osm-way-176600115-2",
+          "osm-way-176600115-3",
+          "osm-way-176600115-4",
+          "osm-way-176600115-5",
+          "osm-way-176600115-6",
+          "osm-way-176600115-7",
+          "osm-way-176600115-8",
+          "osm-way-176600115-9",
+          "osm-way-176600115-10",
+          "osm-way-176600115-11",
+          "osm-way-83697124-0",
+          "osm-way-83696963-0",
+          "osm-way-82602378-0",
+          "osm-way-1369405370-0",
+          "osm-way-82513827-0",
+          "osm-way-82513828-0",
+          "osm-way-82513828-1",
+          "osm-way-182105045-1",
+          "osm-way-182105045-0",
+          "osm-way-182104748-1",
+          "osm-way-238279791-1",
+          "osm-way-238279791-2",
+          "osm-way-238279791-3",
+          "osm-way-238279791-4",
+          "osm-way-238279791-5",
+          "osm-way-238279791-6",
+          "osm-way-238279791-7",
+          "osm-way-1084036089-1",
+          "osm-way-1084036089-2",
+          "osm-way-1084036089-3",
+          "osm-way-1084036089-4",
+          "osm-way-1084036089-5",
+          "osm-way-248663307-0",
+          "osm-way-248663307-1",
+          "osm-way-248663307-2",
+          "osm-way-248663307-3",
+          "osm-way-248663307-4",
+          "osm-way-182104665-0",
+          "osm-way-182104665-1",
+          "osm-way-182104994-0",
+          "osm-way-182104871-0",
+          "osm-way-182104852-0",
+          "osm-way-182104967-0",
+          "connector-osm-facility-way-508848345"
+        ],
+        "travelTime": 7.226004006417862,
+        "distance": 3.126801427704509
+      },
+      "extra": 2.8038662785956294
+    },
+    {
+      "od": {
+        "id": "od-osm-node-4646155582-osm-facility-way-508848345",
+        "origin": "osm-node-4646155582",
+        "destination": "osm-facility-way-508848345",
+        "demand": 336.5177826774825,
+        "purpose": "services"
+      },
+      "destinationName": "川崎医科大学 総合医療センター",
+      "before": {
+        "reachable": true,
+        "nodeIds": [
+          "osm-node-4646155582",
+          "osm-node-4646155991",
+          "osm-node-11832975968",
+          "osm-node-11832975969",
+          "osm-node-1870835309",
+          "osm-node-1870835334",
+          "osm-node-4646156044",
+          "osm-node-1870835349",
+          "osm-node-11839643709",
+          "osm-node-6378887616",
+          "osm-node-1870835365",
+          "osm-node-4646526406",
+          "osm-node-4646526407",
+          "osm-node-655196452",
+          "osm-node-655196456",
+          "osm-node-1870835609",
+          "osm-node-655196461",
+          "osm-node-974601709",
+          "osm-node-2494653636",
+          "osm-node-357197255",
+          "osm-node-357197877",
+          "osm-node-357197878",
+          "osm-node-9802847775",
+          "osm-node-655196473",
+          "osm-node-655196474",
+          "osm-node-1924466981",
+          "osm-node-1924466954",
+          "osm-node-1924466972",
+          "osm-node-2554228900",
+          "osm-node-1924466977",
+          "osm-node-1924466974",
+          "osm-node-1924466957",
+          "osm-node-1924466983",
+          "osm-node-1924466987",
+          "osm-facility-way-508848345"
+        ],
+        "edgeIds": [
+          "osm-way-470417600-0",
+          "osm-way-470417603-0",
+          "osm-way-1274409530-0",
+          "osm-way-1274409531-0",
+          "osm-way-176599252-0",
+          "osm-way-176603156-2",
+          "osm-way-176603156-1",
+          "osm-way-176603156-0",
+          "osm-way-1317308017-1",
+          "osm-way-1317308017-0",
+          "osm-way-1316254929-0",
+          "osm-way-1356902244-0",
+          "osm-way-31894752-2",
+          "osm-way-31894752-3",
+          "osm-way-31894752-4",
+          "osm-way-31894752-5",
+          "osm-way-83697074-0",
+          "osm-way-83696958-1",
+          "osm-way-83696958-0",
+          "osm-way-856045491-0",
+          "osm-way-1316560626-0",
+          "osm-way-1316560626-1",
+          "osm-way-241890660-0",
+          "osm-way-1316560628-0",
+          "osm-way-182104765-0",
+          "osm-way-182105152-0",
+          "osm-way-182104548-0",
+          "osm-way-182104665-0",
+          "osm-way-182104665-1",
+          "osm-way-182104994-0",
+          "osm-way-182104871-0",
+          "osm-way-182104852-0",
+          "osm-way-182104967-0",
+          "connector-osm-facility-way-508848345"
+        ],
+        "travelTime": 5.338572580612119,
+        "distance": 1.7848994360230523
+      },
+      "after": {
+        "reachable": true,
+        "nodeIds": [
+          "osm-node-4646155582",
+          "osm-node-4646155991",
+          "osm-node-11832975968",
+          "osm-node-11832975969",
+          "osm-node-1870835309",
+          "osm-node-1870835334",
+          "osm-node-4646156044",
+          "osm-node-4646526404",
+          "osm-node-6378856261",
+          "osm-node-1870835532",
+          "osm-node-1870835559",
+          "osm-node-4646615079",
+          "osm-node-4650578765",
+          "osm-node-6370513295",
+          "osm-node-1870835771",
+          "osm-node-1870835918",
+          "osm-node-1870835947",
+          "osm-node-1870836076",
+          "osm-node-1870836157",
+          "osm-node-1870836277",
+          "osm-node-1870836298",
+          "osm-node-1870836422",
+          "osm-node-1870836566",
+          "osm-node-2494653662",
+          "osm-node-1870836785",
+          "osm-node-4675856385",
+          "osm-node-1870837046",
+          "osm-node-1870837041",
+          "osm-node-1870837291",
+          "osm-node-1870837522",
+          "osm-node-4646685281",
+          "osm-node-2494653664",
+          "osm-node-1870838018",
+          "osm-node-1870838244",
+          "osm-node-1870838387",
+          "osm-node-4650255657",
+          "osm-node-1870838774",
+          "osm-node-1870838839",
+          "osm-node-4345185499",
+          "osm-node-2494653718",
+          "osm-node-1870838849",
+          "osm-node-974602927",
+          "osm-node-571487913",
+          "osm-node-974603239",
+          "osm-node-1474850830",
+          "osm-node-974604576",
+          "osm-node-3099875816",
+          "osm-node-974602272",
+          "osm-node-1924724481",
+          "osm-node-1924724477",
+          "osm-node-974602021",
+          "osm-node-2460381929",
+          "osm-node-974601621",
+          "osm-node-3099875779",
+          "osm-node-974603307",
+          "osm-node-3099875760",
+          "osm-node-3099875753",
+          "osm-node-1924467485",
+          "osm-node-2554228909",
+          "osm-node-2554228906",
+          "osm-node-9933928654",
+          "osm-node-2554228905",
+          "osm-node-2554228904",
+          "osm-node-2554228902",
+          "osm-node-2554228901",
+          "osm-node-1924466972",
+          "osm-node-2554228900",
+          "osm-node-1924466977",
+          "osm-node-1924466974",
+          "osm-node-1924466957",
+          "osm-node-1924466983",
+          "osm-node-1924466987",
+          "osm-facility-way-508848345"
+        ],
+        "edgeIds": [
+          "osm-way-470417600-0",
+          "osm-way-470417603-0",
+          "osm-way-1274409530-0",
+          "osm-way-1274409531-0",
+          "osm-way-176599252-0",
+          "osm-way-176603156-2",
+          "osm-way-470417607-1",
+          "osm-way-470469242-0",
+          "osm-way-470469242-1",
+          "osm-way-1356902245-2",
+          "osm-way-176602529-3",
+          "osm-way-176602529-2",
+          "osm-way-470882180-0",
+          "osm-way-176599883-1",
+          "osm-way-176599574-0",
+          "osm-way-680360817-0",
+          "osm-way-176602266-0",
+          "osm-way-176600351-0",
+          "osm-way-176599592-0",
+          "osm-way-176599561-0",
+          "osm-way-176601009-0",
+          "osm-way-176600446-0",
+          "osm-way-176600247-1",
+          "osm-way-176600247-0",
+          "osm-way-176599589-1",
+          "osm-way-176599589-0",
+          "osm-way-176600700-0",
+          "osm-way-176601446-1",
+          "osm-way-176601446-0",
+          "osm-way-176602418-0",
+          "osm-way-176602418-1",
+          "osm-way-176602418-2",
+          "osm-way-176599554-0",
+          "osm-way-176599555-0",
+          "osm-way-470838458-0",
+          "osm-way-176603105-0",
+          "osm-way-176600139-0",
+          "osm-way-719685297-3",
+          "osm-way-719685297-4",
+          "osm-way-719685297-5",
+          "osm-way-719685297-6",
+          "osm-way-719685297-7",
+          "osm-way-83697156-0",
+          "osm-way-241890730-0",
+          "osm-way-1369408143-0",
+          "osm-way-239644301-0",
+          "osm-way-239644301-1",
+          "osm-way-238279791-0",
+          "osm-way-238279791-1",
+          "osm-way-238279791-2",
+          "osm-way-238279791-3",
+          "osm-way-238279791-4",
+          "osm-way-238279791-5",
+          "osm-way-238279791-6",
+          "osm-way-238279791-7",
+          "osm-way-1084036089-1",
+          "osm-way-1084036089-2",
+          "osm-way-1084036089-3",
+          "osm-way-1084036089-4",
+          "osm-way-1084036089-5",
+          "osm-way-248663307-0",
+          "osm-way-248663307-1",
+          "osm-way-248663307-2",
+          "osm-way-248663307-3",
+          "osm-way-248663307-4",
+          "osm-way-182104665-0",
+          "osm-way-182104665-1",
+          "osm-way-182104994-0",
+          "osm-way-182104871-0",
+          "osm-way-182104852-0",
+          "osm-way-182104967-0",
+          "connector-osm-facility-way-508848345"
+        ],
+        "travelTime": 8.110991236611804,
+        "distance": 3.9159293453187085
+      },
+      "extra": 2.772418655999685
+    }
+  ],
+  "services": {
+    "before": [
+      {
+        "nodeId": "osm-facility-node-1423616203",
+        "name": "林精神医学研究所附属林道倫精神科神経科病院",
+        "type": "hospital",
+        "threshold": 20,
+        "reachablePopulation": 100
+      },
+      {
+        "nodeId": "osm-facility-way-508848345",
+        "name": "川崎医科大学 総合医療センター",
+        "type": "hospital",
+        "threshold": 20,
+        "reachablePopulation": 100
+      }
+    ],
+    "after": [
+      {
+        "nodeId": "osm-facility-node-1423616203",
+        "name": "林精神医学研究所附属林道倫精神科神経科病院",
+        "type": "hospital",
+        "threshold": 20,
+        "reachablePopulation": 100
+      },
+      {
+        "nodeId": "osm-facility-way-508848345",
+        "name": "川崎医科大学 総合医療センター",
+        "type": "hospital",
+        "threshold": 20,
+        "reachablePopulation": 100
+      }
+    ]
+  },
+  "districts": [
+    {
+      "district": "North",
+      "population": 14.94129121984604,
+      "averageTravelTime": 2.946755426340574,
+      "accessibility": 100,
+      "disconnectedDemand": 0,
+      "isolationRisk": 0
+    },
+    {
+      "district": "West",
+      "population": 7.74567699997139,
+      "averageTravelTime": 2.290118424390389,
+      "accessibility": 100,
+      "disconnectedDemand": 0,
+      "isolationRisk": 0
+    },
+    {
+      "district": "Central",
+      "population": 8.826179048601281,
+      "averageTravelTime": 1.8353445020503243,
+      "accessibility": 100,
+      "disconnectedDemand": 0,
+      "isolationRisk": 0
+    },
+    {
+      "district": "East",
+      "population": 24.23271846947263,
+      "averageTravelTime": 4.015728727646757,
+      "accessibility": 100,
+      "disconnectedDemand": 0,
+      "isolationRisk": 0
+    },
+    {
+      "district": "South",
+      "population": 11.602002153655489,
+      "averageTravelTime": 4.503576161505916,
+      "accessibility": 100,
+      "disconnectedDemand": 0,
+      "isolationRisk": 0
+    }
+  ],
+  "brief": {
+    "summary": "1 real-road what-if closures change average modeled travel time from 2.8 to 3.4 minutes.",
+    "mainImpact": "Access to the imported service categories changes from 100.0% to 100.0%. Disconnected synthetic demand is 0.0 modeled units per hour.",
+    "whyItMatters": "Modeled flow on 岡山吉井線 changes from 594.6 to 3010.0. Utilization reaches 100.3% of estimated capacity. Rerouting carries the impact beyond the closed road.",
+    "mostAffectedArea": "Modeled origin 10 has the largest increase in demand-weighted trip time, from 3.3 to 4.9 minutes. This sampled origin does not represent observed population or demographic characteristics.",
+    "criticalInfrastructure": "Unnamed residential road · 436640413 has the largest additional modeled impact among tested roads. Only screened candidates were fully tested; this is not an exhaustive ranking. No failure probability or road safety is inferred.",
+    "recommendedActions": [
+      "Consider comparing restoration of 相生橋: modeled resilience changes by 8.8 points. Actual repair costs and duration are not modeled.",
+      "Compare a wider selection to test sensitivity to omitted routes outside the boundary.",
+      "Validate demand, capacity and facility coverage with local evidence before using results for planning."
+    ],
+    "limitations": "OSM supplies geometry and facilities; demand is synthetic, capacity and some speeds are estimated. Facility access uses nearest-node modeled connectors. No real-time observations, damage prediction or emergency directions. Follow official guidance in an emergency."
+  },
+  "bridgeSurvey": [
+    {
+      "id": "osm-way-83697074-0",
+      "name": "相生橋",
+      "metrics": {
+        "averageTravelTime": 3.378406160901321,
+        "accessibility": 100,
+        "networkEfficiency": 76.7874880952233,
+        "congestion": 34.90844789900023,
+        "disconnectedDemand": 0,
+        "disconnectedODPairs": 0,
+        "connectedDemandRetention": 100,
+        "resilienceScore": 91.16511014739783,
+        "totalDemand": 17549.999999999993
+      }
+    },
+    {
+      "id": "osm-way-83697156-0",
+      "name": "原尾島番町線",
+      "metrics": {
+        "averageTravelTime": 2.859471966478158,
+        "accessibility": 100,
+        "networkEfficiency": 78.8425908842995,
+        "congestion": 55.84939572376453,
+        "disconnectedDemand": 0,
+        "disconnectedODPairs": 0,
+        "connectedDemandRetention": 100,
+        "resilienceScore": 99.39148540790279,
+        "totalDemand": 17549.999999999993
+      }
+    },
+    {
+      "id": "osm-way-82513827-0",
+      "name": "後楽園線",
+      "metrics": {
+        "averageTravelTime": 2.8424879414448476,
+        "accessibility": 100,
+        "networkEfficiency": 78.9362383301592,
+        "congestion": 56.362606888154886,
+        "disconnectedDemand": 0,
+        "disconnectedODPairs": 0,
+        "connectedDemandRetention": 100,
+        "resilienceScore": 99.74418575258343,
+        "totalDemand": 17549.999999999993
+      }
+    },
+    {
+      "id": "osm-way-83696963-0",
+      "name": "蓬莱橋",
+      "metrics": {
+        "averageTravelTime": 2.8424879414448476,
+        "accessibility": 100,
+        "networkEfficiency": 78.9362383301592,
+        "congestion": 56.362606888154886,
+        "disconnectedDemand": 0,
+        "disconnectedODPairs": 0,
+        "connectedDemandRetention": 100,
+        "resilienceScore": 99.74418575258343,
+        "totalDemand": 17549.999999999993
+      }
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+[
+  {
+    "en": "A city can depend on one bridge, one road, or one rail connection.",
+    "ja": "都市の移動は、一本の橋や道路、鉄道の接続に支えられていることがあります。",
+    "scene": "hook",
+    "start": 0,
+    "end": 6.267857142857142,
+    "audioStart": 0.4642857142857144,
+    "audioEnd": 6.035714285714286
+  },
+  {
+    "en": "When that link fails, the question reaches beyond a line on the map. The effects can travel further. One local failure can have system-wide consequences.",
+    "ja": "接続が失われると、問題は地図上の一本の線を越えます。一か所の寸断が、離れた場所を含む交通網全体へ広がります。",
+    "scene": "hook",
+    "start": 6.267857142857142,
+    "end": 17.446428571428573,
+    "audioStart": 6.5,
+    "audioEnd": 17.214285714285715
+  },
+  {
+    "en": "How does the entire network change, and who loses access? That is the question behind ResiliRoute.",
+    "ja": "交通網全体がどう変わり、誰が移動しにくくなるのか。それがResiliRouteの問いです。",
+    "scene": "hook",
+    "start": 17.44642857142857,
+    "end": 25,
+    "audioStart": 17.678571428571427,
+    "audioEnd": 24.535714285714285
+  },
+  {
+    "en": "A single closure can push trips onto other corridors. A road that was lightly used can become a bottleneck.",
+    "ja": "一本の道路が閉じると交通が別の道路へ移り、空いていた道路がボトルネックになることがあります。",
+    "scene": "problem",
+    "start": 25,
+    "end": 33.785714285714285,
+    "audioStart": 25.428571428571427,
+    "audioEnd": 33.57142857142857
+  },
+  {
+    "en": "Some journeys become longer. Others become impossible within the modeled network. Access to hospitals and essential services can become uneven.",
+    "ja": "移動時間が延びたり、モデル内では到達できなくなったりします。病院などへのアクセスにも差が生まれます。",
+    "scene": "problem",
+    "start": 33.785714285714285,
+    "end": 42.785714285714285,
+    "audioStart": 34.0,
+    "audioEnd": 42.57142857142857
+  },
+  {
+    "en": "A normal map shows the missing road, but makes these cascading consequences difficult to see.",
+    "ja": "普通の地図で閉鎖箇所は分かっても、連鎖する影響は見えにくいものです。",
+    "scene": "problem",
+    "start": 42.785714285714285,
+    "end": 49.642857142857146,
+    "audioStart": 43.0,
+    "audioEnd": 49.42857142857143
+  },
+  {
+    "en": "That makes communicating infrastructure vulnerability a challenge, especially for essential-service access.",
+    "ja": "交通網の弱点、特に重要施設へのアクセス低下を伝えるのは容易ではありません。",
+    "scene": "problem",
+    "start": 49.642857142857146,
+    "end": 55,
+    "audioStart": 49.85714285714286,
+    "audioEnd": 54.57142857142858
+  },
+  {
+    "en": "I built ResiliRoute, an urban mobility resilience simulator, to explore those consequences.",
+    "ja": "こうした影響を調べるために、都市交通レジリエンスシミュレーターResiliRouteを開発しました。",
+    "scene": "solution",
+    "start": 55,
+    "end": 60.82857142857143,
+    "audioStart": 55.457142857142856,
+    "audioEnd": 60.6
+  },
+  {
+    "en": "It calculates changes in travel time, access, congestion, efficiency, and resilience when transport links become unavailable.",
+    "ja": "交通リンクが使えなくなったとき、移動時間、アクセス、混雑、効率、レジリエンスの変化を計算します。",
+    "scene": "solution",
+    "start": 60.82857142857143,
+    "end": 68.14285714285714,
+    "audioStart": 61.05714285714286,
+    "audioEnd": 67.91428571428571
+  },
+  {
+    "en": "Harbor City provides a controlled demonstration.",
+    "ja": "Harbor Cityは、再現性のある架空都市デモです。",
+    "scene": "solution",
+    "start": 68.14285714285714,
+    "end": 71.17142857142856,
+    "audioStart": 68.37142857142857,
+    "audioEnd": 70.94285714285714
+  },
+  {
+    "en": "Real City Lab extends the same simulation engine to real infrastructure, using OpenStreetMap. Routes and demand are recalculated, together.",
+    "ja": "実都市ラボでは同じエンジンでOSMの実在道路を使い、経路と需要を再計算します。",
+    "scene": "solution",
+    "start": 71.17142857142856,
+    "end": 80,
+    "audioStart": 71.39999999999999,
+    "audioEnd": 79.54285714285713
+  },
+  {
+    "en": "Here, I select a small area of Okayama in Japan. Both riverbanks are included.",
+    "ja": "ここでは岡山の小さな範囲を選び、川の両岸を含めます。",
+    "scene": "select",
+    "start": 80,
+    "end": 87.35714285714285,
+    "audioStart": 80.9047619047619,
+    "audioEnd": 86.9047619047619
+  },
+  {
+    "en": "Users can draw two corners on the map, adjust the bounds, or start from an example area.",
+    "ja": "地図上の二つの角を指定したり、範囲を調整したり、サンプル範囲から始めたりできます。",
+    "scene": "select",
+    "start": 87.35714285714285,
+    "end": 96,
+    "audioStart": 87.8095238095238,
+    "audioEnd": 95.09523809523809
+  },
+  {
+    "en": "Build Mobility Network retrieves roads and facilities through the server. Geometry is preserved along each road.",
+    "ja": "ネットワーク構築ボタンでサーバー経由で道路と施設を取得し、各道路の形状を保ちます。",
+    "scene": "build",
+    "start": 96,
+    "end": 103.78571428571429,
+    "audioStart": 96.61904761904762,
+    "audioEnd": 103.47619047619048
+  },
+  {
+    "en": "This area produces six hundred eighty-seven intersections, nine hundred eighty-three road segments, and eighteen modeled residential origins.",
+    "ja": "この範囲から687の交差点、983の道路区間、18のモデル需要地点を作成します。",
+    "scene": "build",
+    "start": 103.78571428571429,
+    "end": 112,
+    "audioStart": 104.0952380952381,
+    "audioEnd": 111.3809523809524
+  },
+  {
+    "en": "Now I select this real river crossing and simulate its closure. Closed links carry zero modeled flow.",
+    "ja": "実在する川の橋を選んで閉鎖をシミュレーションします。閉鎖区間のモデル交通量はゼロになります。",
+    "scene": "closure",
+    "start": 112,
+    "end": 119.78571428571429,
+    "audioStart": 112.33333333333333,
+    "audioEnd": 119.61904761904762
+  },
+  {
+    "en": "Average modeled travel time rises from two point eight to three point four minutes. Resilience falls to ninety-one.",
+    "ja": "平均モデル移動時間は2.8分から3.4分へ増え、レジリエンスは91に下がります。",
+    "scene": "closure",
+    "start": 119.78571428571429,
+    "end": 128,
+    "audioStart": 119.95238095238095,
+    "audioEnd": 127.66666666666666
+  },
+  {
+    "en": "The same hospital journey now takes seven point two minutes instead of four point four.",
+    "ja": "同じ病院への経路は、4.4分から7.2分へ延びます。",
+    "scene": "reroute",
+    "start": 128,
+    "end": 136.42857142857142,
+    "audioStart": 129.33333333333334,
+    "audioEnd": 135.76190476190476
+  },
+  {
+    "en": "Traffic has moved to alternative corridors, creating consequences well beyond the closed bridge.",
+    "ja": "交通が代替経路へ移り、閉鎖した橋以外にも影響が広がっています。",
+    "scene": "reroute",
+    "start": 136.42857142857142,
+    "end": 144,
+    "audioStart": 137.0952380952381,
+    "audioEnd": 142.66666666666669
+  },
+  {
+    "en": "One alternative road carries about three thousand modeled trips per hour, up from roughly six hundred.",
+    "ja": "ある代替道路の毎時モデル需要は、約600から約3,000へ増えています。",
+    "scene": "analytics",
+    "start": 144,
+    "end": 151.92857142857144,
+    "audioStart": 144.71428571428572,
+    "audioEnd": 151.57142857142858
+  },
+  {
+    "en": "Overall averages can hide this concentrated pressure.",
+    "ja": "都市全体の平均値だけでは、この局所的な負荷を見落とします。",
+    "scene": "analytics",
+    "start": 151.92857142857144,
+    "end": 156,
+    "audioStart": 152.2857142857143,
+    "audioEnd": 155.2857142857143
+  },
+  {
+    "en": "The stress test removes candidate roads individually and recalculates their additional impact. Scores measure consequences, not failure probabilities.",
+    "ja": "候補道路を一本ずつ取り除いて追加の影響を計算します。スコアは影響の大きさであり、被害の発生確率ではありません。",
+    "scene": "critical",
+    "start": 156,
+    "end": 164.21428571428572,
+    "audioStart": 156.33333333333334,
+    "audioEnd": 164.04761904761907
+  },
+  {
+    "en": "For this larger network, thirty-five candidates are screened, rather than claiming an exhaustive ranking of every road.",
+    "ja": "この規模では35本の候補を絞って解析します。すべての道路を網羅した順位ではありません。",
+    "scene": "critical",
+    "start": 164.2142857142857,
+    "end": 172,
+    "audioStart": 164.38095238095238,
+    "audioEnd": 171.66666666666666
+  },
+  {
+    "en": "After a second closure, essential-service access falls to ninety-five point nine percent.",
+    "ja": "二本目を閉鎖すると、重要施設へのアクセスは95.9%に下がります。",
+    "scene": "recovery",
+    "start": 172,
+    "end": 177.73214285714286,
+    "audioStart": 172.39285714285714,
+    "audioEnd": 177.53571428571428
+  },
+  {
+    "en": "Recovery analysis compares reopening each road independently. These gains are comparisons, not a combined repair plan.",
+    "ja": "各道路を一本ずつ再開した効果を比較します。独立した比較であり、複数道路をまとめた復旧計画ではありません。",
+    "scene": "recovery",
+    "start": 177.73214285714286,
+    "end": 184.98214285714286,
+    "audioStart": 177.92857142857142,
+    "audioEnd": 184.78571428571428
+  },
+  {
+    "en": "The leading restoration recovers seventeen point four resilience points, and four point one access points.",
+    "ja": "最も効果の大きい復旧で、レジリエンスは17.4ポイント、アクセスは4.1ポイント回復します。",
+    "scene": "recovery",
+    "start": 184.98214285714286,
+    "end": 192,
+    "audioStart": 185.17857142857142,
+    "audioEnd": 191.60714285714283
+  },
+  {
+    "en": "Roads become graph edges; intersections become nodes. Dijkstra routing finds paths, and modeled travel demand is assigned over twenty-four iterations.",
+    "ja": "道路をグラフの辺、交差点をノードに変換し、Dijkstraで経路を探索。モデル需要を24回の反復で配分します。",
+    "scene": "how",
+    "start": 192,
+    "end": 201.32142857142858,
+    "audioStart": 192.5,
+    "audioEnd": 201.07142857142858
+  },
+  {
+    "en": "A bounded volume-capacity function adjusts travel costs. Closed roads are excluded from every route.",
+    "ja": "上限を設けた交通量・容量の関係で移動コストを更新します。すべての経路から閉鎖道路を除外します。",
+    "scene": "how",
+    "start": 201.32142857142858,
+    "end": 207.82142857142858,
+    "audioStart": 201.57142857142858,
+    "audioEnd": 207.57142857142858
+  },
+  {
+    "en": "Automated tests cover routing, imports, closures, recovery, and bilingual interactions. All metric definitions are documented.",
+    "ja": "自動テストで経路、取り込み、閉鎖、復旧、日英操作を確認しています。各指標の定義も公開しています。",
+    "scene": "how",
+    "start": 207.82142857142858,
+    "end": 215,
+    "audioStart": 208.07142857142858,
+    "audioEnd": 214.5
+  },
+  {
+    "en": "The analyst converts numerical evidence into a planning brief. This recording uses local analysis.",
+    "ja": "分析機能が数値の根拠を短い計画レポートへまとめます。この録画ではローカル分析を使っています。",
+    "scene": "ai",
+    "start": 215,
+    "end": 221.9,
+    "audioStart": 215.6,
+    "audioEnd": 221.6
+  },
+  {
+    "en": "An optional server-side language model explains the same results, with automatic fallback.",
+    "ja": "任意のサーバー側LLMでも同じ結果を説明でき、失敗すると自動でローカル分析に戻ります。",
+    "scene": "ai",
+    "start": 221.9,
+    "end": 227.64285714285714,
+    "audioStart": 222.2,
+    "audioEnd": 227.34285714285713
+  },
+  {
+    "en": "Geometry and facilities come from OpenStreetMap. Capacity, demand, and some speeds are modeled.",
+    "ja": "道路形状と施設はOpenStreetMapのデータです。容量、需要、一部の速度はモデル上の推定です。",
+    "scene": "ai",
+    "start": 227.64285714285714,
+    "end": 233.81428571428572,
+    "audioStart": 227.94285714285712,
+    "audioEnd": 233.5142857142857
+  },
+  {
+    "en": "Assumptions are visible: this is educational what-if analysis, with no disaster prediction. Outside-area routes are excluded too.",
+    "ja": "前提を明示した教育用の仮定分析です。災害予測は行わず、選択範囲の外を通る経路も対象外です。",
+    "scene": "ai",
+    "start": 233.81428571428572,
+    "end": 242,
+    "audioStart": 234.1142857142857,
+    "audioEnd": 241.39999999999998
+  },
+  {
+    "en": "Potential users include planners, local governments, researchers, educators, and preparedness organizations.",
+    "ja": "想定する利用者は、都市計画担当者、自治体、研究者、教育機関、防災団体です。",
+    "scene": "business",
+    "start": 242,
+    "end": 247.75000000000003,
+    "audioStart": 242.6904761904762,
+    "audioEnd": 247.40476190476193
+  },
+  {
+    "en": "Real City Lab makes the project reusable: each small area becomes a new, reproducible analysis.",
+    "ja": "Real City Labによって、さまざまな小地域で再現できる分析基盤へ進化しました。",
+    "scene": "business",
+    "start": 247.75,
+    "end": 254.86904761904762,
+    "audioStart": 248.0952380952381,
+    "audioEnd": 254.52380952380952
+  },
+  {
+    "en": "My next step is educational workshops and feedback from planning professionals.",
+    "ja": "次は教育ワークショップと都市計画の専門家からの意見収集を考えています。",
+    "scene": "business",
+    "start": 254.86904761904762,
+    "end": 260.2738095238095,
+    "audioStart": 255.21428571428572,
+    "audioEnd": 259.92857142857144
+  },
+  {
+    "en": "A future model could offer free education, professional analysis, and support for custom organizational data.",
+    "ja": "将来は無料の教育版、専門的な分析、組織ごとの独自データ支援という展開が考えられます。",
+    "scene": "business",
+    "start": 260.2738095238095,
+    "end": 267.39285714285717,
+    "audioStart": 260.61904761904765,
+    "audioEnd": 267.0476190476191
+  },
+  {
+    "en": "These are proposed directions, before customer validation. Before expanding, I would validate model usefulness, data quality, and repeated workshop use.",
+    "ja": "これは利用者検証前の構想です。拡大する前に、モデルの有用性、データ品質、継続的なワークショップ利用を確かめます。",
+    "scene": "business",
+    "start": 267.3928571428571,
+    "end": 277,
+    "audioStart": 267.73809523809524,
+    "audioEnd": 276.3095238095238
+  },
+  {
+    "en": "Cities cannot prevent every disruption. They can understand which connections matter and where access is vulnerable.",
+    "ja": "都市はすべての寸断を防げません。しかし、重要な接続やアクセスの弱点を理解できます。",
+    "scene": "closing",
+    "start": 277,
+    "end": 284.7678571428571,
+    "audioStart": 277.60714285714283,
+    "audioEnd": 284.46428571428567
+  },
+  {
+    "en": "ResiliRoute makes those consequences visible before a disruption happens.",
+    "ja": "ResiliRouteは、寸断が起きる前にその影響を見える形にします。",
+    "scene": "closing",
+    "start": 284.76785714285717,
+    "end": 289.23214285714283,
+    "audioStart": 285.07142857142856,
+    "audioEnd": 288.9285714285714
+  },
+  {
+    "en": "Select a city. Break a link. Understand the impact.",
+    "ja": "街を選び、接続を閉じて、影響を理解する。",
+    "scene": "closing",
+    "start": 289.2321428571429,
+    "end": 294,
+    "audioStart": 289.5357142857143,
+    "audioEnd": 293.3928571428571
+  }
+]

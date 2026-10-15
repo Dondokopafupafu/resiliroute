@@ -1,0 +1,61 @@
+{
+  "durationSeconds": 294,
+  "resolution": [1920, 1080],
+  "framesPerSecond": 30,
+  "decodedFrames": 8820,
+  "videoCodec": "H.264",
+  "audioCodec": "AAC stereo / 48kHz",
+  "narrationWords": 611,
+  "voicedWordsPerMinute": 140,
+  "captionCues": 41,
+  "minimumCaptionSeconds": 3.028571428571425,
+  "maxEnglishCaptionLines": 2,
+  "subtitleLanguages": ["English", "Japanese"],
+  "appFootageSeconds": 255,
+  "appFootagePercentage": 86.73469387755102,
+  "realCitySeconds": 243,
+  "harborCitySeconds": 12,
+  "narrationLUFS": -17.2,
+  "musicLUFS": -36,
+  "musicBelowNarrationDB": 18.8,
+  "fullDecodeErrors": [],
+  "appPageErrors": [],
+  "actualLiveBuildVerified": true,
+  "hospitalRouteVerified": {
+    "origin": "osm-node-5606183102",
+    "destination": "osm-facility-way-508848345",
+    "text": "Baseline: 4.4 min → Scenario: 7.2 min\n\n3.13 km · 49 links"
+  },
+  "sha256": "fe8f952fa5179209db0f4d18521c07668eaf8b8df45b81570c07ce68c3b79d2b",
+  "fileBytes": 36826148,
+  "chromiumPlayback": {
+    "duration": 294,
+    "width": 1920,
+    "height": 1080,
+    "browser": "Chromium",
+    "checks": [
+      {
+        "start": 112,
+        "end": 118.161681,
+        "decoded": 186,
+        "dropped": 0,
+        "error": null
+      },
+      {
+        "start": 172,
+        "end": 178.177064,
+        "decoded": 187,
+        "dropped": 0,
+        "error": null
+      },
+      {
+        "start": 215,
+        "end": 221.161341,
+        "decoded": 186,
+        "dropped": 0,
+        "error": null
+      }
+    ],
+    "testedAt": "2026-10-11T04:05:56.372Z"
+  }
+}

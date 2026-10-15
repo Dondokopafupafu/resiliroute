@@ -1,0 +1,33 @@
+{
+  "durationSeconds": 230,
+  "resolution": [1920, 1080],
+  "framesPerSecond": 30,
+  "decodedFrames": 6900,
+  "videoCodec": "H.264",
+  "audioCodec": "AAC stereo, 48 kHz",
+  "bilingualCaptions": "English above Japanese; burned in plus separate SRT",
+  "captionCueCount": 33,
+  "minimumCaptionSeconds": 3.6282051282051384,
+  "narrationWordCount": 493,
+  "wordsPerVoicedMinute": 143,
+  "actualAppVisibleSeconds": 196,
+  "actualAppPercentage": 85.21739130434783,
+  "appPageErrors": [],
+  "fullDecodeErrors": [],
+  "audioMeasurement": "Integrated loudness:\n    I:         -14.3 LUFS\n    Threshold: -24.9 LUFS\n\n  Loudness range:\n    LRA:         2.7 LU\n    Threshold: -34.9 LUFS\n    LRA low:   -16.2 LUFS\n    LRA high:  -13.5 LUFS\n\n  True peak:\n    Peak:       -1.6 dBFS\n[out#0/null @ 000001fc490f5480] video:2965KiB audio:43128KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown\nframe= 6900 fps=1146 q=-0.0 Lsize=N/A time=00:03:50.00 bitrate=N/A speed=38.2x",
+  "sha256": "2544dd3431c83b150e2e7d950477e9c0f5152b4c2846f705b28a8fa746bcfb5d",
+  "fileBytes": 26929070,
+  "chromiumPlayback": {
+    "duration": 230,
+    "width": 1920,
+    "height": 1080,
+    "currentTime": 196.180643,
+    "readyState": 4,
+    "error": null,
+    "totalVideoFrames": 194,
+    "droppedVideoFrames": 0,
+    "playbackSegment": "3:10–3:16",
+    "browser": "Chromium",
+    "testedAt": "2026-10-06T05:04:27.086Z"
+  }
+}

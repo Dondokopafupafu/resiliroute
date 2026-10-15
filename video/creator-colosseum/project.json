@@ -1,0 +1,304 @@
+{
+  "title": "ResiliRoute — Creator Colosseum Pitch & Demo",
+  "duration": 294,
+  "maxDuration": 300,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "voice": "en-US-GuyNeural",
+  "speakingRate": 140,
+  "outputFile": "final-creator-colosseum-resiliroute.mp4",
+  "comment": "Creator Colosseum. Actual ResiliRoute footage. OpenStreetMap infrastructure; synthetic mobility demand. English narration; bilingual captions.",
+  "scenes": [
+    {
+      "id": "hook",
+      "start": 0,
+      "end": 25,
+      "title": "One link. Citywide consequences.",
+      "cues": [
+        {
+          "en": "A city can depend on one bridge, one road, or one rail connection.",
+          "ja": "都市の移動は、一本の橋や道路、鉄道の接続に支えられていることがあります。"
+        },
+        {
+          "en": "When that link fails, the question reaches beyond a line on the map. The effects can travel further. One local failure can have system-wide consequences.",
+          "ja": "接続が失われると、問題は地図上の一本の線を越えます。一か所の寸断が、離れた場所を含む交通網全体へ広がります。"
+        },
+        {
+          "en": "How does the entire network change, and who loses access? That is the question behind ResiliRoute.",
+          "ja": "交通網全体がどう変わり、誰が移動しにくくなるのか。それがResiliRouteの問いです。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "problem",
+      "start": 25,
+      "end": 55,
+      "title": "Failures cascade through a network.",
+      "cues": [
+        {
+          "en": "A single closure can push trips onto other corridors. A road that was lightly used can become a bottleneck.",
+          "ja": "一本の道路が閉じると交通が別の道路へ移り、空いていた道路がボトルネックになることがあります。"
+        },
+        {
+          "en": "Some journeys become longer. Others become impossible within the modeled network. Access to hospitals and essential services can become uneven.",
+          "ja": "移動時間が延びたり、モデル内では到達できなくなったりします。病院などへのアクセスにも差が生まれます。"
+        },
+        {
+          "en": "A normal map shows the missing road, but makes these cascading consequences difficult to see.",
+          "ja": "普通の地図で閉鎖箇所は分かっても、連鎖する影響は見えにくいものです。"
+        },
+        {
+          "en": "That makes communicating infrastructure vulnerability a challenge, especially for essential-service access.",
+          "ja": "交通網の弱点、特に重要施設へのアクセス低下を伝えるのは容易ではありません。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "solution",
+      "start": 55,
+      "end": 80,
+      "title": "ResiliRoute / Urban Mobility Resilience Simulator",
+      "cues": [
+        {
+          "en": "I built ResiliRoute, an urban mobility resilience simulator, to explore those consequences.",
+          "ja": "こうした影響を調べるために、都市交通レジリエンスシミュレーターResiliRouteを開発しました。"
+        },
+        {
+          "en": "It calculates changes in travel time, access, congestion, efficiency, and resilience when transport links become unavailable.",
+          "ja": "交通リンクが使えなくなったとき、移動時間、アクセス、混雑、効率、レジリエンスの変化を計算します。"
+        },
+        {
+          "en": "Harbor City provides a controlled demonstration.",
+          "ja": "Harbor Cityは、再現性のある架空都市デモです。"
+        },
+        {
+          "en": "Real City Lab extends the same simulation engine to real infrastructure, using OpenStreetMap. Routes and demand are recalculated, together.",
+          "ja": "実都市ラボでは同じエンジンでOSMの実在道路を使い、経路と需要を再計算します。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "select",
+      "start": 80,
+      "end": 96,
+      "title": "01 / Select a real urban area",
+      "cues": [
+        {
+          "en": "Here, I select a small area of Okayama in Japan. Both riverbanks are included.",
+          "ja": "ここでは岡山の小さな範囲を選び、川の両岸を含めます。"
+        },
+        {
+          "en": "Users can draw two corners on the map, adjust the bounds, or start from an example area.",
+          "ja": "地図上の二つの角を指定したり、範囲を調整したり、サンプル範囲から始めたりできます。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "build",
+      "start": 96,
+      "end": 112,
+      "title": "02 / Build the mobility network",
+      "cues": [
+        {
+          "en": "Build Mobility Network retrieves roads and facilities through the server. Geometry is preserved along each road.",
+          "ja": "ネットワーク構築ボタンでサーバー経由で道路と施設を取得し、各道路の形状を保ちます。"
+        },
+        {
+          "en": "This area produces six hundred eighty-seven intersections, nine hundred eighty-three road segments, and eighteen modeled residential origins.",
+          "ja": "この範囲から687の交差点、983の道路区間、18のモデル需要地点を作成します。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "closure",
+      "start": 112,
+      "end": 128,
+      "title": "03 / Close a real road",
+      "cues": [
+        {
+          "en": "Now I select this real river crossing and simulate its closure. Closed links carry zero modeled flow.",
+          "ja": "実在する川の橋を選んで閉鎖をシミュレーションします。閉鎖区間のモデル交通量はゼロになります。"
+        },
+        {
+          "en": "Average modeled travel time rises from two point eight to three point four minutes. Resilience falls to ninety-one.",
+          "ja": "平均モデル移動時間は2.8分から3.4分へ増え、レジリエンスは91に下がります。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "reroute",
+      "start": 128,
+      "end": 144,
+      "title": "04 / Follow the rerouting",
+      "cues": [
+        {
+          "en": "The same hospital journey now takes seven point two minutes instead of four point four.",
+          "ja": "同じ病院への経路は、4.4分から7.2分へ延びます。"
+        },
+        {
+          "en": "Traffic has moved to alternative corridors, creating consequences well beyond the closed bridge.",
+          "ja": "交通が代替経路へ移り、閉鎖した橋以外にも影響が広がっています。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "analytics",
+      "start": 144,
+      "end": 156,
+      "title": "05 / Look beyond the citywide average",
+      "cues": [
+        {
+          "en": "One alternative road carries about three thousand modeled trips per hour, up from roughly six hundred.",
+          "ja": "ある代替道路の毎時モデル需要は、約600から約3,000へ増えています。"
+        },
+        {
+          "en": "Overall averages can hide this concentrated pressure.",
+          "ja": "都市全体の平均値だけでは、この局所的な負荷を見落とします。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "critical",
+      "start": 156,
+      "end": 172,
+      "title": "06 / Stress-test critical infrastructure",
+      "cues": [
+        {
+          "en": "The stress test removes candidate roads individually and recalculates their additional impact. Scores measure consequences, not failure probabilities.",
+          "ja": "候補道路を一本ずつ取り除いて追加の影響を計算します。スコアは影響の大きさであり、被害の発生確率ではありません。"
+        },
+        {
+          "en": "For this larger network, thirty-five candidates are screened, rather than claiming an exhaustive ranking of every road.",
+          "ja": "この規模では35本の候補を絞って解析します。すべての道路を網羅した順位ではありません。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "recovery",
+      "start": 172,
+      "end": 192,
+      "title": "07 / Compare recovery priorities",
+      "cues": [
+        {
+          "en": "After a second closure, essential-service access falls to ninety-five point nine percent.",
+          "ja": "二本目を閉鎖すると、重要施設へのアクセスは95.9%に下がります。"
+        },
+        {
+          "en": "Recovery analysis compares reopening each road independently. These gains are comparisons, not a combined repair plan.",
+          "ja": "各道路を一本ずつ再開した効果を比較します。独立した比較であり、複数道路をまとめた復旧計画ではありません。"
+        },
+        {
+          "en": "The leading restoration recovers seventeen point four resilience points, and four point one access points.",
+          "ja": "最も効果の大きい復旧で、レジリエンスは17.4ポイント、アクセスは4.1ポイント回復します。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "how",
+      "start": 192,
+      "end": 215,
+      "title": "A transparent simulation pipeline",
+      "cues": [
+        {
+          "en": "Roads become graph edges; intersections become nodes. Dijkstra routing finds paths, and modeled travel demand is assigned over twenty-four iterations.",
+          "ja": "道路をグラフの辺、交差点をノードに変換し、Dijkstraで経路を探索。モデル需要を24回の反復で配分します。"
+        },
+        {
+          "en": "A bounded volume-capacity function adjusts travel costs. Closed roads are excluded from every route.",
+          "ja": "上限を設けた交通量・容量の関係で移動コストを更新します。すべての経路から閉鎖道路を除外します。"
+        },
+        {
+          "en": "Automated tests cover routing, imports, closures, recovery, and bilingual interactions. All metric definitions are documented.",
+          "ja": "自動テストで経路、取り込み、閉鎖、復旧、日英操作を確認しています。各指標の定義も公開しています。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "ai",
+      "start": 215,
+      "end": 242,
+      "title": "Evidence first. Human-readable interpretation.",
+      "cues": [
+        {
+          "en": "The analyst converts numerical evidence into a planning brief. This recording uses local analysis.",
+          "ja": "分析機能が数値の根拠を短い計画レポートへまとめます。この録画ではローカル分析を使っています。"
+        },
+        {
+          "en": "An optional server-side language model explains the same results, with automatic fallback.",
+          "ja": "任意のサーバー側LLMでも同じ結果を説明でき、失敗すると自動でローカル分析に戻ります。"
+        },
+        {
+          "en": "Geometry and facilities come from OpenStreetMap. Capacity, demand, and some speeds are modeled.",
+          "ja": "道路形状と施設はOpenStreetMapのデータです。容量、需要、一部の速度はモデル上の推定です。"
+        },
+        {
+          "en": "Assumptions are visible: this is educational what-if analysis, with no disaster prediction. Outside-area routes are excluded too.",
+          "ja": "前提を明示した教育用の仮定分析です。災害予測は行わず、選択範囲の外を通る経路も対象外です。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "business",
+      "start": 242,
+      "end": 277,
+      "title": "A reusable platform / Proposed path to adoption",
+      "cues": [
+        {
+          "en": "Potential users include planners, local governments, researchers, educators, and preparedness organizations.",
+          "ja": "想定する利用者は、都市計画担当者、自治体、研究者、教育機関、防災団体です。"
+        },
+        {
+          "en": "Real City Lab makes the project reusable: each small area becomes a new, reproducible analysis.",
+          "ja": "Real City Labによって、さまざまな小地域で再現できる分析基盤へ進化しました。"
+        },
+        {
+          "en": "My next step is educational workshops and feedback from planning professionals.",
+          "ja": "次は教育ワークショップと都市計画の専門家からの意見収集を考えています。"
+        },
+        {
+          "en": "A future model could offer free education, professional analysis, and support for custom organizational data.",
+          "ja": "将来は無料の教育版、専門的な分析、組織ごとの独自データ支援という展開が考えられます。"
+        },
+        {
+          "en": "These are proposed directions, before customer validation. Before expanding, I would validate model usefulness, data quality, and repeated workshop use.",
+          "ja": "これは利用者検証前の構想です。拡大する前に、モデルの有用性、データ品質、継続的なワークショップ利用を確かめます。"
+        }
+      ],
+      "kind": "app"
+    },
+    {
+      "id": "closing",
+      "start": 277,
+      "end": 294,
+      "title": "Select a city. Break a link. Understand the impact.",
+      "cues": [
+        {
+          "en": "Cities cannot prevent every disruption. They can understand which connections matter and where access is vulnerable.",
+          "ja": "都市はすべての寸断を防げません。しかし、重要な接続やアクセスの弱点を理解できます。"
+        },
+        {
+          "en": "ResiliRoute makes those consequences visible before a disruption happens.",
+          "ja": "ResiliRouteは、寸断が起きる前にその影響を見える形にします。"
+        },
+        {
+          "en": "Select a city. Break a link. Understand the impact.",
+          "ja": "街を選び、接続を閉じて、影響を理解する。"
+        }
+      ],
+      "kind": "app"
+    }
+  ]
+}

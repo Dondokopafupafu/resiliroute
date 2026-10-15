@@ -1,0 +1,239 @@
+[
+  {
+    "id": "01-hook",
+    "duration": 25,
+    "background": "hook",
+    "recording": "hook",
+    "crop": [275, 0, 1370, 820],
+    "box": [64, 126, 1792, 728],
+    "fadeIn": true
+  },
+  {
+    "id": "02-problem",
+    "duration": 12,
+    "background": "problem-slide",
+    "fadeIn": true
+  },
+  {
+    "id": "03-problem-map",
+    "duration": 18,
+    "background": "problem",
+    "recording": "problem-map",
+    "crop": [275, 0, 1370, 820],
+    "box": [64, 126, 1792, 728]
+  },
+  {
+    "id": "04-harbor",
+    "duration": 12,
+    "background": "solution",
+    "recording": "harbor",
+    "crop": [275, 0, 1370, 800],
+    "box": [64, 126, 1792, 728],
+    "fadeIn": true
+  },
+  {
+    "id": "05-real-intro",
+    "duration": 13,
+    "background": "solution",
+    "recording": "welcome",
+    "crop": [275, 75, 1370, 850],
+    "box": [64, 126, 1792, 728]
+  },
+  {
+    "id": "06-select",
+    "duration": 16,
+    "background": "select",
+    "recording": "select",
+    "crop": [275, 0, 1370, 820],
+    "box": [64, 126, 1792, 728],
+    "fadeIn": true
+  },
+  {
+    "id": "07-build-fetch",
+    "duration": 6,
+    "background": "build",
+    "recording": "build",
+    "crop": [275, 0, 1370, 820],
+    "box": [64, 126, 1792, 728]
+  },
+  {
+    "id": "08-built-network",
+    "duration": 10,
+    "background": "build-stats",
+    "recording": "build",
+    "offset": 16,
+    "crop": [275, 215, 895, 655],
+    "box": [64, 135, 1310, 715]
+  },
+  {
+    "id": "09-select-close",
+    "duration": 8,
+    "background": "closure",
+    "recording": "closure",
+    "crop": [275, 0, 1370, 735],
+    "box": [64, 126, 1792, 728]
+  },
+  {
+    "id": "10-closure-results",
+    "duration": 8,
+    "background": "closure-stats",
+    "recording": "closure",
+    "offset": 13,
+    "crop": [275, 0, 895, 820],
+    "box": [64, 135, 1310, 715]
+  },
+  {
+    "id": "11-rerouting",
+    "duration": 16,
+    "background": "route-stats",
+    "recording": "reroute",
+    "crop": [275, 0, 895, 650],
+    "box": [64, 135, 1310, 715]
+  },
+  {
+    "id": "12-traffic-flow",
+    "duration": 6,
+    "background": "flow-stats",
+    "recording": "flow",
+    "crop": [275, 0, 1370, 740],
+    "box": [64, 135, 1310, 715]
+  },
+  {
+    "id": "13-impact-charts",
+    "duration": 6,
+    "background": "analytics",
+    "recording": "flow",
+    "offset": 6,
+    "crop": [275, 0, 1370, 735],
+    "box": [64, 126, 1792, 728]
+  },
+  {
+    "id": "14-critical-ranking",
+    "duration": 9,
+    "background": "critical-stats",
+    "recording": "critical",
+    "crop": [275, 0, 1370, 720],
+    "box": [64, 135, 1310, 715]
+  },
+  {
+    "id": "15-critical-on-map",
+    "duration": 7,
+    "background": "critical",
+    "recording": "critical",
+    "offset": 9,
+    "crop": [275, 0, 1370, 735],
+    "box": [64, 126, 1792, 728]
+  },
+  {
+    "id": "16-second-closure",
+    "duration": 5,
+    "background": "recovery",
+    "recording": "recovery",
+    "crop": [275, 0, 1370, 735],
+    "box": [64, 126, 1792, 728]
+  },
+  {
+    "id": "17-recovery-comparison",
+    "duration": 10,
+    "background": "recovery-stats",
+    "recording": "recovery",
+    "offset": 5,
+    "crop": [275, 0, 1370, 735],
+    "box": [64, 135, 1310, 715]
+  },
+  {
+    "id": "18-restore",
+    "duration": 5,
+    "background": "recovery",
+    "recording": "recovery",
+    "offset": 20,
+    "crop": [275, 0, 1370, 735],
+    "box": [64, 126, 1792, 728]
+  },
+  {
+    "id": "19-pipeline-0",
+    "duration": 2.5,
+    "background": "pipeline-0",
+    "fadeIn": true
+  },
+  {
+    "id": "19-pipeline-1",
+    "duration": 2.5,
+    "background": "pipeline-1",
+    "fadeIn": false
+  },
+  {
+    "id": "19-pipeline-2",
+    "duration": 2.5,
+    "background": "pipeline-2",
+    "fadeIn": false
+  },
+  {
+    "id": "19-pipeline-3",
+    "duration": 2.5,
+    "background": "pipeline-3",
+    "fadeIn": false
+  },
+  {
+    "id": "20-methodology",
+    "duration": 13,
+    "background": "methodology-stats",
+    "recording": "methodology",
+    "crop": [535, 130, 850, 760],
+    "box": [64, 135, 1310, 715]
+  },
+  {
+    "id": "21-ai-brief",
+    "duration": 15,
+    "background": "ai",
+    "recording": "ai",
+    "crop": [275, 0, 1370, 720],
+    "box": [64, 126, 1792, 728],
+    "fadeIn": true
+  },
+  {
+    "id": "22-provenance",
+    "duration": 12,
+    "background": "ai",
+    "recording": "assumptions",
+    "crop": [275, 0, 1370, 720],
+    "box": [64, 126, 1792, 728]
+  },
+  {
+    "id": "23-snapshot",
+    "duration": 11,
+    "background": "business",
+    "recording": "snapshot",
+    "crop": [275, 0, 1370, 735],
+    "box": [64, 126, 1792, 728]
+  },
+  {
+    "id": "24-business-model",
+    "duration": 12,
+    "background": "business-slide",
+    "fadeIn": true
+  },
+  {
+    "id": "25-bilingual",
+    "duration": 12,
+    "background": "business",
+    "recording": "bilingual",
+    "crop": [275, 0, 1370, 800],
+    "box": [64, 126, 1792, 728]
+  },
+  {
+    "id": "26-closing",
+    "duration": 12,
+    "background": "closing",
+    "recording": "closing",
+    "crop": [275, 0, 1370, 790],
+    "box": [64, 126, 1792, 700]
+  },
+  {
+    "id": "27-end",
+    "duration": 5,
+    "background": "end",
+    "fadeIn": true,
+    "fadeOut": true
+  }
+]

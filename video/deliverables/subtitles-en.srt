@@ -1,0 +1,155 @@
+1
+00:00:00,000 --> 00:00:09,517
+One failed road, bridge, or rail link can change how an entire city moves, even far from
+the damaged link.
+
+2
+00:00:09,517 --> 00:00:14,000
+The impact does not stop at the disruption.
+
+3
+00:00:14,000 --> 00:00:22,080
+Traffic shifts to other corridors. Congestion grows, journeys take longer, and essential
+services become harder to reach.
+
+4
+00:00:22,080 --> 00:00:31,000
+A local failure can create a much wider problem for communities. Those effects are often
+hidden by citywide averages.
+
+5
+00:00:31,000 --> 00:00:39,808
+I built ResiliRoute to make these cascading effects visible, and help people explore
+transportation resilience before a disruption happens.
+
+6
+00:00:39,808 --> 00:00:44,000
+It is a tool for understanding network vulnerability.
+
+7
+00:00:44,000 --> 00:00:50,997
+Here is Harbor City: a synthetic demonstration network with twenty-four nodes and forty-
+two transport links.
+
+8
+00:00:50,997 --> 00:00:56,920
+Residential areas generate travel demand. Stations, hospitals, shelters, and commercial
+districts provide destinations.
+
+9
+00:00:56,920 --> 00:01:03,262
+Under normal conditions, the model calculates an average journey of fourteen point two
+minutes.
+
+10
+00:01:03,262 --> 00:01:09,000
+Each journey contributes demand to the links it uses, creating network-wide volumes.
+
+11
+00:01:09,000 --> 00:01:16,540
+Now I run the earthquake demo. Harbor Bridge, a rail connector, and a coastal road
+become unavailable.
+
+12
+00:01:16,540 --> 00:01:23,525
+Routes are recalculated, and travel demand is reassigned to the remaining links. The
+results change immediately.
+
+13
+00:01:23,525 --> 00:01:32,608
+Average travel time rises to twenty point nine minutes. Essential access falls from
+ninety-four point four to seventy-eight point nine percent.
+
+14
+00:01:32,608 --> 00:01:36,236
+The map also shows which links are closed.
+
+15
+00:01:36,236 --> 00:01:40,000
+These are calculated outputs, not preset disaster scores.
+
+16
+00:01:40,000 --> 00:01:50,154
+The affected traffic does not simply disappear. On Port Bypass, demand increases from
+about four hundred to over three thousand trips per hour.
+
+17
+00:01:50,154 --> 00:01:57,622
+This alternative corridor becomes overloaded. Comparing routes shows how the same
+hospital journey becomes a longer detour.
+
+18
+00:01:57,622 --> 00:02:04,000
+Orange corridors highlight demand at or above capacity, revealing bottlenecks beyond the
+original closure.
+
+19
+00:02:04,000 --> 00:02:11,628
+The dashboard compares travel time, congestion, accessibility, network efficiency, and
+resilience before and after the disruption.
+
+20
+00:02:11,628 --> 00:02:20,211
+Resilience falls from a baseline of one hundred to sixty-nine. Every indicator has a
+published definition in the methodology.
+
+21
+00:02:20,211 --> 00:02:27,000
+Accessibility measures population-weighted access to hospitals, shelters, and stations
+within their specified travel-time thresholds.
+
+22
+00:02:27,000 --> 00:02:36,307
+The stress test removes each available link individually, reruns the simulation, and
+ranks its additional impact on the current scenario.
+
+23
+00:02:36,307 --> 00:02:44,889
+Harbor Rail is now the most critical remaining link. Separately, restoring Harbor Bridge
+offers the largest modeled recovery benefit.
+
+24
+00:02:44,889 --> 00:02:50,000
+The ranking measures modeled consequences, not the probability of failure.
+
+25
+00:02:50,000 --> 00:02:59,965
+The East district is hit hardest. Its average travel time almost doubles, while
+essential access drops from one hundred to sixty-seven percent.
+
+26
+00:02:59,965 --> 00:03:05,909
+The hospital analysis reveals which communities lose access within the model's travel-
+time threshold.
+
+27
+00:03:05,909 --> 00:03:10,000
+Mobility resilience is also an issue of equity.
+
+28
+00:03:10,000 --> 00:03:19,307
+The resilience analyst turns structured simulation evidence into a concise brief: what
+changed, why it matters, and possible planning actions.
+
+29
+00:03:19,307 --> 00:03:27,889
+This demo uses the deterministic local analyst. An optional server-side language model
+uses the same evidence, with automatic fallback.
+
+30
+00:03:27,889 --> 00:03:33,000
+The language model explains results; it does not calculate them.
+
+31
+00:03:33,000 --> 00:03:38,580
+Graph routing, demand assignment, congestion modeling, and accessibility analysis drive
+the results.
+
+32
+00:03:38,580 --> 00:03:45,000
+All computations use transparent, documented rules. This educational prototype supports
+understanding, not emergency navigation.
+
+33
+00:03:45,000 --> 00:03:50,000
+ResiliRoute. Helping communities understand disruption before it happens.

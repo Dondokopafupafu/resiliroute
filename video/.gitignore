@@ -1,0 +1,7 @@
+tools/
+build/
+assets/recordings/*.webm
+assets/audio/*.mp3
+assets/audio/*.wav
+*.mp4
+*.zip

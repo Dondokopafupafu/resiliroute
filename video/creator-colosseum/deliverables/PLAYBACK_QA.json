@@ -1,0 +1,30 @@
+{
+  "duration": 294,
+  "width": 1920,
+  "height": 1080,
+  "browser": "Chromium",
+  "checks": [
+    {
+      "start": 112,
+      "end": 118.161681,
+      "decoded": 186,
+      "dropped": 0,
+      "error": null
+    },
+    {
+      "start": 172,
+      "end": 178.177064,
+      "decoded": 187,
+      "dropped": 0,
+      "error": null
+    },
+    {
+      "start": 215,
+      "end": 221.161341,
+      "decoded": 186,
+      "dropped": 0,
+      "error": null
+    }
+  ],
+  "testedAt": "2026-10-11T04:05:56.372Z"
+}

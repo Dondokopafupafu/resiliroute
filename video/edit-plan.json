@@ -1,0 +1,216 @@
+[
+  {
+    "id": "hook-a",
+    "scene": "hook",
+    "duration": 9.5,
+    "background": "hook",
+    "recording": "hook",
+    "offset": 0,
+    "crop": [280, 145, 990, 420],
+    "box": [84, 126, 1752, 726],
+    "overlay": "hook-question",
+    "fadeIn": true
+  },
+  {
+    "id": "hook-b",
+    "scene": "hook",
+    "duration": 4.5,
+    "background": "hook",
+    "recording": "hook",
+    "offset": 9.5,
+    "crop": [280, 145, 990, 420],
+    "box": [84, 126, 1752, 726],
+    "overlay": "hook-impact",
+    "fadeOut": true
+  },
+  {
+    "id": "problem",
+    "scene": "problem",
+    "duration": 17,
+    "background": "problem",
+    "fadeIn": true,
+    "fadeOut": true
+  },
+  {
+    "id": "intro",
+    "scene": "intro",
+    "duration": 13,
+    "background": "intro",
+    "recording": "normal",
+    "offset": 0,
+    "crop": [280, 230, 990, 500],
+    "box": [1050, 266, 790, 550],
+    "fadeIn": true,
+    "fadeOut": true
+  },
+  {
+    "id": "normal",
+    "scene": "normal",
+    "duration": 25,
+    "background": "normal",
+    "recording": "normal",
+    "offset": 0,
+    "crop": [270, 18, 1380, 772],
+    "box": [70, 129, 1378, 714],
+    "fadeIn": true,
+    "fadeOut": true
+  },
+  {
+    "id": "quake-reference",
+    "scene": "earthquake",
+    "duration": 4.3,
+    "background": "earthquake-normal",
+    "recording": "earthquake",
+    "offset": 0,
+    "crop": [270, 78, 1380, 560],
+    "box": [70, 174, 1378, 666],
+    "fadeIn": true
+  },
+  {
+    "id": "quake-disruption",
+    "scene": "earthquake",
+    "duration": 4.7,
+    "background": "earthquake",
+    "recording": "earthquake",
+    "offset": 4.3,
+    "crop": [270, 78, 1380, 560],
+    "box": [70, 174, 1378, 666]
+  },
+  {
+    "id": "quake-impact",
+    "scene": "earthquake",
+    "duration": 22,
+    "background": "earthquake",
+    "recording": "earthquake",
+    "offset": 9,
+    "crop": [270, 155, 1380, 690],
+    "box": [70, 129, 1378, 714],
+    "fadeOut": true
+  },
+  {
+    "id": "cascade",
+    "scene": "cascade",
+    "duration": 24,
+    "background": "cascade",
+    "recording": "cascade",
+    "offset": 0,
+    "crop": [270, 24, 1380, 630],
+    "box": [70, 171, 1378, 672],
+    "fadeIn": true,
+    "fadeOut": true
+  },
+  {
+    "id": "analytics",
+    "scene": "analytics",
+    "duration": 23,
+    "background": "analytics",
+    "recording": "analytics",
+    "offset": 0,
+    "crop": [270, 28, 1380, 585],
+    "box": [84, 132, 1752, 721],
+    "fadeIn": true,
+    "fadeOut": true
+  },
+  {
+    "id": "critical-ranking",
+    "scene": "critical",
+    "duration": 8.8,
+    "background": "critical",
+    "recording": "critical",
+    "offset": 0,
+    "crop": [270, 28, 1380, 525],
+    "box": [84, 143, 1752, 709],
+    "fadeIn": true
+  },
+  {
+    "id": "critical-map",
+    "scene": "critical",
+    "duration": 5.7,
+    "background": "critical",
+    "recording": "critical",
+    "offset": 8.8,
+    "crop": [270, 28, 1380, 630],
+    "box": [84, 143, 1752, 709]
+  },
+  {
+    "id": "critical-recovery",
+    "scene": "critical",
+    "duration": 8.5,
+    "background": "critical",
+    "recording": "critical",
+    "offset": 14.5,
+    "crop": [270, 28, 1380, 525],
+    "box": [84, 143, 1752, 709],
+    "fadeOut": true
+  },
+  {
+    "id": "equity-district",
+    "scene": "equity",
+    "duration": 8.8,
+    "background": "equity",
+    "recording": "equity",
+    "offset": 0,
+    "crop": [270, 36, 1380, 425],
+    "box": [84, 178, 1752, 666],
+    "fadeIn": true
+  },
+  {
+    "id": "equity-services",
+    "scene": "equity",
+    "duration": 11.2,
+    "background": "equity",
+    "recording": "equity",
+    "offset": 8.8,
+    "crop": [270, 36, 1380, 455],
+    "box": [84, 178, 1752, 666],
+    "fadeOut": true
+  },
+  {
+    "id": "ai-evidence",
+    "scene": "ai",
+    "duration": 12.8,
+    "background": "ai",
+    "recording": "ai",
+    "offset": 0,
+    "crop": [279, 187, 1362, 472],
+    "box": [84, 167, 1752, 687],
+    "fadeIn": true
+  },
+  {
+    "id": "ai-actions",
+    "scene": "ai",
+    "duration": 10.2,
+    "background": "ai",
+    "recording": "ai",
+    "offset": 12.8,
+    "crop": [279, 668, 1362, 270],
+    "box": [84, 220, 1752, 620],
+    "fadeOut": true
+  },
+  {
+    "id": "technical-0",
+    "scene": "technical",
+    "duration": 2,
+    "background": "technical-0",
+    "fadeIn": true
+  },
+  { "id": "technical-1", "scene": "technical", "duration": 2, "background": "technical-1" },
+  { "id": "technical-2", "scene": "technical", "duration": 2, "background": "technical-2" },
+  { "id": "technical-3", "scene": "technical", "duration": 2, "background": "technical-3" },
+  { "id": "technical-4", "scene": "technical", "duration": 2, "background": "technical-4" },
+  {
+    "id": "technical-5",
+    "scene": "technical",
+    "duration": 2,
+    "background": "technical-5",
+    "fadeOut": true
+  },
+  {
+    "id": "end",
+    "scene": "end",
+    "duration": 5,
+    "background": "end",
+    "fadeIn": true,
+    "fadeOut": true
+  }
+]
