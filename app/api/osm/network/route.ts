@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isSameOrigin } from "@/lib/ai/request-origin";
-import { ImportError } from "@/lib/osm/geo";
+import { ImportError, validateBoundingBox } from "@/lib/osm/geo";
 import { boundedText } from "@/lib/osm/overpass-client";
 import { createNetworkService } from "@/lib/osm/network-service";
+import { regionalNetworkService } from "@/lib/osm/regional-service";
+import type { NetworkProgressListener } from "@/lib/real-city/import-progress";
 
 export const runtime = "nodejs";
-export const maxDuration = 55;
+export const maxDuration = 300;
 const getNetwork = createNetworkService();
 const statuses = {
   INVALID_BBOX: 400,
@@ -40,7 +42,74 @@ export async function POST(request: NextRequest) {
     } catch {
       throw new ImportError("INVALID_BBOX");
     }
-    const result = await getNetwork(body, request.signal);
+    validateBoundingBox(body);
+    const input = body as { source?: unknown; regionId?: unknown };
+    if (input.source !== undefined && input.source !== "regional-extract")
+      throw new ImportError("INVALID_BBOX");
+    if (
+      input.source === "regional-extract" &&
+      (typeof input.regionId !== "string" || input.regionId.length > 180 || !input.regionId.length)
+    )
+      throw new ImportError("INVALID_BBOX");
+    const acquire = async (signal?: AbortSignal, progress?: NetworkProgressListener) => {
+      if (input.source === "regional-extract") {
+        const result = await regionalNetworkService.build(
+          body,
+          input.regionId as string,
+          signal,
+          progress,
+        );
+        if (!result) throw new ImportError("EMPTY_ROADS");
+        return result;
+      }
+      const cachedRegional = await regionalNetworkService.tryCached(body, signal, progress);
+      return cachedRegional ?? getNetwork(body, signal, progress);
+    };
+    if (request.headers.get("accept")?.includes("application/x-ndjson")) {
+      const cancellation = new AbortController();
+      const signal = AbortSignal.any([request.signal, cancellation.signal]);
+      let closed = false;
+      const stream = new ReadableStream<Uint8Array>({
+        async start(controller) {
+          const encoder = new TextEncoder();
+          const send = (event: unknown) => {
+            if (!closed && !signal.aborted)
+              controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`));
+          };
+          try {
+            const result = await acquire(signal, (progress) =>
+              send({ type: "progress", ...progress }),
+            );
+            send({ type: "result", ...result });
+          } catch (error) {
+            send({
+              type: "error",
+              error: error instanceof ImportError ? error.code : "UPSTREAM_UNAVAILABLE",
+              ...(error instanceof ImportError && error.retryAfterSeconds
+                ? { retryAfterSeconds: error.retryAfterSeconds }
+                : {}),
+            });
+          } finally {
+            if (!closed) {
+              closed = true;
+              controller.close();
+            }
+          }
+        },
+        cancel() {
+          closed = true;
+          cancellation.abort();
+        },
+      });
+      return new Response(stream, {
+        headers: {
+          "Content-Type": "application/x-ndjson",
+          "Cache-Control": "no-store",
+          "X-Accel-Buffering": "no",
+        },
+      });
+    }
+    const result = await acquire(request.signal);
     return NextResponse.json(result, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     const code = error instanceof ImportError ? error.code : "UPSTREAM_UNAVAILABLE";

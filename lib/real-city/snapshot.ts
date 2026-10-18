@@ -1,6 +1,7 @@
 import { geometryDistance, ImportError, inside, validateBoundingBox } from "@/lib/osm/geo";
 import { realCityConfig, roadDefaults } from "./model-config";
 import { countComponents } from "@/lib/osm/network-builder";
+import { importRoadClasses } from "./network-profile";
 import type { RealCityNetwork } from "@/types/real-city";
 
 const finite = (n: unknown, min = 0, max = 1e9): n is number =>
@@ -17,7 +18,7 @@ export function validateSnapshot(input: unknown): RealCityNetwork {
   const s = input as RealCityNetwork;
   if (
     s.schemaVersion !== 1 ||
-    s.realCityModelVersion !== realCityConfig.version ||
+    !["1.0", realCityConfig.version].includes(s.realCityModelVersion) ||
     !text(s.createdAt, 40) ||
     !Number.isFinite(Date.parse(s.createdAt))
   )
@@ -32,10 +33,40 @@ export function validateSnapshot(input: unknown): RealCityNetwork {
     s.osmMetadata?.source !== "OpenStreetMap" ||
     s.osmMetadata.license !== "ODbL-1.0" ||
     s.osmMetadata.attribution !== "© OpenStreetMap contributors" ||
-    s.osmMetadata.queryVersion !== realCityConfig.queryVersion ||
+    !["vehicle-network-v1", realCityConfig.queryVersion].includes(s.osmMetadata.queryVersion) ||
     (s.osmMetadata.timestamp !== null && !text(s.osmMetadata.timestamp, 80))
   )
     return fail();
+  if (s.realCityModelVersion === "1.1" && !s.importProfile) return fail();
+  const regional = s.osmMetadata.regionalExtract;
+  if (
+    regional &&
+    (regional.provider !== "Geofabrik" ||
+      !text(regional.regionId, 150) ||
+      !/^[a-z0-9]+(?:[-/][a-z0-9]+)*$/.test(regional.regionId) ||
+      !text(regional.regionName, 200) ||
+      (regional.fileDate !== null &&
+        (!text(regional.fileDate, 80) || !Number.isFinite(Date.parse(regional.fileDate)))) ||
+      !text(regional.downloadedAt, 80) ||
+      !Number.isFinite(Date.parse(regional.downloadedAt)) ||
+      (regional.excludedRelationFacilities !== null &&
+        (!Number.isSafeInteger(regional.excludedRelationFacilities) ||
+          !finite(regional.excludedRelationFacilities))))
+  )
+    return fail();
+  if (s.importProfile) {
+    const profile = s.importProfile;
+    if (
+      !["detailed", "regional"].includes(profile.mode) ||
+      !["area", "density", "requested"].includes(profile.reason) ||
+      !Array.isArray(profile.includedHighways) ||
+      profile.includedHighways.join(",") !== importRoadClasses(profile.mode).join(",") ||
+      (profile.excludedRoadWays !== null &&
+        (!Number.isSafeInteger(profile.excludedRoadWays) ||
+          !finite(profile.excludedRoadWays, 0, realCityConfig.maxElements)))
+    )
+      return fail();
+  }
   if (
     !s.network ||
     !Array.isArray(s.network.nodes) ||
@@ -126,6 +157,7 @@ export function validateSnapshot(input: unknown): RealCityNetwork {
         !Number.isSafeInteger(o.wayId) ||
         o.wayId <= 0 ||
         !Object.hasOwn(roadDefaults, o.highway) ||
+        (s.importProfile && !s.importProfile.includedHighways.includes(o.highway)) ||
         !finite(o.speedKmh, 5, 150) ||
         !["OSM", "estimated"].includes(o.speedSource) ||
         !finite(o.lanes, 1, 12) ||
@@ -186,7 +218,7 @@ export function validateSnapshot(input: unknown): RealCityNetwork {
     return fail();
   if (
     s.demandModel?.source !== "synthetic" ||
-    s.demandModel.weightSource !== "residential road length proxy" ||
+    !["residential road length proxy", "road length proxy"].includes(s.demandModel.weightSource) ||
     s.demandModel.capacityUnit !== "modeled vehicle-equivalents/hour"
   )
     return fail();
@@ -197,7 +229,17 @@ export function validateSnapshot(input: unknown): RealCityNetwork {
   // Copy only recognized fields on export, and recalculate derived summaries.
   return {
     schemaVersion: 1,
-    realCityModelVersion: "1.0",
+    realCityModelVersion: s.realCityModelVersion,
+    ...(s.importProfile
+      ? {
+          importProfile: {
+            mode: s.importProfile.mode,
+            includedHighways: [...s.importProfile.includedHighways],
+            reason: s.importProfile.reason,
+            excludedRoadWays: s.importProfile.excludedRoadWays,
+          },
+        }
+      : {}),
     bbox,
     createdAt: s.createdAt,
     osmMetadata: {
@@ -205,7 +247,19 @@ export function validateSnapshot(input: unknown): RealCityNetwork {
       timestamp: s.osmMetadata.timestamp,
       attribution: "© OpenStreetMap contributors",
       license: "ODbL-1.0",
-      queryVersion: realCityConfig.queryVersion,
+      queryVersion: s.osmMetadata.queryVersion,
+      ...(regional
+        ? {
+            regionalExtract: {
+              provider: "Geofabrik" as const,
+              regionId: regional.regionId,
+              regionName: regional.regionName,
+              fileDate: regional.fileDate,
+              downloadedAt: regional.downloadedAt,
+              excludedRelationFacilities: regional.excludedRelationFacilities,
+            },
+          }
+        : {}),
     },
     network: {
       accessibilityCategories: categories as RealCityNetwork["network"]["accessibilityCategories"],
@@ -291,7 +345,7 @@ export function validateSnapshot(input: unknown): RealCityNetwork {
     demandModel: {
       source: "synthetic",
       totalDemand,
-      weightSource: "residential road length proxy",
+      weightSource: s.demandModel.weightSource,
       capacityUnit: "modeled vehicle-equivalents/hour",
     },
   };

@@ -22,7 +22,14 @@ export function screenCriticalCandidates(network: Network, current: SimulationRe
     return score(b) - score(a) || a.id.localeCompare(b.id);
   });
   return {
-    ids: ranked.slice(0, realCityConfig.stressCandidates).map((e) => e.id),
+    ids: ranked
+      .slice(
+        0,
+        roads.length > realCityConfig.largeNetworkThreshold
+          ? realCityConfig.largeStressCandidates
+          : realCityConfig.stressCandidates,
+      )
+      .map((e) => e.id),
     screened: true,
     total: roads.length,
   };

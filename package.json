@@ -21,6 +21,7 @@
     "check:public": "node scripts/check-public-files.mjs --staged --history"
   },
   "dependencies": {
+    "@osmix/pbf": "0.0.10",
     "@tailwindcss/postcss": "4.3.3",
     "leaflet": "1.9.4",
     "lucide-react": "1.52.0",

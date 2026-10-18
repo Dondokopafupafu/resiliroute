@@ -3,6 +3,7 @@ import { parseOSMResponse } from "./osm-parser";
 import { realCityConfig, roadDefaults } from "@/lib/real-city/model-config";
 import { roadModel } from "@/lib/real-city/road-model";
 import { generateDemand } from "@/lib/real-city/demand-generator";
+import { chooseNetworkProfile, importRoadClasses } from "@/lib/real-city/network-profile";
 import type { District, Network, NetworkNode } from "@/types/network";
 import type {
   BoundingBox,
@@ -11,6 +12,8 @@ import type {
   OSMTags,
   OSMWay,
   RealCityNetwork,
+  NetworkImportProfile,
+  NetworkProfileProvenance,
 } from "@/types/real-city";
 
 function districtFor(lat: number, lon: number, b: BoundingBox): District {
@@ -54,13 +57,16 @@ export function buildRealCityNetwork(
   raw: unknown,
   input: BoundingBox,
   createdAt = new Date().toISOString(),
+  options: { profile?: NetworkImportProfile; reason?: NetworkProfileProvenance["reason"] } = {},
 ): RealCityNetwork {
   const bbox = validateBoundingBox(input);
+  const profile = options.profile ?? chooseNetworkProfile(bbox);
+  const includedHighways = [...importRoadClasses(profile)];
   const data = parseOSMResponse(raw);
   const rawNodes = new Map(
     data.elements.filter((e): e is OSMNode => e.type === "node").map((n) => [n.id, n]),
   );
-  const ways = data.elements.filter(
+  const allRoadWays = data.elements.filter(
     (e): e is OSMWay =>
       e.type === "way" &&
       Object.hasOwn(roadDefaults, e.tags?.highway ?? "") &&
@@ -68,6 +74,7 @@ export function buildRealCityNetwork(
       !["no", "private"].includes(e.tags?.motor_vehicle) &&
       !["no", "private"].includes(e.tags?.vehicle),
   );
+  const ways = allRoadWays.filter((way) => includedHighways.includes(way.tags.highway));
   const memberships = new Map<number, number>();
   const neighbors = new Map<number, Set<number>>();
   ways.forEach((w) => {
@@ -192,17 +199,21 @@ export function buildRealCityNetwork(
     if (!type) continue;
     const coord = e.type === "node" ? { lat: e.lat, lon: e.lon } : e.center;
     if (!coord || !inside(bbox, coord.lat, coord.lon)) continue;
-    const sorted = roadNodes
-      .map((n) => ({
-        node: n,
-        distance: haversine([n.latitude, n.longitude], [coord.lat, coord.lon]),
-      }))
-      .sort((a, b) => a.distance - b.distance || a.node.id.localeCompare(b.node.id));
-    const nearest = sorted[0];
-    if (
-      nearest.distance > realCityConfig.maxSnapKm ||
-      facilities.length >= realCityConfig.maxFacilities
-    ) {
+    if (facilities.length >= realCityConfig.maxFacilities) {
+      excludedFacilities++;
+      continue;
+    }
+    // One linear scan avoids sorting every road node for every facility.
+    let nearest = { node: roadNodes[0], distance: Infinity };
+    for (const node of roadNodes) {
+      const distance = haversine([node.latitude, node.longitude], [coord.lat, coord.lon]);
+      if (
+        distance < nearest.distance ||
+        (distance === nearest.distance && node.id.localeCompare(nearest.node.id) < 0)
+      )
+        nearest = { node, distance };
+    }
+    if (nearest.distance > realCityConfig.maxSnapKm) {
       excludedFacilities++;
       continue;
     }
@@ -256,13 +267,24 @@ export function buildRealCityNetwork(
   network.accessibilityCategories = ["hospital", "shelter", "station"].filter((t) =>
     facilities.some((f) => f.type === t),
   ) as Network["accessibilityCategories"];
+  const hasResidentialOrigins = network.edges.some(
+    (e) => e.osm?.highway === "residential" || e.osm?.highway === "living_street",
+  );
   const odPairs = generateDemand(network);
   if (!odPairs.length) throw new ImportError("EMPTY_ROADS");
   const roads = network.edges.filter((e) => e.osm);
   const coverage = (count: number) => (100 * count) / roads.length;
   return {
     schemaVersion: 1,
-    realCityModelVersion: "1.0",
+    realCityModelVersion: realCityConfig.version,
+    importProfile: {
+      mode: profile,
+      includedHighways,
+      reason: options.reason ?? (profile === "regional" ? "area" : "requested"),
+      // Upstream queries may have filtered before delivery. Zero would incorrectly
+      // imply that every road in the area was imported, so record unknown instead.
+      excludedRoadWays: allRoadWays.length > ways.length ? allRoadWays.length - ways.length : null,
+    },
     bbox,
     createdAt,
     osmMetadata: {
@@ -293,7 +315,7 @@ export function buildRealCityNetwork(
     demandModel: {
       source: "synthetic",
       totalDemand: odPairs.reduce((s, p) => s + p.demand, 0),
-      weightSource: "residential road length proxy",
+      weightSource: hasResidentialOrigins ? "residential road length proxy" : "road length proxy",
       capacityUnit: "modeled vehicle-equivalents/hour",
     },
   };

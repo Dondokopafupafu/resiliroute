@@ -27,7 +27,7 @@ describe("real-city import and shared simulation", () => {
     ])
       expect(() => validateBoundingBox(b)).toThrow();
   });
-  it("rejects areas above 25 km² before querying", () =>
+  it("rejects areas above the configured 100 km² limit before querying", () =>
     expect(() => buildOverpassQuery({ south: 35, west: 139, north: 36, east: 140 })).toThrow(
       "AREA_TOO_LARGE",
     ));
@@ -181,10 +181,10 @@ describe("Overpass failure safety", () => {
     );
   });
   it("guards simplified network size before traffic assignment", () => {
-    const nodes = Array.from({ length: 950 }, (_, i) => ({
+    const nodes = Array.from({ length: realCityConfig.maxNodes + 1 }, (_, i) => ({
       type: "node",
       id: i + 1,
-      lat: 35.001 + i * 0.00001,
+      lat: 35.001 + i * (0.018 / realCityConfig.maxNodes),
       lon: 139.005,
     }));
     const ways = nodes.slice(1).map((n, i) => ({

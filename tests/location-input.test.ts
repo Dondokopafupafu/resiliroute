@@ -4,6 +4,7 @@ import { areaDimensions } from "@/lib/osm/geo";
 import { parseOSMFile } from "@/lib/osm/file-import";
 import { buildRealCityNetwork } from "@/lib/osm/network-builder";
 import { simulate } from "@/lib/simulation/simulate";
+import { realCityConfig } from "@/lib/real-city/model-config";
 import fixture from "./fixtures/osm-small.json";
 
 describe("arbitrary-area selection", () => {
@@ -72,6 +73,8 @@ describe("offline raw OSM JSON", () => {
     expect(() => parseOSMFile('{"remark":"runtime error","elements":[]}', bounds)).toThrow(
       "INVALID_RESPONSE",
     );
-    expect(() => parseOSMFile("x".repeat(10 * 1024 * 1024 + 1), bounds)).toThrow("TOO_COMPLEX");
+    expect(() => parseOSMFile("x".repeat(realCityConfig.maxResponseBytes + 1), bounds)).toThrow(
+      "TOO_COMPLEX",
+    );
   });
 });

@@ -1,4 +1,4 @@
-import { buildGraph, shortestPath } from "@/lib/graph/shortest-path";
+import { buildGraph, shortestPathsFrom } from "@/lib/graph/shortest-path";
 import { haversine } from "@/lib/osm/geo";
 import { realCityConfig } from "./model-config";
 import type { Network, NetworkNode, ODPair } from "@/types/network";
@@ -29,6 +29,11 @@ export function spatialSample(nodes: readonly NetworkNode[], count: number): Net
 export function generateDemand(network: Network): ODPair[] {
   const roadNodes = network.nodes.filter((n) => n.id.startsWith("osm-node-"));
   const residentialWeights = new Map<string, number>();
+  const roadWeights = new Map<string, number>();
+  for (const edge of network.edges.filter((e) => e.osm)) {
+    for (const id of [edge.source, edge.target])
+      roadWeights.set(id, (roadWeights.get(id) ?? 0) + edge.distance / 2);
+  }
   for (const edge of network.edges.filter(
     (e) => e.osm?.highway === "residential" || e.osm?.highway === "living_street",
   )) {
@@ -43,8 +48,10 @@ export function generateDemand(network: Network): ODPair[] {
   origins.forEach((n, i) => {
     n.type = "residential";
     n.name = `Modeled origin ${String(i + 1).padStart(2, "0")}`;
-    // A relative residential road-length proxy, never census population.
-    n.populationWeight = Math.max(1, (residentialWeights.get(n.id) ?? 0.1) * 100);
+    // Regional arterial networks have no residential layer. Road length then
+    // supplies a disclosed demand proxy, never census population.
+    const weights = candidates.length >= 2 ? residentialWeights : roadWeights;
+    n.populationWeight = Math.max(1, (weights.get(n.id) ?? 0.1) * 100);
     n.demandWeight = 1;
   });
   const originIds = new Set(origins.map((n) => n.id));
@@ -73,10 +80,13 @@ export function generateDemand(network: Network): ODPair[] {
           a.id.localeCompare(b.id),
       );
     const chosen = new Map<string, NetworkNode>();
+    const routes = shortestPathsFrom(
+      graph,
+      origin.id,
+      nearest.map((d) => d.id),
+    );
     for (const type of ["hospital", "station", "shelter", "commercial", "school"]) {
-      const dest = nearest.find(
-        (d) => d.type === type && shortestPath(graph, origin.id, d.id).reachable,
-      );
+      const dest = nearest.find((d) => d.type === type && routes[d.id].reachable);
       if (dest) chosen.set(dest.id, dest);
     }
     for (const dest of chosen.values()) {

@@ -49,9 +49,18 @@ export interface DataCoverage {
   laneTagsPercent: number;
   namesPercent: number;
 }
+export type NetworkImportProfile = "detailed" | "regional";
+export interface NetworkProfileProvenance {
+  mode: NetworkImportProfile;
+  includedHighways: string[];
+  reason: "area" | "density" | "requested";
+  /** Null when filtering happened at the source, so omitted ways were never counted. */
+  excludedRoadWays: number | null;
+}
 export interface RealCityNetwork {
   schemaVersion: 1;
-  realCityModelVersion: "1.0";
+  realCityModelVersion: "1.0" | "1.1";
+  importProfile?: NetworkProfileProvenance;
   bbox: BoundingBox;
   createdAt: string;
   osmMetadata: {
@@ -60,6 +69,16 @@ export interface RealCityNetwork {
     attribution: "© OpenStreetMap contributors";
     license: "ODbL-1.0";
     queryVersion: string;
+    regionalExtract?: {
+      provider: "Geofabrik";
+      regionId: string;
+      regionName: string;
+      /** File modification date; distinct from the OSM replication timestamp. */
+      fileDate: string | null;
+      downloadedAt: string;
+      /** Null means relation-facility coverage within the selection is unknown. */
+      excludedRelationFacilities: number | null;
+    };
   };
   network: Network;
   facilities: ImportedFacility[];
@@ -77,7 +96,7 @@ export interface RealCityNetwork {
   demandModel: {
     source: "synthetic";
     totalDemand: number;
-    weightSource: "residential road length proxy";
+    weightSource: "residential road length proxy" | "road length proxy";
     capacityUnit: "modeled vehicle-equivalents/hour";
   };
 }
