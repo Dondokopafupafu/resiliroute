@@ -2,6 +2,19 @@
 
 This record distinguishes prior work from later development. Release names describe local product versions and do not imply a public deployment or contest award.
 
+## 3.0 follow-up — In-app area preparation, wider networks and closure clarity · 16 October 2026
+
+- Added **Use visible map area**, four draggable rectangle corners, responsive map resizing and clearer area-selection instructions. Coordinates and examples remain optional shortcuts.
+- Added an in-app official Geofabrik source: check the region and file size, explicitly start the initial download, then build the selected network. The ordinary **Build Mobility Network** action automatically reuses a cached covering regional pack when available; a fresh large download requires its own size preview and confirmation. No external website or manual file export is required for this path.
+- Added bounded regional extraction with real download/extraction progress, cancellation, seven-day pack reuse, a 600 MiB per-pack cap, two retained packs and a per-process download budget. Temporary replacement storage and server-hosting limitations are documented.
+- Expanded the selection maximum to 100 km² and simplified road-graph limits to 5,000 nodes / 8,000 segments. Areas above 25 km², or detailed imports exceeding graph limits, use a disclosed major-road profile within the same rectangle. Local residential streets are excluded in that profile; density and boundary limitations remain explicit.
+- Kept road geometry, node/way facility provenance and modeled demand separate. Regional relation facilities are not reconstructed; source file dates and OpenStreetMap attribution remain visible.
+- Moved the selected road's close/reopen action directly above the map. Added a nearby cause-and-effect panel for changed OD routes, extra-flow roads and actual before/after metrics, including a warning when disconnected trips reduce apparent congestion.
+- Allowed the next road action when the current simulation is ready while critical-link ranking continues. Superseded results are cancelled or invalidated; selecting a different rectangle clearly distinguishes it from the previously built network.
+- Preserved Harbor City and the shared simulation arithmetic. Runtime checks and live-provider availability are recorded separately from historical test totals; these changes do not assert verified emergency guidance or observed traffic.
+
+See [the Japanese in-app workflow and verification scope](docs/IN_APP_AREA_WORKFLOW.md).
+
 ## 3.0 follow-up — Arbitrary-area selection and OSM file import · 16 October 2026
 
 - Added local coordinate/OpenStreetMap URL navigation to a 2 × 2 km starting selection.

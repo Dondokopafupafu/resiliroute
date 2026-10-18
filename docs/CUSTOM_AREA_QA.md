@@ -1,5 +1,7 @@
 # Arbitrary-area import verification — 16 October 2026
 
+Historical record: the [completed in-app workflow verification](IN_APP_AREA_QA.md) supersedes this record's limits, dependency and test totals.
+
 This follow-up concerns location selection and file import. The simulation formulas, synthetic Harbor dataset, existing saved cities and decision algorithms are unchanged. See the [previous version-3 audit](ULTIMATE_QA.md) for broader modeling limitations.
 
 ## What changed
