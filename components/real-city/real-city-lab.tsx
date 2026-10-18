@@ -27,6 +27,7 @@ import { generateLocalAnalysis, isAIAnalysis } from "@/lib/ai/analysis";
 import { areaDimensions, ImportError, validateBoundingBox } from "@/lib/osm/geo";
 import { validateSnapshot } from "@/lib/real-city/snapshot";
 import { requestRealCityNetwork } from "@/lib/real-city/network-request";
+import type { NetworkImportProgress } from "@/lib/real-city/import-progress";
 import { buildFromOSMFile } from "@/lib/real-city/import-file-client";
 import { osmExportUrl } from "@/lib/real-city/location-input";
 import { LocationPicker } from "./location-picker";
@@ -34,7 +35,9 @@ import { exampleAreas, realCityConfig } from "@/lib/real-city/model-config";
 import { buildGraph, shortestPath } from "@/lib/graph/shortest-path";
 import { realCityContext } from "@/lib/real-city/context";
 import { NetworkSummary, DataProvenance } from "./data-provenance";
-import { RoadControls } from "./road-controls";
+import { RoadAction, RoadControls } from "./road-controls";
+import { ImpactCue } from "./impact-cue";
+import { RegionalDataPanel } from "./regional-data-panel";
 import type { BoundingBox, ImportErrorCode, RealCityNetwork } from "@/types/real-city";
 import type { SimulationResult } from "@/types/network";
 import type { LabAnalysis, WorkerResponse } from "@/lib/real-city/analysis-worker";
@@ -52,7 +55,7 @@ const DecisionWorkspace = dynamic(() => import("../decision/decision-workspace")
 const errors: Record<ImportErrorCode, string> = {
   INVALID_BBOX: "Select a valid rectangle with two opposite corners.",
   AREA_TOO_LARGE:
-    "Selected area is too large. Choose an area smaller than 25 km² for interactive analysis.",
+    "Selected area is too large. Choose an area smaller than {max} km² for interactive analysis.",
   TOO_COMPLEX: "This area contains too many roads for interactive analysis. Select a smaller area.",
   EMPTY_ROADS: "No usable connected road network was found. Select another area.",
   INVALID_RESPONSE: "OpenStreetMap returned incomplete data. Try again or choose another area.",
@@ -76,10 +79,12 @@ export default function RealCityLab() {
   const [selecting, setSelecting] = useState(false);
   const [fitKey, setFitKey] = useState(0);
   const [selectionKey, setSelectionKey] = useState(0);
+  const [areaEditing, setAreaEditing] = useState(true);
   const [snapshot, setSnapshot] = useState<RealCityNetwork | null>(null);
   const [source, setSource] = useState("Live OpenStreetMap import");
   const [fetching, setFetching] = useState(false);
-  const [fetchKind, setFetchKind] = useState<"live" | "snapshot" | "file">("live");
+  const [importProgress, setImportProgress] = useState<NetworkImportProgress | null>(null);
+  const [fetchKind, setFetchKind] = useState<"live" | "snapshot" | "file" | "regional">("live");
   const [error, setError] = useState<ImportErrorCode | null>(null);
   const [closedIds, setClosedIds] = useState<string[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -118,6 +123,8 @@ export default function RealCityLab() {
     result: AnalysisResponse;
   } | null>(null);
   const request = useRef<AbortController | null>(null);
+  const errorPanel = useRef<HTMLDivElement | null>(null);
+  const areaDetails = useRef<HTMLDetailsElement | null>(null);
   const baselineCache = useRef<{ snapshot: RealCityNetwork; baseline: SimulationResult } | null>(
     null,
   );
@@ -127,7 +134,11 @@ export default function RealCityLab() {
   const retainedView = view?.snapshot === snapshot ? view : null;
   const result =
     analysis?.snapshot === snapshot && analysis.key === signature ? analysis.result : null;
-  const working = fetching || (!!snapshot && !result && !error);
+  // Current metrics unlock interaction; ranking may safely continue in the background.
+  const analyzing = !!snapshot && !result && !error;
+  const working = fetching || (!!snapshot && !currentView && !error);
+  const controlsBusy = working || (!!snapshot && !currentView);
+  const selectedEdge = snapshot?.network.edges.find((edge) => edge.id === selectedId && edge.osm);
   let bboxError: ImportErrorCode | null = null;
   if (bbox) {
     try {
@@ -139,6 +150,21 @@ export default function RealCityLab() {
   // A partially edited number is valid form state, but never valid Leaflet input.
   const drawableBbox = bboxError === "INVALID_BBOX" ? null : bbox;
   const dimensions = drawableBbox ? areaDimensions(drawableBbox) : null;
+  const areaChanged =
+    !!snapshot &&
+    !!bbox &&
+    (["south", "west", "north", "east"] as const).some((key) => bbox[key] !== snapshot.bbox[key]);
+
+  useEffect(() => {
+    if (!error) return;
+    errorPanel.current?.focus({ preventScroll: true });
+    errorPanel.current?.scrollIntoView({
+      block: "start",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    });
+  }, [error]);
 
   useEffect(() => {
     if (!snapshot) return;
@@ -263,6 +289,7 @@ export default function RealCityLab() {
   }, [snapshot, context, closedIds, locale, aiKey, cloudAI]);
 
   const installSnapshot = (data: RealCityNetwork, label: string) => {
+    if (areaDetails.current) areaDetails.current.open = false;
     setNetworkGeneration((generation) => generation + 1);
     setMapView("after");
     setMapLayer("traffic");
@@ -275,6 +302,7 @@ export default function RealCityLab() {
     setProgress(null);
     setError(null);
     setSelecting(false);
+    setAreaEditing(false);
     setFitKey((k) => k + 1);
     setShowRoutes(false);
     setBridgesOnly(false);
@@ -285,21 +313,34 @@ export default function RealCityLab() {
       )?.id ?? "",
     );
   };
-  const build = async () => {
+  const build = async (regionId?: string) => {
     if (!bbox || bboxError) return;
     request.current?.abort();
     const controller = new AbortController();
     request.current = controller;
     setFetching(true);
-    setFetchKind("live");
+    setFetchKind(regionId ? "regional" : "live");
+    setImportProgress(null);
     setError(null);
     setSelecting(false);
     try {
-      const data = await requestRealCityNetwork(bbox, controller.signal);
+      const data = await requestRealCityNetwork(
+        bbox,
+        controller.signal,
+        fetch,
+        (step) => {
+          if (!controller.signal.aborted && request.current === controller) setImportProgress(step);
+        },
+        regionId ? { source: "regional-extract", regionId } : undefined,
+      );
       if (controller.signal.aborted || request.current !== controller) return;
       installSnapshot(
         data.snapshot,
-        data.cached ? "Cached OpenStreetMap import" : "Live OpenStreetMap import",
+        data.snapshot.osmMetadata.regionalExtract
+          ? "OpenStreetMap regional extract · Geofabrik"
+          : data.cached
+            ? "Cached OpenStreetMap import"
+            : "Live OpenStreetMap import",
       );
     } catch (e) {
       if (!controller.signal.aborted)
@@ -338,7 +379,7 @@ export default function RealCityLab() {
     setFitKey((k) => k + 1);
   };
   const toggle = (id: string) => {
-    if (working) return;
+    if (controlsBusy) return;
     if (!closedIds.includes(id) && closedIds.length >= realCityConfig.maxClosures) return;
     setError(null);
     setMapView("after");
@@ -420,8 +461,16 @@ export default function RealCityLab() {
     }
   };
   const progressName = fetching
-    ? fetchKind === "live"
-      ? "Fetching roads & building the intersection graph"
+    ? fetchKind === "live" || fetchKind === "regional"
+      ? importProgress?.stage === "downloading"
+        ? "Downloading the regional source once"
+        : importProgress?.stage === "extracting"
+          ? "Cutting your selected area from the regional data"
+          : importProgress?.stage === "building"
+            ? "Building intersections from the downloaded roads"
+            : importProgress?.stage === "cache"
+              ? "Checking saved area data"
+              : "Fetching roads & building the intersection graph"
       : fetchKind === "file"
         ? "Building network from your OSM file"
         : "Reading saved network snapshot"
@@ -431,7 +480,9 @@ export default function RealCityLab() {
         ? "Redistributing modeled demand"
         : progress?.step === "criticality"
           ? "Stress-testing road closures"
-          : "Comparing recovery priorities";
+          : progress?.step === "recovery"
+            ? "Comparing recovery priorities"
+            : "Preparing the baseline model";
   return (
     <div className="app-shell real-city-shell">
       <a className="skip-link" href="#real-workspace">
@@ -498,7 +549,7 @@ export default function RealCityLab() {
             ) : (
               <p role="status">{t("Redistributing modeled demand")}</p>
             )}
-            {working && (
+            {(fetching || analyzing) && (
               <p className="real-global-progress" role="status">
                 {t(progressName)}{" "}
                 {progress?.step === "criticality"
@@ -530,6 +581,32 @@ export default function RealCityLab() {
                 total={snapshot.network.edges.filter((edge) => edge.osm).length}
               />
             )}
+            {areaChanged && (
+              <div className="selected-area-notice" role="status">
+                <p>
+                  {t(
+                    "New area selected. Build it to replace the current network. Results still describe your previous area.",
+                  )}
+                </p>
+                <button
+                  className="button button-primary"
+                  disabled={fetching || !!bboxError}
+                  onClick={() => void build()}
+                >
+                  {t("Build this area")}
+                </button>
+              </div>
+            )}
+            {snapshot && (
+              <RoadAction
+                edge={selectedEdge}
+                closed={!!selectedId && closedIds.includes(selectedId)}
+                busy={controlsBusy}
+                limitReached={closedIds.length >= realCityConfig.maxClosures}
+                hasImpact={!!currentView && closedIds.length > 0 && !controlsBusy}
+                onToggle={() => selectedId && toggle(selectedId)}
+              />
+            )}
             <LabMap
               bbox={drawableBbox}
               snapshot={snapshot}
@@ -544,8 +621,13 @@ export default function RealCityLab() {
               selecting={selecting}
               selectionKey={selectionKey}
               fitKey={fitKey}
+              areaEditing={areaEditing}
+              disabled={fetching}
+              pending={!!snapshot && !currentView && !error}
               onBounds={(b) => {
                 setBbox(b);
+                setAreaEditing(true);
+                if (areaDetails.current) areaDetails.current.open = true;
                 setSelecting(false);
                 setError(null);
               }}
@@ -559,6 +641,26 @@ export default function RealCityLab() {
               normalRoute={route.before}
               scenarioRoute={mapView === "before" ? route.before : route.after}
             />
+            {!snapshot && (
+              <p className="map-help-note">
+                {t(
+                  "Move and zoom the map, then use the visible area. Drag the blue corner handles to resize, or select two corners.",
+                )}
+              </p>
+            )}
+            {snapshot && currentView && (
+              <ImpactCue
+                network={snapshot.network}
+                baseline={currentView.baseline}
+                current={currentView.current}
+                onHighlight={(id) => {
+                  setSelectedId(id);
+                  setHighlightedId(id);
+                  setMapView("after");
+                  setMapLayer("cascade");
+                }}
+              />
+            )}
             {mapLayer === "criticality" && mapView === "after" && (
               <CriticalityDetail selected={selectedId} critical={result?.ranking ?? []} />
             )}
@@ -585,15 +687,15 @@ export default function RealCityLab() {
           </div>
           <aside className="real-side">
             <article className="panel area-panel">
-              <details className="area-builder" open={!snapshot}>
+              <details className="area-builder" open={!snapshot} ref={areaDetails}>
                 <summary>
                   {t(snapshot ? "Change analysis area" : "Select an Analysis Area")}
                 </summary>
-                <span className="eyebrow">{t("START WITH AN AREA")}</span>
+                <span className="eyebrow">{t("1 · CHOOSE YOUR AREA")}</span>
                 <h2>{t("Analyze a real urban network")}</h2>
                 <p>
                   {t(
-                    "Any mapped region, not just the examples. Zoom out, drag to your location, then zoom in and select two opposite corners.",
+                    "Move to any location on the map. Use the visible area or draw your own rectangle. Build directly here—no external download needed.",
                   )}
                 </p>
                 <LocationPicker
@@ -602,6 +704,7 @@ export default function RealCityLab() {
                     setBbox(b);
                     setFitKey((k) => k + 1);
                     setSelecting(false);
+                    setAreaEditing(true);
                     setError(null);
                   }}
                 />
@@ -610,48 +713,12 @@ export default function RealCityLab() {
                   disabled={fetching}
                   onClick={() => {
                     setSelecting((p) => !p);
+                    setAreaEditing(true);
                     setSelectionKey((k) => k + 1);
                   }}
                 >
                   {t(selecting ? "Cancel selection" : "Select area on map")}
                 </button>
-                <label className="field-label" htmlFor="example-area">
-                  {t("Try an example area")}
-                </label>
-                <select
-                  id="example-area"
-                  value=""
-                  disabled={fetching}
-                  onChange={(e) => {
-                    const example = exampleAreas[Number(e.target.value)];
-                    if (example) {
-                      setBbox({ ...example.bbox });
-                      setFitKey((k) => k + 1);
-                      setSelecting(false);
-                      setError(null);
-                    }
-                  }}
-                >
-                  <option value="">{t("Choose an area…")}</option>
-                  {exampleAreas.map((e, i) => (
-                    <option key={e.name} value={i}>
-                      {t(e.name)}
-                    </option>
-                  ))}
-                </select>
-                <label className="field-label" htmlFor="saved-area">
-                  {t("Load a saved OSM example (no API)")}
-                </label>
-                <select
-                  id="saved-area"
-                  value=""
-                  disabled={working}
-                  onChange={(e) => void loadSavedSample(e.target.value)}
-                >
-                  <option value="">{t("Choose an area…")}</option>
-                  <option value="okayama">{t("Okayama · riverside")}</option>
-                  <option value="matsumoto">{t("Matsumoto · central")}</option>
-                </select>
                 <details className="bbox-inputs">
                   <summary>{t("Edit bounding coordinates")}</summary>
                   {["south", "west", "north", "east"].map((key) => (
@@ -691,24 +758,66 @@ export default function RealCityLab() {
                     </div>
                   </div>
                 )}
-                <p className="table-note">{t("Recommended: 1–10 km² · maximum: 25 km²")}</p>
+                <p className="table-note">
+                  {t(
+                    "Up to {max} km². Larger or dense areas use a major-road network; local streets may be excluded.",
+                    { max: realCityConfig.maxAreaKm2 },
+                  )}
+                </p>
+                {dimensions && dimensions.area > realCityConfig.detailAreaKm2 && (
+                  <p className="regional-coverage-note">
+                    {t(
+                      "This selection will use major roads. Local residential streets are not included in regional analysis.",
+                    )}
+                  </p>
+                )}
                 {bboxError && (
                   <p role="alert" className="real-error">
-                    {t(errors[bboxError])}
+                    {t(errors[bboxError], { max: realCityConfig.maxAreaKm2 })}
                   </p>
                 )}
                 <button
                   className="button demo-button build-network"
-                  disabled={!bbox || !!bboxError || working}
-                  onClick={build}
+                  disabled={!bbox || !!bboxError || fetching}
+                  onClick={() => void build()}
                   data-testid="build-network"
                 >
-                  {working ? <LoaderCircle size={17} className="spin" /> : <Globe2 size={17} />}
+                  {fetching ? <LoaderCircle size={17} className="spin" /> : <Globe2 size={17} />}
                   {t("Build Mobility Network")}
                 </button>
-                {working && (
+                {(fetching || analyzing) && (
                   <div className="build-progress" role="status">
                     <strong>{t(progressName)}</strong>
+                    {fetching && importProgress?.attempt && (
+                      <small>
+                        {t("Data service attempt {attempt} / {total}", {
+                          attempt: importProgress.attempt,
+                          total: importProgress.attempts ?? importProgress.attempt,
+                        })}
+                      </small>
+                    )}
+                    {fetching &&
+                      importProgress &&
+                      (importProgress.stage === "downloading" ||
+                        importProgress.stage === "extracting") && (
+                        <div className="region-download-progress">
+                          <span>{importProgress.regionName}</span>
+                          <progress
+                            aria-label={t(progressName)}
+                            value={importProgress.bytesReceived ?? 0}
+                            max={importProgress.totalBytes || 1}
+                          />
+                          <span>
+                            {((importProgress.bytesReceived ?? 0) / 1_000_000).toFixed(1)} /{" "}
+                            {((importProgress.totalBytes ?? 0) / 1_000_000).toFixed(1)} MB
+                          </span>
+                          {importProgress.stage === "extracting" && (
+                            <small>
+                              {t("Read progress includes two passes through the saved source.")}
+                            </small>
+                          )}
+                        </div>
+                      )}
                     {progress?.step === "criticality" && (
                       <>
                         <progress value={progress.completed} max={progress.total} />
@@ -726,6 +835,50 @@ export default function RealCityLab() {
                     )}
                   </div>
                 )}
+                <RegionalDataPanel
+                  key={networkGeneration}
+                  bbox={bboxError ? null : bbox}
+                  disabled={!!bboxError}
+                  busy={fetching}
+                  onPrepare={(regionId) => void build(regionId)}
+                />
+                <label className="field-label" htmlFor="example-area">
+                  {t("Try an example area")}
+                </label>
+                <select
+                  id="example-area"
+                  value=""
+                  disabled={fetching}
+                  onChange={(e) => {
+                    const example = exampleAreas[Number(e.target.value)];
+                    if (example) {
+                      setBbox({ ...example.bbox });
+                      setFitKey((k) => k + 1);
+                      setSelecting(false);
+                      setError(null);
+                    }
+                  }}
+                >
+                  <option value="">{t("Choose an area…")}</option>
+                  {exampleAreas.map((e, i) => (
+                    <option key={e.name} value={i}>
+                      {t(e.name)}
+                    </option>
+                  ))}
+                </select>
+                <label className="field-label" htmlFor="saved-area">
+                  {t("Load a saved OSM example (no API)")}
+                </label>
+                <select
+                  id="saved-area"
+                  value=""
+                  disabled={working}
+                  onChange={(e) => void loadSavedSample(e.target.value)}
+                >
+                  <option value="">{t("Choose an area…")}</option>
+                  <option value="okayama">{t("Okayama · riverside")}</option>
+                  <option value="matsumoto">{t("Matsumoto · central")}</option>
+                </select>
               </details>
               <details className="osm-file-import">
                 <summary>{t("Use your own OSM data file")}</summary>
@@ -760,19 +913,25 @@ export default function RealCityLab() {
                 </label>
                 <p className="table-note">
                   {t(
-                    "OSM XML or Overpass JSON · up to 10 MB. XML file bounds replace the selection. For JSON without bounds, select the matching area first. Incomplete files may omit facilities.",
+                    "OSM XML or Overpass JSON · up to 20 MB. XML file bounds replace the selection. For JSON without bounds, select the matching area first. Incomplete files may omit facilities.",
                   )}
                 </p>
               </details>
               {error && (
-                <div className="real-error" role="alert">
-                  <p>{t(errors[error])}</p>
+                <div
+                  id="real-city-operation-error"
+                  className="real-error"
+                  role="alert"
+                  tabIndex={-1}
+                  ref={errorPanel}
+                >
+                  <p>{t(errors[error], { max: realCityConfig.maxAreaKm2 })}</p>
                   {["UPSTREAM_UNAVAILABLE", "RATE_LIMIT", "TIMEOUT", "SERVER_UNREACHABLE"].includes(
                     error,
                   ) && (
                     <p>
                       {t(
-                        "This is a data-service issue, not a restriction to example cities. You can also use your own OSM data file above.",
+                        "No roads were substituted. Retry this area after a short wait; your current network is preserved.",
                       )}
                     </p>
                   )}
@@ -836,7 +995,7 @@ export default function RealCityLab() {
                 onSelect={setSelectedId}
                 onToggle={toggle}
                 onReset={reset}
-                busy={working}
+                busy={controlsBusy}
                 origin={origin}
                 destination={destination}
                 onOrigin={(id) => {
@@ -865,9 +1024,9 @@ export default function RealCityLab() {
               realCity
               bbox={snapshot.bbox}
               selectedEdgeId={selectedId}
-              busy={working || !currentView}
+              busy={controlsBusy}
               onApplyClosures={(ids) => {
-                if (working) return;
+                if (controlsBusy) return;
                 const valid = [...new Set(ids)].filter((id) =>
                   snapshot.network.edges.some((edge) => edge.id === id && edge.osm),
                 );
@@ -947,7 +1106,7 @@ export default function RealCityLab() {
                 setError(null);
                 setRefresh((n) => n + 1);
               }}
-              analyzing={working}
+              analyzing={analyzing}
             />
             {context && (
               <div>
@@ -1041,11 +1200,11 @@ export function RealCityMethodology() {
     ],
     [
       "Network boundaries and stress tests",
-      "Road geometry is simplified between intersections while detailed polylines are retained. Only in-bounds runs with at least two OSM nodes are included; roads and detours outside the rectangle are excluded. All available roads are tested at 200 or fewer road links. Larger networks screen 35 candidates using assigned flow × free-flow time, bridge tags and endpoint connectivity, then run the full model on each candidate. Rankings are conditional and may miss unscreened roads. Facility connectors are excluded from closure rankings.",
+      "Road shapes are retained while shape-only nodes are simplified. Routes outside the rectangle are excluded. Areas up to {detail} km² use detailed roads; larger or overly dense areas use a disclosed major-road network. Available roads are all tested up to {full} links. Larger networks screen up to {candidates} candidates, or {largeCandidates} for networks over {largeThreshold} edges. Rankings may miss unscreened roads; modeled facility connectors are excluded from closure rankings.",
     ],
     [
       "Snapshots, privacy and limitations",
-      "Snapshots save model version 1.0, bounds, OSM metadata, graph, facilities and synthetic demand. No credentials are included. File-supplied provenance is not independently verified. Requests use a bounded server proxy, up to three upstream attempts and a 20-minute process cache. No location permission, coordinates in server logs, real-time traffic, disaster probability, infrastructure condition, demographic inference or safety judgment. The recommended area is 1–10 km², at most 25 km²; complexity limits can require a smaller selection.",
+      "New snapshots record model 1.1, bounds, OSM metadata, graph, facilities, demand and import coverage. Model 1.0 snapshots remain supported. No credentials are included; file provenance is not independently verified. Server requests use bounded retries and a 20-minute memory/disk cache. Maximum area: {max} km²; up to {nodes} nodes and {edges} edges after processing. Public data availability is not guaranteed. No real-time traffic, disaster probability, infrastructure condition, demographic inference or safety judgment is provided.",
     ],
   ];
   return (
@@ -1053,7 +1212,18 @@ export function RealCityMethodology() {
       {paragraphs.map(([title, body]) => (
         <article key={title}>
           <h3>{t(title)}</h3>
-          <p>{t(body)}</p>
+          <p>
+            {t(body, {
+              max: realCityConfig.maxAreaKm2,
+              detail: realCityConfig.detailAreaKm2,
+              nodes: realCityConfig.maxNodes,
+              edges: realCityConfig.maxEdges,
+              full: realCityConfig.fullStressThreshold,
+              candidates: realCityConfig.stressCandidates,
+              largeCandidates: realCityConfig.largeStressCandidates,
+              largeThreshold: realCityConfig.largeNetworkThreshold,
+            })}
+          </p>
         </article>
       ))}
     </div>

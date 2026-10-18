@@ -3,7 +3,75 @@ import { useLocale } from "@/components/locale-provider";
 import { formatNumber } from "@/lib/format";
 import type { NetworkEdge, PathResult, SimulationResult } from "@/types/network";
 import type { RealCityNetwork } from "@/types/real-city";
-import { realCityConfig } from "@/lib/real-city/model-config";
+
+export function RoadAction({
+  edge,
+  closed,
+  busy,
+  limitReached,
+  hasImpact,
+  onToggle,
+}: {
+  edge?: NetworkEdge;
+  closed: boolean;
+  busy: boolean;
+  limitReached: boolean;
+  hasImpact: boolean;
+  onToggle: () => void;
+}) {
+  const { t } = useLocale();
+  return (
+    <div className={`road-action-bar ${closed ? "road-action-closed" : ""}`}>
+      <div>
+        <span className="eyebrow">{t("2 · CLICK A ROAD")}</span>
+        <strong>{edge?.name ?? t("Select a colored road on the map")}</strong>
+        <small>
+          {edge
+            ? t(
+                closed
+                  ? "Closed in your scenario. Reopen it to compare recovery."
+                  : "This road is open. Close it to test the effect on the whole network.",
+              )
+            : t("Then use the close button here. You can repeat this for several roads.")}
+        </small>
+      </div>
+      {(edge || hasImpact) && (
+        <div className="road-action-buttons">
+          {edge && (
+            <button
+              className={`button ${closed ? "button-recover" : "button-close"}`}
+              disabled={busy || (!closed && limitReached)}
+              onClick={onToggle}
+            >
+              {t(closed ? "Reopen road" : "Simulate closure")}
+            </button>
+          )}
+          {hasImpact && (
+            <button
+              className="button button-secondary"
+              aria-controls="real-city-impact-cue"
+              onClick={() => {
+                const target = document.getElementById("real-city-impact-cue");
+                target?.focus({ preventScroll: true });
+                target?.scrollIntoView({
+                  block: "start",
+                  behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                    ? "instant"
+                    : "smooth",
+                });
+              }}
+            >
+              {t("See what changed ↓")}
+            </button>
+          )}
+        </div>
+      )}
+      {!closed && limitReached && (
+        <small>{t("Closure limit reached. Reopen a road before adding another.")}</small>
+      )}
+    </div>
+  );
+}
 
 export function RoadControls({
   snapshot,
@@ -68,15 +136,7 @@ export function RoadControls({
         ))}
       </select>
       {edge ? (
-        <RoadInspector
-          edge={edge}
-          current={current}
-          closed={closedIds.includes(edge.id)}
-          busy={
-            busy || (!closedIds.includes(edge.id) && closedIds.length >= realCityConfig.maxClosures)
-          }
-          onToggle={() => onToggle(edge.id)}
-        />
+        <RoadInspector edge={edge} current={current} closed={closedIds.includes(edge.id)} />
       ) : (
         <p className="selection-empty">
           {t("Select a road on the map to inspect its data and simulate a closure.")}
@@ -159,14 +219,10 @@ function RoadInspector({
   edge,
   current,
   closed,
-  busy,
-  onToggle,
 }: {
   edge: NetworkEdge;
   current: SimulationResult | null;
   closed: boolean;
-  busy: boolean;
-  onToggle: () => void;
 }) {
   const { t } = useLocale();
   const o = edge.osm!,
@@ -193,24 +249,20 @@ function RoadInspector({
         {edge.name}
         {o.bridge && <span className="panel-tag">{t("Bridge")}</span>}
       </h4>
-      <dl>
-        {rows.map(([name, value]) => (
-          <div key={name}>
-            <dt>{t(name)}</dt>
-            <dd>{value}</dd>
-          </div>
-        ))}
-      </dl>
-      <small>
-        OSM way {o.wayId} · {edge.id}
-      </small>
-      <button
-        className={`button ${closed ? "button-recover" : "button-close"}`}
-        disabled={busy}
-        onClick={onToggle}
-      >
-        {t(closed ? "Reopen road" : "Simulate closure")}
-      </button>
+      <details className="road-engineering-details">
+        <summary>{t("Road data and model assumptions")}</summary>
+        <dl>
+          {rows.map(([name, value]) => (
+            <div key={name}>
+              <dt>{t(name)}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+        <small>
+          OSM way {o.wayId} · {edge.id}
+        </small>
+      </details>
     </div>
   );
 }

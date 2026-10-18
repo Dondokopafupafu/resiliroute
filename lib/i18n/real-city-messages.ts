@@ -1,4 +1,109 @@
 export const realCityJapanese: Readonly<Record<string, string>> = {
+  "See what changed ↓": "何が変わったかを見る ↓",
+  "Read progress includes two passes through the saved source.":
+    "道路形状を構築するため、保存データを2回読み取る処理の進捗です。",
+  "Regional source: {region}. File date: {date}. Facility relations may be missing; this is not complete facility coverage.":
+    "地域データ：{region}。ファイル更新日：{date}。relation形式の施設が欠ける場合があり、施設を網羅しているわけではありません。",
+  "Prepare regional data in this app": "アプリ内で地域データを準備する",
+  "Another way to build your own area: download an OSM regional dataset once, then cut out selected areas locally. No external site or manual file handling.":
+    "OSMの地域データを一度取得すれば、好きな範囲をアプリ内で切り出せます。外部サイトを開いたり、ファイルを手動で保存する必要はありません。",
+  "Checking regional data…": "地域データを確認中…",
+  "Check region and download size": "地域とダウンロード量を確認",
+  "This check only reads source metadata. The download starts after you confirm below.":
+    "ここでは地域名と容量だけを確認します。実際のダウンロードは下のボタンを押してから始まります。",
+  "Regional data information is unavailable. Retry later or use the direct Build button.":
+    "地域データの情報を取得できません。時間を置いて再試行するか、通常の構築ボタンをご利用ください。",
+  "Already stored on this app server": "このアプリのサーバーに保存済み",
+  "One-time regional download": "初回のみ地域データを取得",
+  "The saved source can be reused for other areas within this region.":
+    "この地域内なら、別の範囲の切り出しにも保存済みデータを再利用できます。",
+  "The first download may take several minutes and uses server disk space. You can cancel it; later selections reuse the saved source.":
+    "初回取得には数分かかることがあり、サーバーの保存容量を使います。途中で中止できます。以降は保存済みデータを再利用します。",
+  "This regional source exceeds the {max} MB download limit. Choose another region or use direct import.":
+    "この地域のファイルは取得上限の{max}MBを超えています。別の地域を選ぶか、通常の構築をご利用ください。",
+  "Build from saved regional data": "保存済み地域データで構築",
+  "Download regional data and build": "地域データを取得して構築",
+  "Source: OpenStreetMap contributors / Geofabrik. The selected area still uses modeled demand.":
+    "出典：OpenStreetMap contributors / Geofabrik。選択範囲の交通需要は引き続きモデル上の値です。",
+  "OpenStreetMap regional extract · Geofabrik": "OSM地域データから切り出し · Geofabrik",
+  "Downloading the regional source once": "初回の地域データをダウンロード中",
+  "Cutting your selected area from the regional data": "地域データから選択した範囲を切り出し中",
+  "Preparing the baseline model": "通常時のモデルを準備中",
+  "OSM XML or Overpass JSON · up to 20 MB. XML file bounds replace the selection. For JSON without bounds, select the matching area first. Incomplete files may omit facilities.":
+    "OSM XML・Overpass JSON対応（最大20MB）。XMLの範囲を優先します。範囲情報のないJSONは同じ地域を先に選択してください。不完全なファイルでは施設が欠ける場合があります。",
+  "Road closures. Effects across the network.": "道路の閉鎖が、街全体へ波及する。",
+  "{count} additional modeled OD pairs have no remaining route. Lower flow or congestion does not mean better access.":
+    "通常時より{count}組多いモデルODペアが到達不能です。交通量や混雑が減っても、移動しやすくなったとは限りません。",
+  "Zoom in": "拡大",
+  "Zoom out": "縮小",
+  "First corner selected. Click the opposite corner to finish.":
+    "1つ目の角を選びました。反対側の角を押すと範囲が決まります。",
+  "Click the first corner, then the opposite corner.":
+    "まず1つ目の角を押し、次に反対側の角を押してください。",
+  "This selection will use major roads. Local residential streets are not included in regional analysis.":
+    "この範囲は主要道路を使います。広域分析には地域内の生活道路を含みません。",
+  "Road shapes are retained while shape-only nodes are simplified. Routes outside the rectangle are excluded. Areas up to {detail} km² use detailed roads; larger or overly dense areas use a disclosed major-road network. Available roads are all tested up to {full} links. Larger networks screen up to {candidates} candidates, or {largeCandidates} for networks over {largeThreshold} edges. Rankings may miss unscreened roads; modeled facility connectors are excluded from closure rankings.":
+    "道路形状を保ちつつ、形状だけの中間点を統合します。範囲外の経路は除外します。{detail}km²以下は詳細道路、それより広いか道路が過密な範囲は明示のうえ主要道路を使います。利用可能道路が{full}本以下なら全道路を解析。それ以上は最大{candidates}候補、{largeThreshold}辺を超える交通網では{largeCandidates}候補に絞ります。候補外の重要道路を見逃す可能性があり、施設へのモデル接続は閉鎖順位から除外します。",
+  "New snapshots record model 1.1, bounds, OSM metadata, graph, facilities, demand and import coverage. Model 1.0 snapshots remain supported. No credentials are included; file provenance is not independently verified. Server requests use bounded retries and a 20-minute memory/disk cache. Maximum area: {max} km²; up to {nodes} nodes and {edges} edges after processing. Public data availability is not guaranteed. No real-time traffic, disaster probability, infrastructure condition, demographic inference or safety judgment is provided.":
+    "新しい保存データにはモデル1.1、範囲、OSM情報、交通網、施設、需要、収録道路の範囲を記録し、旧モデル1.0も読めます。認証情報は含みませんが、ファイルの出典は独立に検証していません。サーバー取得は回数を制限し、メモリとディスクに20分キャッシュします。最大{max}km²、処理後{nodes}ノード・{edges}辺まで。公開データサービスの可用性は保証できません。リアルタイム交通、災害確率、設備状態、人口属性、安全性の判断は提供しません。",
+  "New area selected. Build it to replace the current network. Results still describe your previous area.":
+    "新しい範囲を選択しました。構築すると交通網を置き換えます。現在の分析結果は、まだ前の範囲のものです。",
+  "Build this area": "この範囲で構築する",
+  "Use visible map area": "いま見えている範囲を選ぶ",
+  "Drag corner to resize area": "角をドラッグして範囲を変更",
+  "Recalculating the impact…": "道路閉鎖の影響を再計算中…",
+  "Move and zoom the map, then use the visible area. Drag the blue corner handles to resize, or select two corners.":
+    "地図を動かして拡大・縮小し、いま見えている範囲を選べます。青い角をドラッグするか、対角2点を選んで自由に調整できます。",
+  "1 · CHOOSE YOUR AREA": "1 · 好きな範囲を選ぶ",
+  "2 · CLICK A ROAD": "2 · 止めたい道路を選ぶ",
+  "Select a colored road on the map": "地図の色付きの道路を押してください",
+  "Then use the close button here. You can repeat this for several roads.":
+    "選ぶと、ここに閉鎖ボタンが出ます。複数の道路を続けて閉鎖できます。",
+  "This road is open. Close it to test the effect on the whole network.":
+    "この道路は通行可能です。閉鎖すると、迂回や街全体への影響を計算します。",
+  "Closed in your scenario. Reopen it to compare recovery.":
+    "シナリオ上で閉鎖中です。再開すれば、復旧したときの変化を比較できます。",
+  "Closure limit reached. Reopen a road before adding another.":
+    "閉鎖できる本数の上限です。どれかを再開してから追加してください。",
+  "Road data and model assumptions": "道路の詳しいデータ・推定条件",
+  "Move to any location on the map. Use the visible area or draw your own rectangle. Build directly here—no external download needed.":
+    "地図を好きな場所へ動かし、表示範囲か自分で決めた四角形を選択。このアプリ内で道路データを取得して分析します。",
+  "Up to {max} km². Larger or dense areas use a major-road network; local streets may be excluded.":
+    "最大{max}km²。広い範囲や道路の密な地域は主要道路のモデルを使用し、生活道路を省く場合があります。",
+  "Selected area is too large. Choose an area smaller than {max} km² for interactive analysis.":
+    "分析範囲が大きすぎます。{max}km²以下の範囲を選択してください。",
+  "Building intersections from the downloaded roads": "取得した道路から交差点を構築中",
+  "Checking saved area data": "取得済みの範囲データを確認中",
+  "Data service attempt {attempt} / {total}": "道路取得サービスへの接続 {attempt} / {total}",
+  "No roads were substituted. Retry this area after a short wait; your current network is preserved.":
+    "別の地域の道路には置き換えていません。少し待ってこの範囲を再試行してください。構築済みの交通網は維持しています。",
+  "Modeled origins": "モデル需要地点",
+  "Regional view · major roads": "広域表示 · 主要道路の交通網",
+  "Local residential streets are excluded in this view. Results describe the included major-road network, not every road in the area.":
+    "この表示では生活道路を省いています。結果は取り込んだ主要道路の交通網についての分析で、範囲内すべての道路を表すものではありません。",
+  "Switched to major roads because the detailed network was too dense.":
+    "詳細道路が多いため、同じ範囲の主要道路に切り替えました。",
+  "WHAT CHANGED AFTER THE CLOSURE?": "3 · 道路を止めると、何が変わった？",
+  "YOUR FIRST EXPERIMENT": "3 · 閉鎖前と閉鎖後を比べる",
+  "One closure. Effects across the network.": "道路の閉鎖が、街全体へ波及する。",
+  "Choose a road, close it, see what changes.": "道路を選ぶ → 閉鎖する → 変化を見る。",
+  "All values compare this same area before and after your selected closures.":
+    "同じ範囲・同じ需要で、あなたが道路を閉鎖する前と後を比較しています。",
+  "Click a colored road on the map, then press Simulate closure. The map and numbers update automatically.":
+    "地図の色付き道路を選び「閉鎖をシミュレーション」を押すだけ。地図と数値が自動で変わります。",
+  "closed links": "本を閉鎖",
+  "modeled routes changed": "組のモデル経路が変化",
+  "roads carrying more modeled traffic": "本にモデル交通が集中",
+  "Essential-service access": "重要施設への到達割合",
+  points: "ポイント",
+  "from baseline": "（通常時との差）",
+  "{count} additional modeled journeys have no remaining route. Lower flow or congestion does not mean better access.":
+    "通常時より{count}組多いモデル経路が到達不能です。交通量や混雑が減っても、移動しやすくなったとは限りません。",
+  "Show the road taking the most extra traffic": "交通が最も多く移った道路を地図で見る",
+  "No remaining road gained substantial modeled flow. Check disconnected journeys and access as well as travel time.":
+    "他の道路への大きな交通増加はありません。移動時間だけでなく、到達不能な経路や施設アクセスも確認してください。",
+  "Changed routes counts OD pairs whose shortest path changed or became unreachable. Extra-flow roads exceed baseline flow by 10% and at least one modeled unit.":
+    "経路変化は、最短経路が変わったか到達不能になったODペアの数です。交通集中は、通常時より交通が10％かつ1モデル単位を超えて増えた道路を数えています。",
   "Go to your own location": "好きな場所へ移動",
   "Paste latitude, longitude or an OpenStreetMap map URL. A 2 × 2 km selection is created; adjust its corners on the map.":
     "緯度, 経度、またはOpenStreetMapの地図URLを貼り付けてください。約2km四方を選択します。地図上で範囲を調整できます。",
@@ -189,8 +294,8 @@ export const realCityJapanese: Readonly<Record<string, string>> = {
     "道路形状・施設：OpenStreetMap。交通需要：合成モデル。",
   "Boundary-limited model: routes outside the selected rectangle are excluded.":
     "範囲境界で制限したモデルです。矩形外の経路は含みません。",
-  "{count} disconnected components · {excluded} facilities not connected":
-    "非接続の道路網：{count}群 · 未接続施設：{excluded}件",
+  "{count} disconnected components · {excluded} facilities omitted by import limits or connection distance":
+    "非接続の道路網：{count}群 · 取込上限または道路との距離で除外した施設：{excluded}件",
   "CASCADING IMPACT ANALYSIS": "連鎖する影響を分析",
   "A real road. A network-wide consequence.": "実在の道路が止まると、交通網はどう変わる？",
   "Every comparison uses the same imported network and synthetic demand.":

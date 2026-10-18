@@ -17,7 +17,10 @@ export function NetworkSummary({
     ["Hospitals & clinics", snapshot.facilities.filter((f) => f.type === "hospital").length],
     ["Stations", snapshot.facilities.filter((f) => f.type === "station").length],
     ["Shelters", snapshot.facilities.filter((f) => f.type === "shelter").length],
-    ["Residential origins", snapshot.stats.origins],
+    [
+      snapshot.importProfile?.mode === "regional" ? "Modeled origins" : "Residential origins",
+      snapshot.stats.origins,
+    ],
     ["Modeled OD pairs", snapshot.odPairs.length],
   ];
   return (
@@ -30,6 +33,29 @@ export function NetworkSummary({
         </div>
         <span className="panel-tag">v{snapshot.realCityModelVersion}</span>
       </div>
+      {snapshot.importProfile?.mode === "regional" && (
+        <p className="regional-coverage-note">
+          <strong>{t("Regional view · major roads")}</strong>
+          <br />
+          {t(
+            "Local residential streets are excluded in this view. Results describe the included major-road network, not every road in the area.",
+          )}
+          {snapshot.importProfile.reason === "density" && (
+            <> {t("Switched to major roads because the detailed network was too dense.")}</>
+          )}
+        </p>
+      )}
+      {snapshot.osmMetadata.regionalExtract && (
+        <p className="table-note">
+          {t(
+            "Regional source: {region}. File date: {date}. Facility relations may be missing; this is not complete facility coverage.",
+            {
+              region: snapshot.osmMetadata.regionalExtract.regionName,
+              date: snapshot.osmMetadata.regionalExtract.fileDate ?? t("Unknown"),
+            },
+          )}
+        </p>
+      )}
       <div className="real-summary-grid">
         {counts.map(([name, value]) => (
           <div key={name}>
@@ -43,10 +69,13 @@ export function NetworkSummary({
       </p>
       <p className="table-note">
         {t("Boundary-limited model: routes outside the selected rectangle are excluded.")}{" "}
-        {t("{count} disconnected components · {excluded} facilities not connected", {
-          count: snapshot.stats.components,
-          excluded: snapshot.stats.excludedFacilities,
-        })}
+        {t(
+          "{count} disconnected components · {excluded} facilities omitted by import limits or connection distance",
+          {
+            count: snapshot.stats.components,
+            excluded: snapshot.stats.excludedFacilities,
+          },
+        )}
       </p>
     </article>
   );

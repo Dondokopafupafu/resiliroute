@@ -1,12 +1,15 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { divIcon, DomEvent, type Marker as LeafletMarker } from "leaflet";
 import {
   CircleMarker,
   MapContainer,
+  Marker,
   Polyline,
   Rectangle,
   TileLayer,
   Tooltip,
+  ZoomControl,
   useMap,
   useMapEvents,
 } from "react-leaflet";
@@ -35,6 +38,9 @@ interface Props {
   baseline?: SimulationResult | null;
   analysisLayer?: DecisionMapLayer;
   critical?: readonly CriticalLinkResult[];
+  areaEditing?: boolean;
+  disabled?: boolean;
+  pending?: boolean;
 }
 function Selection({
   bbox,
@@ -42,8 +48,17 @@ function Selection({
   fitKey,
   selectionKey,
   onBounds,
-}: Pick<Props, "bbox" | "selecting" | "fitKey" | "selectionKey" | "onBounds">) {
+  areaEditing,
+  disabled,
+}: Pick<
+  Props,
+  "bbox" | "selecting" | "fitKey" | "selectionKey" | "onBounds" | "areaEditing" | "disabled"
+>) {
+  const { t } = useLocale();
   const map = useMap();
+  const lastFit = useRef(-1);
+  const currentBounds = useRef(bbox);
+  const areaAction = useRef<HTMLDivElement | null>(null);
   const [first, setFirst] = useState<[number, number] | null>(null);
   const [preview, setPreview] = useState<[number, number] | null>(null);
   const [firstKey, setFirstKey] = useState<number | null>(null);
@@ -72,7 +87,8 @@ function Selection({
     },
   });
   useEffect(() => {
-    if (bbox)
+    if (bbox && lastFit.current !== fitKey) {
+      lastFit.current = fitKey;
       map.fitBounds(
         [
           [bbox.south, bbox.west],
@@ -80,12 +96,77 @@ function Selection({
         ],
         { padding: [24, 24], animate: false },
       );
+    }
   }, [bbox, fitKey, map]);
+  useEffect(() => {
+    currentBounds.current = bbox;
+  }, [bbox]);
+  useEffect(() => {
+    const container = map.getContainer();
+    let width = container.clientWidth,
+      height = container.clientHeight;
+    const observer = new ResizeObserver(() => {
+      if (width === container.clientWidth && height === container.clientHeight) return;
+      width = container.clientWidth;
+      height = container.clientHeight;
+      map.invalidateSize({ pan: false });
+      const bounds = currentBounds.current;
+      if (bounds)
+        map.fitBounds(
+          [
+            [bounds.south, bounds.west],
+            [bounds.north, bounds.east],
+          ],
+          { padding: [24, 24], animate: false },
+        );
+    });
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [map]);
   useEffect(() => {
     map.getContainer().style.cursor = selecting ? "crosshair" : "";
   }, [map, selecting]);
+  useEffect(() => {
+    if (areaAction.current) {
+      DomEvent.disableClickPropagation(areaAction.current);
+      DomEvent.disableScrollPropagation(areaAction.current);
+    }
+  }, []);
   return (
     <>
+      <div className="map-area-action" ref={areaAction}>
+        <button
+          type="button"
+          className="button button-primary"
+          disabled={disabled}
+          onClick={(event) => {
+            event.stopPropagation();
+            // A small inset leaves draggable handles reachable on touch screens.
+            const size = map.getSize();
+            const northWest = map.containerPointToLatLng([22, 22]);
+            const southEast = map.containerPointToLatLng([size.x - 22, size.y - 22]);
+            // Keep the chosen viewport fixed; selecting it must not zoom out again.
+            lastFit.current = fitKey;
+            onBounds({
+              south: southEast.lat,
+              west: northWest.lng,
+              north: northWest.lat,
+              east: southEast.lng,
+            });
+          }}
+        >
+          {t("Use visible map area")}
+        </button>
+      </div>
+      {selecting && (
+        <div className="selection-note" role="status">
+          {t(
+            activeFirst
+              ? "First corner selected. Click the opposite corner to finish."
+              : "Click the first corner, then the opposite corner.",
+          )}
+        </div>
+      )}
       {bbox && (
         <Rectangle
           bounds={[
@@ -96,12 +177,57 @@ function Selection({
           interactive={false}
         />
       )}
+      {bbox &&
+        areaEditing &&
+        !selecting &&
+        !disabled &&
+        (
+          [
+            ["south", "west"],
+            ["south", "east"],
+            ["north", "west"],
+            ["north", "east"],
+          ] as const
+        ).map(([lat, lng]) => (
+          <Marker
+            key={`${lat}-${lng}-${t("Drag corner to resize area")}`}
+            position={[bbox[lat], bbox[lng]]}
+            draggable
+            title={t("Drag corner to resize area")}
+            icon={divIcon({
+              className: "area-corner-handle",
+              iconSize: [22, 22],
+              iconAnchor: [11, 11],
+            })}
+            eventHandlers={{
+              dragend(event) {
+                const p = (event.target as LeafletMarker).getLatLng();
+                const oppositeLat = bbox[lat === "south" ? "north" : "south"];
+                const oppositeLng = bbox[lng === "west" ? "east" : "west"];
+                onBounds({
+                  south: Math.min(p.lat, oppositeLat),
+                  north: Math.max(p.lat, oppositeLat),
+                  west: Math.min(p.lng, oppositeLng),
+                  east: Math.max(p.lng, oppositeLng),
+                });
+              },
+            }}
+          />
+        ))}
       {selecting && activeFirst && preview && (
-        <Rectangle
-          bounds={[activeFirst, preview]}
-          pathOptions={{ color: "#e38d36", fillOpacity: 0.1 }}
-          interactive={false}
-        />
+        <>
+          <CircleMarker
+            center={activeFirst}
+            radius={6}
+            pathOptions={{ color: "#e38d36", fillOpacity: 1 }}
+            interactive={false}
+          />
+          <Rectangle
+            bounds={[activeFirst, preview]}
+            pathOptions={{ color: "#e38d36", fillOpacity: 0.1 }}
+            interactive={false}
+          />
+        </>
       )}
     </>
   );
@@ -125,7 +251,14 @@ export default function LabMap(props: Props) {
         className="real-map"
         scrollWheelZoom
         attributionControl
+        zoomControl={false}
       >
+        <ZoomControl
+          key={t("Zoom in")}
+          position="topleft"
+          zoomInTitle={t("Zoom in")}
+          zoomOutTitle={t("Zoom out")}
+        />
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
@@ -137,6 +270,8 @@ export default function LabMap(props: Props) {
           fitKey={props.fitKey}
           selectionKey={props.selectionKey}
           onBounds={props.onBounds}
+          areaEditing={props.areaEditing}
+          disabled={props.disabled}
         />
         {props.snapshot?.network.edges
           .filter((e) => e.osm && (!props.bridgesOnly || e.osm.bridge))
@@ -265,9 +400,9 @@ export default function LabMap(props: Props) {
           )}
         </div>
       )}
-      {props.selecting && (
-        <div className="selection-note">
-          {t("Click two opposite corners to select a rectangle.")}
+      {props.pending && (
+        <div className="map-update-note" role="status">
+          {t("Recalculating the impact…")}
         </div>
       )}
       {tileError && (
